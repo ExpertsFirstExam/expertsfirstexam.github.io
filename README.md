@@ -1,1 +1,66 @@
-# expertsfirstexam.github.io
+# Experts' First Exam — public website
+
+One file, `index.html`. It contains only public information:
+domain names, planned figures from the design doc, and the scoring method.
+Fonts are built into the file, so the page loads nothing from Google except
+the embedded proposal form.
+
+## Put it on GitHub Pages
+
+1. On GitHub, create a **public** repository (for example `efe-bench`).
+2. Upload `index.html` (and this README) to the repository's `main` branch.
+3. Go to **Settings → Pages**. Under "Build and deployment", choose
+   **Deploy from a branch**, branch `main`, folder `/ (root)`, and save.
+4. After a minute the site is live at
+   `https://<your-account>.github.io/efe-bench/`.
+
+Own domain (optional): in **Settings → Pages → Custom domain**, enter it
+(e.g. `efe-bench.org`), add the DNS records GitHub shows you at your domain
+registrar, then tick **Enforce HTTPS** once it is offered.
+
+## How the site is built
+
+The published file is `index.html`. It is generated from the `src/` folder:
+
+- `src/template.html`: layout, styles and code
+- `src/data.json`: everything the site shows (benchmarks, areas, rules, figures)
+- `src/build.py`: puts template, data and fonts together
+
+To rebuild: `python3 src/build.py <fonts-folder> "<google-form-link>" index.html`.
+Small text changes can also be made directly in `index.html` (search for
+`const DATA`), but then copy them back into `data.json` too.
+
+## Settings (top of the `<script>` in index.html)
+
+- `contactEmail`: shown in the footer and on the Contribute page.
+- `googleFormUrl`: the proposal form shown on the Contribute page.
+- `workspaceUrl`: address of the private workspace; empty hides "Team sign in".
+
+## Benchmarks (`benchmarks` in data.json)
+
+Each benchmark has: `slug` (its web address, `#/b/<slug>`), `code` (the badge),
+`name`, `area`, `shared` (`true` = built with a partner team, shown with `*`),
+`status`, and `example` (the illustrative task title on the home page).
+
+Fill these in as content becomes ready; anything left empty shows a
+placeholder box on the benchmark's page:
+- `description`: one paragraph for the Overview.
+- `paper`: `{"title", "authors", "venue", "arxiv", "pdf", "code", "bibtex"}`
+  (links; missing links show as greyed-out buttons).
+- `examples`: up to 3 tasks, each `{"title", "steps": [...], "meta": [...]}`.
+  Use only public tasks, never hidden ones.
+- `taxonomy`: `[{"direction": "...", "categories": ["...", "..."]}]`.
+- `team`: `{"leads": [...], "members": [...], "contributors": [...]}`.
+  Names here are public: add people only with their agreement.
+
+## Security notes
+
+- The page sets a Content-Security-Policy: it may only show the Google Form
+  from docs.google.com and cannot load scripts, fonts or images from anywhere
+  else. If you later embed something new (e.g. a different form service),
+  add its address to `frame-src` in the `<meta http-equiv=
+  "Content-Security-Policy">` line, or it will be blocked.
+- Only upload `index.html` and this README to the public repository. Never
+  add the prototype, `schema.sql`, task files or anything private: a public
+  repository is visible to everyone, and GitHub keeps every old version even
+  after you delete a file.

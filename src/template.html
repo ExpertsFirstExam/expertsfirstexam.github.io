@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; font-src data:; img-src data:; frame-src https://docs.google.com; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Experts’ First Exam</title>
+<meta name="description" content="Experts’ First Exam (EFE): a family of benchmarks built from real expert workflows, measuring where frontier AI agents still fall short.">
+<meta property="og:title" content="Experts’ First Exam">
+<meta property="og:description" content="A family of benchmarks built from real expert workflows, with the people who do the work.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E1013'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-weight='700' font-size='17' fill='%23FFFFFF' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
+<style>
+/* Fonts (SIL Open Font License): Space Grotesk, Inter, JetBrains Mono. Built in so the page loads nothing from Google. */
+__FONTS__
+:root{
+  --bg:#F5F5F2;--surface:#FFFFFF;--surface2:#FAFAF8;--ink:#0E1013;--ink2:#3B3F47;--muted:#73777F;--faint:#A3A6AC;
+  --line:#E3E2DD;--line2:#EDECE8;--accent:#D4471B;--accent-soft:#FBE9E1;--ok:#2E8B57;--ok-soft:#E3F2E9;
+  --shadow:0 1px 2px rgba(14,16,19,.04),0 8px 28px rgba(14,16,19,.06);
+  --a1:#2F6FDE;--a2:#0E9F8E;--a3:#7A5AD6;--a4:#D4471B;--a5:#C98419;--a6:#D23F7E;--a7:#5B8C2A;
+  --head:'Space Grotesk',system-ui,sans-serif;--sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D0E11;--surface:#16181C;--surface2:#1A1C21;--ink:#EEEDEA;--ink2:#C7C6C1;--muted:#979AA2;--faint:#6B6E75;
+  --line:#2A2D33;--line2:#212429;--accent:#FF6B3D;--accent-soft:#3A1E14;--ok:#4CC07F;--ok-soft:#16301F;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 28px rgba(0,0,0,.35);
+  --a1:#7AA4FF;--a2:#3FD1BE;--a3:#AE94FF;--a4:#FF7A4A;--a5:#F0B34E;--a6:#FF7AB2;--a7:#9BCB5E;}}
+:root[data-theme="dark"]{
+  --bg:#0D0E11;--surface:#16181C;--surface2:#1A1C21;--ink:#EEEDEA;--ink2:#C7C6C1;--muted:#979AA2;--faint:#6B6E75;
+  --line:#2A2D33;--line2:#212429;--accent:#FF6B3D;--accent-soft:#3A1E14;--ok:#4CC07F;--ok-soft:#16301F;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 28px rgba(0,0,0,.35);
+  --a1:#7AA4FF;--a2:#3FD1BE;--a3:#AE94FF;--a4:#FF7A4A;--a5:#F0B34E;--a6:#FF7AB2;--a7:#9BCB5E;}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--head);letter-spacing:-.02em}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+.muted{color:var(--muted)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:12px;z-index:30;margin:12px auto 0;max-width:1180px;padding:0 16px}
+.nav-in{display:flex;align-items:center;gap:22px;height:54px;padding:0 10px 0 16px;border-radius:16px;background:color-mix(in srgb,var(--surface) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:var(--shadow)}
+.logo{display:flex;align-items:center;gap:9px;font-family:var(--head);font-weight:700;font-size:16px;letter-spacing:-.01em;white-space:nowrap}
+.logo-mark{width:26px;height:26px;border-radius:7px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:14px}
+.nav .links{display:flex;gap:20px;font-size:14px;color:var(--muted)}
+.nav .links a:hover,.nav .links a.on{color:var(--ink)}
+.nav .right{margin-left:auto;display:flex;gap:6px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:14px;font-weight:500;white-space:nowrap;transition:border-color .15s,transform .15s}
+.btn:hover{border-color:var(--muted)}
+.btn.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.dark:hover{transform:translateY(-1px)}
+.btn.sm{height:32px;padding:0 13px;font-size:13px}
+.btn.icon{width:36px;padding:0;justify-content:center;border-color:transparent;background:transparent}
+.btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
+
+/* hero */
+.hero{position:relative;padding:84px 0 40px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-40px -20px 0 35%;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 70% 70% at 70% 40%,#000 0%,transparent 75%);mask-image:radial-gradient(ellipse 70% 70% at 70% 40%,#000 0%,transparent 75%);opacity:.7;pointer-events:none}
+.hero .container{position:relative}
+.kicker{font-size:15px;color:var(--ink2);margin:0}
+.kicker b{display:block;color:var(--accent);font-weight:500}
+.h-hero{font-weight:700;font-size:clamp(52px,8.4vw,104px);line-height:.94;letter-spacing:-.045em;margin:22px 0 22px}
+.sub{font-size:18px;color:var(--ink2);max-width:600px;margin:0}
+.cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:64px;border-top:1px solid var(--line)}
+.stat{padding:22px 0 0}
+.stat+.stat{padding-left:24px;border-left:1px solid var(--line)}
+.stat .n{font-family:var(--head);font-weight:700;font-size:40px;line-height:1;letter-spacing:-.03em}
+.stat .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+
+/* sections */
+section.block{padding:72px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:28px;flex-wrap:wrap}
+.h-sec{font-weight:700;font-size:clamp(30px,4vw,44px);line-height:1.02;letter-spacing:-.035em}
+.sec-head p{margin:10px 0 0;color:var(--muted);max-width:560px}
+.note{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);border:1px dashed var(--line);border-radius:999px;padding:4px 12px;background:var(--surface)}
+.note::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+/* badges */
+.badge{display:inline-grid;place-items:center;min-width:42px;height:24px;padding:0 7px;border-radius:7px;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.04em;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);border:1px solid color-mix(in srgb,var(--c) 22%,transparent)}
+.badge.lg{min-width:64px;height:38px;font-size:14px;border-radius:10px}
+
+/* task marquee */
+.marquee{display:grid;gap:12px;overflow:hidden;padding:4px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.mrow{display:flex;width:max-content;animation:slide var(--dur,80s) linear infinite}
+.mrow.rev{animation-direction:reverse}
+.marquee:hover .mrow{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.tile{display:flex;align-items:center;gap:12px;margin-right:12px;padding:12px 16px 12px 12px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:0 1px 2px rgba(14,16,19,.03);white-space:nowrap;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--muted);transform:translateY(-2px)}
+.tile .t1{font-size:13.5px;font-weight:500}
+.tile .t2{font-size:12px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.mrow{animation:none;flex-wrap:wrap;width:auto}.marquee{-webkit-mask-image:none;mask-image:none}.mrow .dup{display:none}}
+
+/* benchmark grid */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
+.chip{padding:6px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:13px;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.search{height:36px;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:0 16px;font-size:14px;min-width:220px;margin-left:auto}
+.area{margin-bottom:28px}
+.area-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.area-head .dot{width:9px;height:9px;border-radius:3px;background:var(--c)}
+.area-head h3{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.area-head .cnt{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.bgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.bcard{display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;background:var(--surface);border:1px solid var(--line);transition:border-color .15s,transform .15s,box-shadow .15s;min-width:0}
+.bcard:hover{border-color:var(--muted);transform:translateY(-2px);box-shadow:var(--shadow)}
+.bcard .nm{font-weight:500;font-size:14px;min-width:0;line-height:1.3}
+.bcard .ar{margin-left:auto;color:var(--faint);transition:transform .15s,color .15s}
+.bcard:hover .ar{color:var(--ink);transform:translateX(2px)}
+.star{color:var(--accent);font-weight:700;margin-left:2px}
+.legend{display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px;color:var(--ink2);padding:16px 18px;border-radius:14px;background:var(--surface);border:1px solid var(--line);margin-top:8px}
+.legend b{font-weight:600;color:var(--ink)}
+.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}
+
+/* features */
+.features{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.feat{padding:22px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.feat .num{font-family:var(--mono);font-size:11.5px;color:var(--accent)}
+.feat h4{font-size:18px;font-weight:600;margin:10px 0 8px;letter-spacing:-.015em}
+.feat p{margin:0;color:var(--muted);font-size:14px}
+
+.cta-band{background:var(--ink);color:var(--bg);border-radius:24px;padding:48px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden}
+.cta-band h2{font-size:clamp(28px,3.4vw,40px);font-weight:700;letter-spacing:-.035em;line-height:1.05;max-width:620px}
+.cta-band p{color:color-mix(in srgb,var(--bg) 62%,transparent);margin:10px 0 0}
+.cta-band .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+
+footer.pf{border-top:1px solid var(--line);padding:44px 0 56px;margin-top:40px;font-size:13.5px;color:var(--muted)}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:28px}
+.fgrid h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin:0 0 12px;font-weight:500}
+.fgrid a{display:block;margin-bottom:8px}
+.fgrid a:hover{color:var(--ink)}
+
+/* benchmark page */
+.crumb{display:inline-flex;gap:6px;font-size:13.5px;color:var(--muted);margin-bottom:26px}
+.crumb:hover{color:var(--ink)}
+.bhead{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+.bhead h1{font-weight:700;font-size:clamp(38px,5.6vw,64px);line-height:1;letter-spacing:-.04em;margin-top:6px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:12.5px;border:1px solid var(--line);background:var(--surface);color:var(--ink2)}
+.tag.shared{border-color:color-mix(in srgb,var(--accent) 40%,transparent);color:var(--accent);background:var(--accent-soft)}
+.subnav{position:sticky;top:78px;z-index:20;display:flex;gap:6px;flex-wrap:wrap;margin:36px 0 8px;padding:8px;border-radius:14px;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.bsec{padding:36px 0 8px;scroll-margin-top:140px}
+.bsec h2{font-size:26px;font-weight:700;letter-spacing:-.03em;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.ph{position:relative;border:1px dashed var(--line);border-radius:16px;background:var(--surface);padding:22px}
+.ph-tag{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 7px;background:var(--surface2)}
+.real{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:22px}
+.skel{height:10px;border-radius:5px;background:var(--line2);margin:9px 0}
+.paper{display:grid;grid-template-columns:120px 1fr;gap:22px;align-items:start}
+.paper .cover{aspect-ratio:3/4;border-radius:10px;border:1px solid var(--line);background:repeating-linear-gradient(180deg,var(--surface2) 0 14px,var(--line2) 14px 15px);display:grid;place-items:center;font-family:var(--mono);font-size:11px;color:var(--faint)}
+.paper h3{font-size:20px;font-weight:600;letter-spacing:-.02em}
+.paper .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.tgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tcard h4{font-size:16.5px;font-weight:600;letter-spacing:-.015em;margin:12px 0 8px;line-height:1.3}
+.tcard .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.tcard .meta span{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+.tcard ol{margin:8px 0 0;padding-left:18px;color:var(--ink2);font-size:13.5px}
+.tax{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tax-dir h4{font-size:15px;font-weight:600;margin-bottom:10px;display:flex;justify-content:space-between}
+.cats{display:flex;flex-wrap:wrap;gap:6px}
+.cat{font-size:12.5px;padding:4px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface2);color:var(--ink2)}
+.cat.sk{color:transparent;min-width:84px;background:var(--line2);border-color:transparent}
+.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.person{display:flex;gap:12px;align-items:center;margin-top:12px}
+.av{width:38px;height:38px;border-radius:50%;background:var(--line2);flex:none;display:grid;place-items:center;font-size:12px;font-weight:600;color:var(--muted)}
+.person .nm{font-weight:500;font-size:14px}
+.person .rl{font-size:12.5px;color:var(--muted)}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:48px}
+.pn a{padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
+.pn a:hover{border-color:var(--muted)}
+.pn .r{text-align:right}
+
+/* contribute + leaderboard */
+.split{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card h3{font-size:19px;font-weight:600;letter-spacing:-.015em}
+.pill{display:inline-flex;padding:3px 10px;border-radius:999px;font-size:12.5px;background:var(--accent-soft);color:var(--accent)}
+ul.rules{margin:12px 0 0;padding-left:18px;color:var(--ink2);font-size:14px;display:grid;gap:6px}
+.gform{width:100%;border:0;border-radius:10px;background:#fff;display:block}
+.card a:not(.btn){color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.soon{padding:44px 28px;text-align:center;border-style:dashed}
+
+@media (max-width:1020px){.bgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.features{grid-template-columns:repeat(2,minmax(0,1fr))}.tgrid{grid-template-columns:1fr}.split{grid-template-columns:1fr}}
+@media (max-width:760px){
+  .bgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.team,.tax{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}.stat:nth-child(3){padding-left:0;border-left:none}.stat:nth-child(n+3){margin-top:18px}
+  .fgrid{grid-template-columns:1fr 1fr}.fgrid>div:first-child{grid-column:1/-1}
+  .search{margin-left:0;width:100%}
+}
+@media (max-width:640px){
+  .container{padding:0 16px}.nav{padding:0 10px}.nav-in{gap:12px;padding:0 6px 0 12px}
+  .nav .links{gap:12px;font-size:13px}.nav .links .hide-sm,.logo .word{display:none}
+  .hero{padding:52px 0 28px}.features,.bgrid{grid-template-columns:1fr}
+  .cta-band{padding:30px}.paper{grid-template-columns:1fr}.paper .cover{display:none}.pn{grid-template-columns:1fr}
+  .subnav{top:72px}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+/* =====================================================================
+   SETTINGS: edit these
+   ===================================================================== */
+const CONFIG = {
+  contactEmail: 'efe-team@example.org',  // shown in the footer and as the backup on the Contribute page
+  googleFormUrl: '__FORMURL__',
+  googleFormHeight: 1100,               // height of the embedded form in pixels
+  workspaceUrl: ''                      // link for "Team sign in"; empty = hidden
+};
+
+/* =====================================================================
+   PUBLIC DATA (see README for how to fill in papers, tasks, taxonomy, team)
+   ===================================================================== */
+const DATA = __DATA__;
+
+/* ===================================================================== */
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=n=>Number(n).toLocaleString('en-US');
+const AREA=Object.fromEntries(DATA.areas.map((a,i)=>[a.id,{...a,c:`var(--a${i+1})`}]));
+const B=DATA.benchmarks;
+const BY=Object.fromEntries(B.map(b=>[b.slug,b]));
+const moon='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+const arrow='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const badge=(b,lg)=>`<span class="badge ${lg?'lg':''}" style="--c:${AREA[b.area].c}">${esc(b.code)}</span>`;
+const star=b=>b.shared?'<span class="star" title="Built with a partner team">*</span>':'';
+const PH='<span class="ph-tag">Placeholder</span>';
+let filter='all',query='';
+
+function nav(on){
+  return`<header class="nav"><div class="nav-in">
+   <a class="logo" href="#/"><span class="logo-mark">E</span><span class="word">Experts’ First Exam</span></a>
+   <nav class="links"><a href="#/benchmarks" class="${on==='b'?'on':''}">Benchmarks</a><a href="#/leaderboard" class="${on==='l'?'on':''}">Leaderboard</a><a href="#/contribute" class="hide-sm ${on==='c'?'on':''}">Contribute</a></nav>
+   <div class="right"><button class="btn icon" data-act="theme" aria-label="Switch light or dark">${moon}</button>
+   ${CONFIG.workspaceUrl?`<a class="btn sm" href="${esc(CONFIG.workspaceUrl)}">Team sign in</a>`:''}
+   <a class="btn sm dark" href="#/contribute">Contribute</a></div>
+  </div></header>`;
+}
+const foot=()=>`<footer class="pf"><div class="container fgrid">
+  <div><div class="logo" style="color:var(--ink)"><span class="logo-mark">E</span>Experts’ First Exam</div><p style="margin:12px 0 0;max-width:360px">A family of benchmarks built from real expert workflows, measuring where frontier AI agents still fall short.</p></div>
+  <div><h5>Explore</h5><a href="#/benchmarks">Benchmarks</a><a href="#/leaderboard">Leaderboard</a><a href="#/contribute">Contribute a task</a></div>
+  <div><h5>Contact</h5><a href="mailto:${esc(CONFIG.contactEmail)}">${esc(CONFIG.contactEmail)}</a></div>
+ </div></footer>`;
+
+function marquee(){
+  // mix areas so each row shows a spread of fields
+  const byArea=DATA.areas.map(a=>B.filter(b=>b.area===a.id));const mixed=[];
+  for(let k=0;mixed.length<B.length;k++)byArea.forEach(g=>{if(g[k])mixed.push(g[k])});
+  const ex=mixed.map(b=>({b,t:(b.examples&&b.examples[0]&&b.examples[0].title)||b.example}));
+  const rows=[ex.filter((_,i)=>i%3===0),ex.filter((_,i)=>i%3===1),ex.filter((_,i)=>i%3===2)];
+  const tile=({b,t},dup)=>`<a class="tile ${dup?'dup':''}" href="#/b/${b.slug}" ${dup?'tabindex="-1" aria-hidden="true"':''}>${badge(b)}<span><span class="t1">${esc(t)}</span><br><span class="t2">${esc(b.name)}</span></span></a>`;
+  return`<div class="marquee">${rows.map((r,i)=>`<div class="mrow ${i%2?'rev':''}" style="--dur:${70+i*14}s">${r.map(x=>tile(x)).join('')}${r.map(x=>tile(x,1)).join('')}</div>`).join('')}</div>`;
+}
+
+function grid(withTools){
+  const q=query.trim().toLowerCase();
+  const list=B.filter(b=>(filter==='all'||b.area===filter)&&(!q||b.name.toLowerCase().includes(q)||b.code.toLowerCase().includes(q)));
+  const tools=withTools?`<div class="toolbar">${[['all','All '+B.length],...DATA.areas.map(a=>[a.id,a.name])].map(([k,l])=>`<button class="chip ${filter===k?'on':''}" data-act="filter" data-v="${k}">${esc(l)}</button>`).join('')}
+    <input class="search" type="search" placeholder="Search benchmarks" value="${esc(query)}" data-input="q" aria-label="Search benchmarks"></div>`:'';
+  const groups=DATA.areas.map(a=>({a,items:list.filter(b=>b.area===a.id)})).filter(g=>g.items.length);
+  return tools+(groups.length?groups.map(({a,items})=>`<div class="area"><div class="area-head" style="--c:${AREA[a.id].c}"><span class="dot"></span><h3>${esc(a.name)}</h3><span class="cnt">${items.length}</span></div>
+    <div class="bgrid">${items.map(b=>`<a class="bcard" href="#/b/${b.slug}">${badge(b)}<span class="nm">${esc(b.name)}${star(b)}</span><span class="ar">${arrow}</span></a>`).join('')}</div></div>`).join('')
+    :'<div class="empty">No benchmark matches your search.</div>')+legend();
+}
+const legend=()=>`<div class="legend"><span><b>${B.filter(b=>!b.shared).length}</b> built by the EFE team</span><span><span class="star">*</span> <b>${B.filter(b=>b.shared).length}</b> built together with partner teams</span><span class="muted">Click any benchmark to see its paper, task examples, taxonomy and team.</span></div>`;
+
+function home(){
+  const s=DATA.stats;
+  return nav('h')+`
+  <section class="hero"><div class="container">
+   <p class="kicker">AI agents have passed many exams built from textbooks and puzzles.<b>What is their first exam in an expert’s real job?</b></p>
+   <h1 class="h-hero">Experts’<br>First Exam</h1>
+   <p class="sub">A family of ${B.length} benchmarks built from real expert workflows, from chip design to radiation therapy, with the people who do the work.</p>
+   <div class="cta"><a class="btn dark" href="#/benchmarks">Explore the benchmarks ${arrow}</a><a class="btn" href="#tasks" data-act="jump" data-v="tasks">See task examples</a><a class="btn" href="#/leaderboard">Leaderboard</a><a class="btn" href="#/contribute">Contribute a task</a></div>
+   <div class="stats">
+    <div class="stat"><div class="n">${B.length}</div><div class="l">EFE benchmarks</div></div>
+    <div class="stat"><div class="n">${DATA.areas.length}</div><div class="l">Areas of expertise</div></div>
+    <div class="stat"><div class="n">${fmt(s.plannedTasks)}</div><div class="l">Tasks planned</div></div>
+    <div class="stat"><div class="n">~${s.plannedModels}</div><div class="l">Models to evaluate</div></div>
+   </div>
+  </div></section>
+
+  <section class="block" id="tasks" style="padding-top:40px"><div class="container">
+   <div class="sec-head"><div><div class="eyebrow">Task examples</div><h2 class="h-sec" style="margin-top:10px">Real work, end to end</h2><p>Each task is a multi-step job an expert actually does, packaged so an AI agent can attempt it from start to finish.</p></div><span class="note">Illustrative examples · real tasks coming soon</span></div>
+  </div>${marquee()}</section>
+
+  <section class="block"><div class="container">
+   <div class="sec-head"><div><div class="eyebrow">The EFE benchmarks</div><h2 class="h-sec" style="margin-top:10px">${B.length} benchmarks, one exam</h2><p>Each benchmark covers one professional field with its own taxonomy, tasks and paper.</p></div><a class="btn" href="#/benchmarks">Search all ${arrow}</a></div>
+   ${grid(false)}
+  </div></section>
+
+  <section class="block"><div class="container">
+   <div class="sec-head"><div><div class="eyebrow">Method</div><h2 class="h-sec" style="margin-top:10px">What makes EFE different</h2></div></div>
+   <div class="features">
+    <div class="feat"><div class="num">01</div><h4>Real expert workflows</h4><p>Multi-step jobs from practice, in Harbor format, not quiz questions with short answers.</p></div>
+    <div class="feat"><div class="num">02</div><h4>Fine-grained rubrics</h4><p>30+ weighted rubric items and staged scoring, so partial progress earns partial credit.</p></div>
+    <div class="feat"><div class="num">03</div><h4>A hidden test set</h4><p>Every benchmark keeps a split that is never published, so scores stay meaningful over time.</p></div>
+    <div class="feat"><div class="num">04</div><h4>Two ways to score</h4><p>Pass rate counts fully solved tasks; rubric score shows how far a model got.</p></div>
+   </div>
+  </div></section>
+
+  <section class="block"><div class="container"><div class="cta-band">
+   <div><h2>Lead a benchmark, or propose a task in your field.</h2><p>Experts are credited in the benchmark paper and on this site.</p></div>
+   <a class="btn" href="#/contribute">Contribute ${arrow}</a>
+  </div></div></section>`+foot();
+}
+
+function allPage(){
+  return nav('b')+`<section class="block" style="padding-top:64px"><div class="container">
+   <div class="sec-head"><div><div class="eyebrow">The EFE benchmarks</div><h1 class="h-sec" style="margin-top:10px">All benchmarks</h1><p>${B.length} benchmarks across ${DATA.areas.length} areas. Filter by area or search by name.</p></div></div>
+   <div id="gridwrap">${grid(true)}</div>
+  </div></section>`+foot();
+}
+
+/* ---------- one benchmark ---------- */
+function benchPage(slug){
+  const b=BY[slug];if(!b)return home();
+  const a=AREA[b.area];const i=B.indexOf(b);const prev=B[(i-1+B.length)%B.length],next=B[(i+1)%B.length];
+  const secs=[['overview','Overview'],['paper','Paper'],['tasks','Task examples'],['taxonomy','Taxonomy'],['team','Team & contributors']];
+  // overview
+  const overview=b.description?`<div class="real"><p style="margin:0;font-size:16px;color:var(--ink2)">${esc(b.description)}</p></div>`
+    :`<div class="ph"><div style="display:flex;justify-content:space-between;gap:12px">${PH}</div><p style="margin:12px 0 4px;color:var(--ink2)">A short summary of what <b>${esc(b.name)}</b> covers, who the experts are, and what makes the work hard for AI agents.</p><div class="skel" style="width:92%"></div><div class="skel" style="width:78%"></div></div>`;
+  // paper
+  const p=b.paper;
+  const paper=`<div class="${p?'real':'ph'} paper"><div class="cover">PDF</div><div>${p?'':PH}
+    <h3 style="margin-top:${p?0:12}px">${esc(p&&p.title||`EFE-${b.code}: ${b.name} benchmark`)}</h3>
+    <p class="muted" style="margin:6px 0 0">${esc(p&&p.authors||'Authors to be announced')} · ${esc(p&&p.venue||'In preparation')}</p>
+    <div class="btns">${[['arXiv',p&&p.arxiv],['PDF',p&&p.pdf],['Code & data',p&&p.code],['BibTeX',p&&p.bibtex]].map(([l,u])=>u?`<a class="btn sm" href="${esc(u)}" target="_blank" rel="noopener">${l}</a>`:`<span class="btn sm" aria-disabled="true">${l}</span>`).join('')}</div></div></div>`;
+  // tasks
+  const ex=(b.examples&&b.examples.length?b.examples:[{title:b.example}]).slice(0,3);
+  while(ex.length<3)ex.push(null);
+  const tasks=`<div class="tgrid">${ex.map((t,k)=>t&&t.steps?`<div class="real tcard">${badge(b)}<h4>${esc(t.title)}</h4><ol>${t.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol><div class="meta">${(t.meta||[]).map(m=>`<span>${esc(m)}</span>`).join('')}</div></div>`
+    :`<div class="ph tcard"><div style="display:flex;justify-content:space-between;align-items:center">${badge(b)}${PH}</div><h4>${t?esc(t.title):'Example task '+(k+1)}</h4>
+      <ol><li>What the expert is given (files, tools, context)</li><li>The steps the agent has to carry out</li><li>How the result is checked</li></ol>
+      <div class="meta"><span>stages: –</span><span>rubric items: 30+</span><span>split: public</span></div></div>`).join('')}</div>`;
+  // taxonomy
+  const tx=b.taxonomy;
+  const taxonomy=tx&&tx.length?`<div class="tax">${tx.map(d=>`<div class="real tax-dir"><h4>${esc(d.direction)}<span class="mono muted" style="font-size:11.5px">${d.categories.length}</span></h4><div class="cats">${d.categories.map(c=>`<span class="cat">${esc(c)}</span>`).join('')}</div></div>`).join('')}</div>`
+    :`<div class="tax">${[0,1,2,3].map(k=>`<div class="ph tax-dir"><h4>Direction ${k+1}${k?'':PH}</h4><div class="cats">${Array.from({length:6+k%3},()=>'<span class="cat sk">·</span>').join('')}</div></div>`).join('')}</div>
+     <p class="muted" style="font-size:13.5px;margin:12px 0 0">Each benchmark is organized into 80–150 task categories, grounded in research papers and industry practice.</p>`;
+  // team
+  const tm=b.team||{};
+  const people=(arr,role)=>arr&&arr.length?arr.map(n=>`<div class="person"><span class="av">${esc(String(n).split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase())}</span><div><div class="nm">${esc(n)}</div><div class="rl">${role}</div></div></div>`).join('')
+    :`<div class="person"><span class="av"></span><div><div class="nm muted">To be announced</div><div class="rl">${role}</div></div></div>`;
+  const team=`<div class="team">
+    <div class="${tm.leads&&tm.leads.length?'real':'ph'}"><div class="eyebrow">Benchmark lead</div>${people(tm.leads,'Lead')}</div>
+    <div class="${tm.members&&tm.members.length?'real':'ph'}"><div class="eyebrow">${b.shared?'Partner team':'EFE team'}</div>${people(tm.members,b.shared?'Partner':'Team member')}</div>
+    <div class="${tm.contributors&&tm.contributors.length?'real':'ph'}"><div class="eyebrow">Task contributors</div>${people(tm.contributors,'Contributor')}<a class="btn sm" style="margin-top:14px" href="#/contribute">Become a contributor</a></div>
+   </div>`;
+  return nav('b')+`<section class="block" style="padding-top:56px"><div class="container">
+   <a class="crumb" href="#/benchmarks">← All benchmarks</a>
+   <div class="bhead">${badge(b,true)}<div><div class="eyebrow">EFE benchmark · ${esc(a.name)}</div><h1>${esc(b.name)}${b.shared?'<span class="star">*</span>':''}</h1>
+    <div class="tags"><span class="tag">${b.shared?'':'● '}${b.shared?'Built together with a partner team':'Built by the EFE team'}</span>${b.shared?'<span class="tag shared">* Shared benchmark</span>':''}<span class="tag">Status: ${esc(b.status||'In development')}</span></div></div></div>
+   <div class="subnav">${secs.map(([id,l])=>`<button class="chip" data-act="jump" data-v="${id}">${l}</button>`).join('')}</div>
+   <div class="bsec" id="overview"><h2>Overview</h2>${overview}</div>
+   <div class="bsec" id="paper"><h2>Paper</h2>${paper}</div>
+   <div class="bsec" id="tasks"><h2>Task examples</h2>${tasks}</div>
+   <div class="bsec" id="taxonomy"><h2>Taxonomy</h2>${taxonomy}</div>
+   <div class="bsec" id="team"><h2>Team &amp; contributors</h2>${team}</div>
+   <div class="pn"><a href="#/b/${prev.slug}"><div class="eyebrow">← Previous</div><div style="font-weight:500;margin-top:6px">${esc(prev.name)}${star(prev)}</div></a><a class="r" href="#/b/${next.slug}"><div class="eyebrow">Next →</div><div style="font-weight:500;margin-top:6px">${esc(next.name)}${star(next)}</div></a></div>
+  </div></section>`+foot();
+}
+
+function leaderboard(){
+  return nav('l')+`<section class="block" style="padding-top:64px"><div class="container">
+   <div class="sec-head"><div><div class="eyebrow">Leaderboard</div><h1 class="h-sec" style="margin-top:10px">Leaderboard</h1><p>Scores will use public tasks only. Hidden tasks are evaluated privately and never shown.</p></div></div>
+   <div class="card soon"><div class="eyebrow">Coming with the first release</div><p style="margin:10px 0 0;font-size:16px">No results yet. The first scores will appear here once the initial benchmarks are complete.</p></div>
+   <h3 style="font-size:22px;margin:40px 0 14px;font-weight:700">How models will be scored</h3>
+   <div class="features" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+    <div class="feat"><h4>Pass rate</h4><p>Share of runs where the agent fully completes the task.</p></div>
+    <div class="feat"><h4>Rubric score</h4><p>Weighted share of 30+ rubric items met, scored stage by stage (0–100).</p></div>
+    <div class="feat"><h4>Versioned releases</h4><p>Scores are tied to a benchmark version so results stay comparable as tasks rotate.</p></div>
+   </div>
+  </div></section>`+foot();
+}
+
+function formLinks(){
+  const u=(CONFIG.googleFormUrl||'').trim();if(!u)return null;
+  const embeddable=/^https:\/\/docs\.google\.com\/forms\//.test(u);
+  return{open:u,embed:embeddable?u.replace(/\/(edit|viewform)?(\?.*)?(#.*)?$/,'/viewform')+'?embedded=true':null};
+}
+function contribute(){
+  const f=formLinks();
+  const mail=`<a href="mailto:${esc(CONFIG.contactEmail)}?subject=${encodeURIComponent('EFE task proposal')}">${esc(CONFIG.contactEmail)}</a>`;
+  const formCard=f?`<div class="card">
+     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:6px"><h3>Submit a task proposal</h3><a class="btn sm" href="${esc(f.open)}" target="_blank" rel="noopener">Open in a new tab ↗</a></div>
+     <p class="muted" style="font-size:14px;margin:0 0 16px">Describe the workflow first. The EFE team will follow up with the Harbor template.</p>
+     ${f.embed?`<iframe class="gform" src="${esc(f.embed)}" style="height:${Number(CONFIG.googleFormHeight)||1100}px" title="EFE task proposal form" loading="lazy">Loading…</iframe>`:`<a class="btn dark" href="${esc(f.open)}" target="_blank" rel="noopener">Open the proposal form ↗</a>`}
+     <p class="muted" style="font-size:13px;margin:14px 0 0">Form not loading? Email your proposal to ${mail} instead.</p></div>`
+   :`<div class="card"><h3>Submit a task proposal</h3><p class="muted" style="font-size:14px;margin:6px 0 0">Email a short description of the workflow to ${mail}.</p></div>`;
+  return nav('c')+`<section class="block" style="padding-top:64px"><div class="container">
+   <div class="sec-head"><div><div class="eyebrow">Contribute</div><h1 class="h-sec" style="margin-top:10px">Help build EFE</h1><p>Contributors are credited in the benchmark paper and on this site.</p></div></div>
+   <div class="split">${formCard}
+    <div style="display:grid;gap:16px;align-content:start">
+     ${DATA.seeking.length?`<div class="card"><h3>New fields looking for an expert partner</h3><p class="muted" style="font-size:14px;margin:6px 0 14px">Assistant/associate professors, postdocs, vertical startups and data companies.</p><div style="display:flex;gap:6px;flex-wrap:wrap">${DATA.seeking.map(n=>`<span class="pill">${esc(n)}</span>`).join('')}</div></div>`:''}
+     <div class="card"><h3>What makes a good task</h3><ul class="rules">${DATA.rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>
+    </div></div></div></section>`+foot();
+}
+
+/* ---------- router ---------- */
+function render(){
+  const h=location.hash||'#/';
+  let html;
+  if(h.startsWith('#/b/'))html=benchPage(decodeURIComponent(h.slice(4)));
+  else if(h==='#/benchmarks')html=allPage();
+  else if(h==='#/leaderboard')html=leaderboard();
+  else if(h==='#/contribute')html=contribute();
+  else html=home();
+  document.getElementById('root').innerHTML=html;
+  document.title=h.startsWith('#/b/')&&BY[decodeURIComponent(h.slice(4))]?BY[decodeURIComponent(h.slice(4))].name+' · Experts’ First Exam':'Experts’ First Exam';
+}
+window.addEventListener('hashchange',()=>{if(/^#\/|^$/.test(location.hash)||!location.hash){render();window.scrollTo(0,0)}});
+document.addEventListener('click',e=>{
+  const a=e.target.closest('[data-act]');if(!a)return;
+  const act=a.dataset.act,v=a.dataset.v;
+  if(act==='theme'){const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=dark?'light':'dark';try{localStorage.setItem('efe-theme',r.dataset.theme)}catch(err){}}
+  else if(act==='jump'){e.preventDefault();const el=document.getElementById(v);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+  else if(act==='filter'){filter=v;const w=document.getElementById('gridwrap');if(w)w.innerHTML=grid(true)}
+});
+document.addEventListener('input',e=>{if(e.target.dataset.input==='q'){query=e.target.value;const w=document.getElementById('gridwrap');if(!w)return;const pos=e.target.selectionStart;w.innerHTML=grid(true);const i=w.querySelector('[data-input=q]');i.focus();i.setSelectionRange(pos,pos)}});
+try{const t=localStorage.getItem('efe-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+render();
+</script>
+</body>
+</html>

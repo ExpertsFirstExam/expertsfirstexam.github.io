@@ -1,0 +1,915 @@
+{
+ "areas": [
+  {
+   "id": "fin",
+   "name": "Finance & Business"
+  },
+  {
+   "id": "sys",
+   "name": "Computing & Cloud Systems"
+  },
+  {
+   "id": "hw",
+   "name": "Chips & Hardware"
+  },
+  {
+   "id": "ai",
+   "name": "AI Agents & Safety"
+  },
+  {
+   "id": "eng",
+   "name": "Engineering & Physical Systems"
+  },
+  {
+   "id": "sci",
+   "name": "Science & Health"
+  },
+  {
+   "id": "edu",
+   "name": "Education"
+  }
+ ],
+ "benchmarks": [
+  {
+   "slug": "fin",
+   "code": "FIN",
+   "name": "Finance",
+   "area": "fin",
+   "shared": false,
+   "status": "In development",
+   "example": "Reconcile a quarter's ledger against bank statements",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "fcu",
+   "code": "FCU",
+   "name": "Financial Computer Use",
+   "area": "fin",
+   "shared": false,
+   "status": "In development",
+   "example": "Build a cash-flow report inside a trading terminal",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "str",
+   "code": "STR",
+   "name": "Strategy",
+   "area": "fin",
+   "shared": false,
+   "status": "In development",
+   "example": "Size a new market and recommend an entry plan",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "ifx",
+   "code": "IFX",
+   "name": "Investment & Foreign Exchange",
+   "area": "fin",
+   "shared": false,
+   "status": "In development",
+   "example": "Hedge a currency exposure for an importer",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "cry",
+   "code": "CRY",
+   "name": "Crypto",
+   "area": "fin",
+   "shared": false,
+   "status": "In development",
+   "example": "Audit a smart contract for a reentrancy bug",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "neg",
+   "code": "NEG",
+   "name": "Negotiation",
+   "area": "fin",
+   "shared": true,
+   "status": "In development",
+   "example": "Negotiate a supplier contract to a target price",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "pm",
+   "code": "PM",
+   "name": "Prediction Markets",
+   "area": "fin",
+   "shared": true,
+   "status": "In development",
+   "example": "Price a market from news and base rates",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "econ",
+   "code": "ECON",
+   "name": "Economics",
+   "area": "fin",
+   "shared": true,
+   "status": "In development",
+   "example": "Estimate the effect of a policy change",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "rdma",
+   "code": "RDMA",
+   "name": "RDMA Networking",
+   "area": "sys",
+   "shared": false,
+   "status": "In development",
+   "example": "Debug a stalled RDMA queue pair",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "os",
+   "code": "OS",
+   "name": "Operating Systems",
+   "area": "sys",
+   "shared": false,
+   "status": "In development",
+   "example": "Find a kernel memory leak from crash logs",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "csd",
+   "code": "CSD",
+   "name": "Cloud Software Development",
+   "area": "sys",
+   "shared": false,
+   "status": "In development",
+   "example": "Migrate a service to a new cloud region",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "inf",
+   "code": "INF",
+   "name": "Infrastructure Systems",
+   "area": "sys",
+   "shared": false,
+   "status": "In development",
+   "example": "Restore a failed storage-cluster node",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "web",
+   "code": "WEB",
+   "name": "Web Development",
+   "area": "sys",
+   "shared": true,
+   "status": "In development",
+   "example": "Fix a broken checkout flow in a web app",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "aiops",
+   "code": "AIOPS",
+   "name": "AIOps",
+   "area": "sys",
+   "shared": true,
+   "status": "In development",
+   "example": "Find the root cause of a latency spike",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "cgym",
+   "code": "CGYM",
+   "name": "CloudGym",
+   "area": "sys",
+   "shared": true,
+   "status": "In development",
+   "example": "Recover a misconfigured cloud deployment",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "ogym",
+   "code": "OGYM",
+   "name": "OmniGym",
+   "area": "sys",
+   "shared": true,
+   "status": "In development",
+   "example": "Complete a multi-tool operations task",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "chip",
+   "code": "CHIP",
+   "name": "Chip Design",
+   "area": "hw",
+   "shared": false,
+   "status": "In development",
+   "example": "Close timing on a failing design block",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "gpu",
+   "code": "GPU",
+   "name": "GPU Engineering",
+   "area": "hw",
+   "shared": false,
+   "status": "In development",
+   "example": "Speed up a slow CUDA kernel",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "fpga",
+   "code": "FPGA",
+   "name": "GPU, FPGA & Hardware",
+   "area": "hw",
+   "shared": false,
+   "status": "In development",
+   "example": "Port an accelerator kernel to an FPGA",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "emb",
+   "code": "EMB",
+   "name": "Embedded Systems",
+   "area": "hw",
+   "shared": false,
+   "status": "In development",
+   "example": "Fix a timing bug in motor-control firmware",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "npu",
+   "code": "NPU",
+   "name": "NPU",
+   "area": "hw",
+   "shared": true,
+   "status": "In development",
+   "example": "Optimize a model to run on an NPU",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "eda",
+   "code": "EDA",
+   "name": "Electronic Design Automation",
+   "area": "hw",
+   "shared": true,
+   "status": "In development",
+   "example": "Fix design-rule violations in a layout",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "cua",
+   "code": "CUA",
+   "name": "Computer-Use Agents",
+   "area": "ai",
+   "shared": false,
+   "status": "In development",
+   "example": "Fill in a multi-app expense claim end to end",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "asec",
+   "code": "ASEC",
+   "name": "Agent Security",
+   "area": "ai",
+   "shared": false,
+   "status": "In development",
+   "example": "Find a prompt-injection path in an agent workflow",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "wm",
+   "code": "WM",
+   "name": "World Models",
+   "area": "ai",
+   "shared": false,
+   "status": "In development",
+   "example": "Predict the next frames of a physical scene",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "rsi",
+   "code": "RSI",
+   "name": "Recursive Self-Improvement",
+   "area": "ai",
+   "shared": true,
+   "status": "In development",
+   "example": "Improve an agent's own training loop",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "acu",
+   "code": "ACU",
+   "name": "Acoustics",
+   "area": "eng",
+   "shared": false,
+   "status": "In development",
+   "example": "Design room treatment to meet a reverb target",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "lsr",
+   "code": "LSR",
+   "name": "Lasers & Photonics",
+   "area": "eng",
+   "shared": false,
+   "status": "In development",
+   "example": "Align a beam path and verify focus quality",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "tel",
+   "code": "TEL",
+   "name": "Telecommunications",
+   "area": "eng",
+   "shared": false,
+   "status": "In development",
+   "example": "Plan cell coverage for a new site",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "oran",
+   "code": "ORAN",
+   "name": "Open RAN",
+   "area": "eng",
+   "shared": false,
+   "status": "In development",
+   "example": "Tune a radio scheduler for fairness",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "sat",
+   "code": "SAT",
+   "name": "Satellite Systems",
+   "area": "eng",
+   "shared": false,
+   "status": "In development",
+   "example": "Plan a satellite's imaging passes for a week",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "auto",
+   "code": "AUTO",
+   "name": "Automotive Manufacturing",
+   "area": "eng",
+   "shared": false,
+   "status": "In development",
+   "example": "Rebalance an assembly line after a model change",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "rob",
+   "code": "ROB",
+   "name": "Embodied AI & Robotics",
+   "area": "eng",
+   "shared": false,
+   "status": "In development",
+   "example": "Write a pick-and-place routine for a new part",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "arch",
+   "code": "ARCH",
+   "name": "Architecture",
+   "area": "eng",
+   "shared": false,
+   "status": "In development",
+   "example": "Check a floor plan against fire-exit rules",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "or",
+   "code": "OR",
+   "name": "Operations Research",
+   "area": "eng",
+   "shared": false,
+   "status": "In development",
+   "example": "Schedule a factory's shifts under constraints",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "gis",
+   "code": "GIS",
+   "name": "Geography, Remote Sensing & GIS",
+   "area": "eng",
+   "shared": false,
+   "status": "In development",
+   "example": "Map flood extent from satellite images",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "drn",
+   "code": "DRN",
+   "name": "Drones",
+   "area": "eng",
+   "shared": true,
+   "status": "In development",
+   "example": "Plan an inspection flight around obstacles",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "cad",
+   "code": "CAD",
+   "name": "CAD",
+   "area": "eng",
+   "shared": true,
+   "status": "In development",
+   "example": "Model a bracket from an engineering drawing",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "phy",
+   "code": "PHY",
+   "name": "Physics",
+   "area": "sci",
+   "shared": false,
+   "status": "In development",
+   "example": "Fit a model to noisy spectroscopy data",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "chm",
+   "code": "CHM",
+   "name": "Chemistry",
+   "area": "sci",
+   "shared": false,
+   "status": "In development",
+   "example": "Plan a synthesis route for a target molecule",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "qnt",
+   "code": "QNT",
+   "name": "Quantum",
+   "area": "sci",
+   "shared": false,
+   "status": "In development",
+   "example": "Compile a circuit for a noisy quantum device",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "bio",
+   "code": "BIO",
+   "name": "Biology",
+   "area": "sci",
+   "shared": false,
+   "status": "In development",
+   "example": "Run a gene-expression analysis pipeline",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "wet",
+   "code": "WET",
+   "name": "Wet Lab",
+   "area": "sci",
+   "shared": false,
+   "status": "In development",
+   "example": "Turn a paper's methods into a lab protocol",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "pha",
+   "code": "PHA",
+   "name": "Pharmaceuticals",
+   "area": "sci",
+   "shared": false,
+   "status": "In development",
+   "example": "Review a batch record for compliance gaps",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "med",
+   "code": "MED",
+   "name": "Medical Imaging",
+   "area": "sci",
+   "shared": false,
+   "status": "In development",
+   "example": "Segment a tumor and report its volume",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "rt",
+   "code": "RT",
+   "name": "Radiation Therapy",
+   "area": "sci",
+   "shared": false,
+   "status": "In development",
+   "example": "Draft a treatment plan within dose limits",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "edr",
+   "code": "EDR",
+   "name": "Education Research",
+   "area": "edu",
+   "shared": false,
+   "status": "In development",
+   "example": "Analyze a classroom study's learning gains",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "edu",
+   "code": "EDU",
+   "name": "Education",
+   "area": "edu",
+   "shared": true,
+   "status": "In development",
+   "example": "Build a lesson plan with graded exercises",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  }
+ ],
+ "seeking": [
+  "Political Science",
+  "Public Opinion Analysis"
+ ],
+ "rules": [
+  "Real expert workflow, not simple Q&A",
+  "Clear business value",
+  "Hard enough for frontier models",
+  "Precise task definition (inputs, outputs, goal)",
+  "Verifiable and trainable (trajectory + ground truth)",
+  "Staged scoring across steps",
+  "30+ weighted rubric items"
+ ],
+ "stats": {
+  "plannedTasks": 6000,
+  "plannedModels": 15
+ }
+}
