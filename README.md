@@ -40,7 +40,7 @@ Small text changes can also be made directly in `index.html` (search for
 ## What the home page shows
 
 - **Ring of tiles**: every benchmark is a tile, grouped by field around a
-  wheel. Hovering or clicking a field name turns the wheel to that field;
+  wheel. Clicking a field name (or resting the mouse on it) turns the wheel to that field;
   visitors can also drag it or use the arrows. Hovering a tile (or the first
   tap on a phone) flips up a card with an example task; clicking opens the
   benchmark's page.

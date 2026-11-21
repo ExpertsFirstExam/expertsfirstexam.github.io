@@ -402,7 +402,7 @@ function hero(){
     <div class="fline fc" id="fline" style="${fcv(heroField)}">${fline(heroField)}</div>
     <div class="fpills" id="fpills" role="tablist" aria-label="Fields">${DATA.areas.map(x=>`<button class="fpill fc ${x.id===heroField?'on':''}" style="${fcv(x.id)}" data-act="field" data-v="${x.id}" role="tab" aria-selected="${x.id===heroField}"><i></i>${esc(x.name)}</button>`).join('')}</div>
    </div>
-   <div class="hfoot"><span class="hint">DRAG TO SPIN · HOVER A FIELD · HOVER A TILE TO SEE A TASK</span><span class="ctl"><button class="rbtn" data-act="step" data-v="-1" aria-label="Previous field">${I.left}</button><button class="rbtn" data-act="step" data-v="1" aria-label="Next field">${I.right}</button></span></div>
+   <div class="hfoot"><span class="hint">CLICK A FIELD · DRAG TO SPIN · POINT AT A TILE TO SEE A TASK</span><span class="ctl"><button class="rbtn" data-act="step" data-v="-1" aria-label="Previous field">${I.left}</button><button class="rbtn" data-act="step" data-v="1" aria-label="Next field">${I.right}</button></span></div>
   </section>`;
 }
 function fline(id){const a=AREA[id],list=inArea(id),j=list.filter(b=>b.shared).length;
@@ -442,6 +442,7 @@ function showPop(tile){
 }
 function hidePop(){const p=document.getElementById('pop');p.classList.remove('show');popSlug=null;document.querySelectorAll('.tile.hot').forEach(t=>t.classList.remove('hot'))}
 
+const REST_MS=260;let restT=null,exRestT=null;
 /* drag to spin */
 function bindHero(){
   const hero=document.getElementById('hero'),ring=document.getElementById('ring');if(!hero)return;
@@ -457,7 +458,12 @@ function bindHero(){
     if(matchMedia('(hover: none)').matches&&popSlug!==t.dataset.tile){e.preventDefault();showPop(t)}});
   ring.addEventListener('mouseover',e=>{const t=e.target.closest('.tile');if(t&&matchMedia('(hover: hover)').matches&&t.dataset.tile!==popSlug)showPop(t)});
   ring.addEventListener('mouseleave',()=>{popTimer=setTimeout(()=>{if(!document.getElementById('pop').matches(':hover'))hidePop()},220)});
-  document.getElementById('fpills').addEventListener('mouseover',e=>{const p=e.target.closest('.fpill');if(p&&matchMedia('(hover: hover)').matches)setField(p.dataset.v,'hover')});
+  // pointing at a field selects it only once the mouse rests there, so passing over other
+  // field names on the way to a tile does not turn the wheel
+  const pills=document.getElementById('fpills');
+  pills.addEventListener('mousemove',e=>{clearTimeout(restT);const p=e.target.closest('.fpill');
+    if(p&&p.dataset.v!==heroField&&matchMedia('(hover: hover)').matches)restT=setTimeout(()=>setField(p.dataset.v,'hover'),REST_MS)});
+  pills.addEventListener('mouseleave',()=>clearTimeout(restT));
   hero.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){step(1,true)}else if(e.key==='ArrowLeft'){step(-1,true)}});
   startAuto();
 }
@@ -480,7 +486,7 @@ function explorer(){
   const rows=DATA.areas.map(a=>{const row=`<button class="frow fc ${a.id===exField?'on':''}" style="${fcv(a.id)}" data-act="ex" data-v="${a.id}" aria-expanded="${a.id===exField}"><i></i>${esc(a.name)}<span class="n">${inArea(a.id).length}</span></button>`;return row+(mob&&a.id===exField?fpanel(a.id):'')}).join('');
   return`<div class="ex"><div class="flist" role="tablist" aria-label="Fields">${rows}</div>${mob?'':`<div id="fpanelwrap">${fpanel(exField)}</div>`}</div>`;
 }
-function setEx(id){exField=id;const w=document.getElementById('exwrap');if(w)w.innerHTML=explorer()}
+function setEx(id){clearTimeout(exRestT);exField=id;const w=document.getElementById('exwrap');if(w)w.innerHTML=explorer()}
 
 /* ---------- scoring diagram ---------- */
 function diagram(){
@@ -653,7 +659,7 @@ document.addEventListener('click',e=>{
   if(act==='theme'){const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=dark?'light':'dark';try{localStorage.setItem('efe-theme',r.dataset.theme)}catch(err){}}
   else if(act==='menu'){hdr.classList.toggle('open')}
   else if(act==='jump'){const el=document.getElementById(v);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'})}else if(v==='fields'){e.preventDefault();location.hash='#/';setTimeout(()=>{const f=document.getElementById('fields');if(f)f.scrollIntoView()},60)}}
-  else if(act==='field'){setField(v,true)}
+  else if(act==='field'){clearTimeout(restT);setField(v,true)}
   else if(act==='step'){step(Number(v),true)}
   else if(act==='ex'){setEx(v)}
   else if(act==='filter'){gFilter=v;document.querySelectorAll('[data-act=filter]').forEach(c=>c.classList.toggle('on',c.dataset.v===v));document.getElementById('gridwrap').innerHTML=grid()}
@@ -661,7 +667,9 @@ document.addEventListener('click',e=>{
 });
 document.getElementById('pop').addEventListener('click',()=>{if(popSlug)location.hash='#/b/'+popSlug});
 document.getElementById('pop').addEventListener('mouseleave',()=>{popTimer=setTimeout(hidePop,200)});
-document.addEventListener('mouseover',e=>{const r=e.target.closest('.frow');if(r&&matchMedia('(hover: hover) and (min-width: 901px)').matches&&r.dataset.v!==exField){exField=r.dataset.v;document.querySelectorAll('.frow').forEach(x=>{x.classList.toggle('on',x.dataset.v===exField);x.setAttribute('aria-expanded',x.dataset.v===exField)});const w=document.getElementById('fpanelwrap');if(w)w.innerHTML=fpanel(exField)}});
+function showEx(id){exField=id;document.querySelectorAll('.frow').forEach(x=>{x.classList.toggle('on',x.dataset.v===exField);x.setAttribute('aria-expanded',x.dataset.v===exField)});const w=document.getElementById('fpanelwrap');if(w)w.innerHTML=fpanel(exField)}
+document.addEventListener('mousemove',e=>{clearTimeout(exRestT);const r=e.target.closest('.frow');
+  if(r&&r.dataset.v!==exField&&matchMedia('(hover: hover) and (min-width: 901px)').matches)exRestT=setTimeout(()=>showEx(r.dataset.v),REST_MS)});
 document.addEventListener('input',e=>{if(e.target.dataset.input==='q'){gQuery=e.target.value;document.getElementById('gridwrap').innerHTML=grid()}});
 try{const t=localStorage.getItem('efe-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
 render();
