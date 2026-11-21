@@ -6,13 +6,10 @@ here = pathlib.Path(__file__).parent
 fonts_dir, form_url, out = pathlib.Path(sys.argv[1]), sys.argv[2], sys.argv[3]
 
 faces = [
-    ('Space Grotesk', 400, 'fontsource-space-grotesk-5.1.0/files/space-grotesk-latin-400-normal.woff2'),
-    ('Space Grotesk', 500, 'fontsource-space-grotesk-5.1.0/files/space-grotesk-latin-500-normal.woff2'),
-    ('Space Grotesk', 600, 'fontsource-space-grotesk-5.1.0/files/space-grotesk-latin-600-normal.woff2'),
-    ('Space Grotesk', 700, 'fontsource-space-grotesk-5.1.0/files/space-grotesk-latin-700-normal.woff2'),
     ('Inter', 400, 'fontsource-inter-5.1.0/files/inter-latin-400-normal.woff2'),
     ('Inter', 500, 'fontsource-inter-5.1.0/files/inter-latin-500-normal.woff2'),
     ('Inter', 600, 'fontsource-inter-5.1.0/files/inter-latin-600-normal.woff2'),
+    ('Inter', 700, 'fontsource-inter-5.1.0/files/inter-latin-700-normal.woff2'),
     ('JetBrains Mono', 400, 'fontsource-jetbrains-mono-5.1.0/files/jetbrains-mono-latin-400-normal.woff2'),
     ('JetBrains Mono', 500, 'fontsource-jetbrains-mono-5.1.0/files/jetbrains-mono-latin-500-normal.woff2'),
 ]

@@ -35,13 +35,25 @@ Small text changes can also be made directly in `index.html` (search for
 - `contactEmail`: shown in the footer and on the Contribute page.
 - `googleFormUrl`: the proposal form shown on the Contribute page.
 - `workspaceUrl`: address of the private workspace; empty hides "Team sign in".
-- `announcement`: text of the dark bar at the top; empty removes the bar.
+- `googleFormHeight`: height of the embedded form in pixels.
+
+## What the home page shows
+
+- **Ring of tiles**: every benchmark is a tile, grouped by field around a
+  wheel. Hovering or clicking a field name turns the wheel to that field;
+  visitors can also drag it or use the arrows. Hovering a tile (or the first
+  tap on a phone) flips up a card with an example task; clicking opens the
+  benchmark's page.
+- **Explore by field**: a list of the fields. Hovering or clicking one shows
+  its drawing, its benchmarks (Core or Joint) and example tasks.
+- **How a task is scored**, then the leaderboard and contribute cards.
 
 ## Content (`src/data.json`)
 
-**`areas`**: the areas of expertise, in display order (`id`, `name`). Each area
-gets its own color and line drawing automatically (14 drawings are built in;
-a new area id falls back to the generic one).
+**`areas`**: the fields, in display order (`id`, `name`). Colors are spread
+evenly around the color wheel in this order, so adding or removing a field
+recolors the rest automatically. Each field also has a line drawing (14 are
+built in; a new field id falls back to the generic one).
 
 **`benchmarks`**: one entry per benchmark:
 - `slug`: its web address, `#/b/<slug>`
@@ -50,7 +62,8 @@ a new area id falls back to the generic one).
 - `shared`: `false` = **EFE Core** (built by the EFE team: solid card, black
   CORE tag); `true` = **EFE Joint \*** (co-built with a partner team: dashed
   orange card with hatching, JOINT * tag)
-- `example`: the illustrative task title shown in the task gallery
+- `example`: the illustrative task title shown on the tile's flip card and in
+  the field explorer (replaced by the first entry of `examples` once filled)
 
 Fill these in as content becomes ready; anything left empty shows a
 placeholder on the benchmark's page:
