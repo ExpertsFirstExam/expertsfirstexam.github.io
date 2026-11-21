@@ -35,15 +35,25 @@ Small text changes can also be made directly in `index.html` (search for
 - `contactEmail`: shown in the footer and on the Contribute page.
 - `googleFormUrl`: the proposal form shown on the Contribute page.
 - `workspaceUrl`: address of the private workspace; empty hides "Team sign in".
+- `announcement`: text of the dark bar at the top; empty removes the bar.
 
-## Benchmarks (`benchmarks` in data.json)
+## Content (`src/data.json`)
 
-Each benchmark has: `slug` (its web address, `#/b/<slug>`), `code` (the badge),
-`name`, `area`, `shared` (`true` = built with a partner team, shown with `*`),
-`status`, and `example` (the illustrative task title on the home page).
+**`areas`**: the areas of expertise, in display order (`id`, `name`). Each area
+gets its own color and line drawing automatically (14 drawings are built in;
+a new area id falls back to the generic one).
+
+**`benchmarks`**: one entry per benchmark:
+- `slug`: its web address, `#/b/<slug>`
+- `code`: the badge text
+- `name`, `area` (an area id), `status`
+- `shared`: `false` = **EFE Core** (built by the EFE team: solid card, black
+  CORE tag); `true` = **EFE Joint \*** (co-built with a partner team: dashed
+  orange card with hatching, JOINT * tag)
+- `example`: the illustrative task title shown in the task gallery
 
 Fill these in as content becomes ready; anything left empty shows a
-placeholder box on the benchmark's page:
+placeholder on the benchmark's page:
 - `description`: one paragraph for the Overview.
 - `paper`: `{"title", "authors", "venue", "arxiv", "pdf", "code", "bibtex"}`
   (links; missing links show as greyed-out buttons).
@@ -52,6 +62,10 @@ placeholder box on the benchmark's page:
 - `taxonomy`: `[{"direction": "...", "categories": ["...", "..."]}]`.
 - `team`: `{"leads": [...], "members": [...], "contributors": [...]}`.
   Names here are public: add people only with their agreement.
+
+**`stats`**: `plannedTasks` and `modelsTarget` (shown as written, e.g. "30–50").
+**`seeking`**: fields looking for an expert partner (empty = a "Don't see your
+field?" card instead). **`rules`**: the "What makes a good task" list.
 
 ## Security notes
 

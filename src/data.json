@@ -2,11 +2,27 @@
  "areas": [
   {
    "id": "fin",
-   "name": "Finance & Business"
+   "name": "Finance & Markets"
+  },
+  {
+   "id": "biz",
+   "name": "Business & Economics"
+  },
+  {
+   "id": "soft",
+   "name": "Software & Cloud"
   },
   {
    "id": "sys",
-   "name": "Computing & Cloud Systems"
+   "name": "Systems & Networking"
+  },
+  {
+   "id": "tel",
+   "name": "Telecom & Wireless"
+  },
+  {
+   "id": "earth",
+   "name": "Earth & Space"
   },
   {
    "id": "hw",
@@ -17,16 +33,28 @@
    "name": "AI Agents & Safety"
   },
   {
-   "id": "eng",
-   "name": "Engineering & Physical Systems"
+   "id": "rob",
+   "name": "Robotics & Autonomy"
   },
   {
-   "id": "sci",
-   "name": "Science & Health"
+   "id": "eng",
+   "name": "Engineering & Design"
+  },
+  {
+   "id": "phys",
+   "name": "Physical Sciences"
+  },
+  {
+   "id": "life",
+   "name": "Chemistry & Life Sciences"
+  },
+  {
+   "id": "med",
+   "name": "Medicine & Pharma"
   },
   {
    "id": "edu",
-   "name": "Education"
+   "name": "Education & General"
   }
  ],
  "benchmarks": [
@@ -56,24 +84,6 @@
    "shared": false,
    "status": "In development",
    "example": "Build a cash-flow report inside a trading terminal",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "str",
-   "code": "STR",
-   "name": "Strategy",
-   "area": "fin",
-   "shared": false,
-   "status": "In development",
-   "example": "Size a new market and recommend an entry plan",
    "description": "",
    "paper": null,
    "examples": [],
@@ -121,24 +131,6 @@
    }
   },
   {
-   "slug": "neg",
-   "code": "NEG",
-   "name": "Negotiation",
-   "area": "fin",
-   "shared": true,
-   "status": "In development",
-   "example": "Negotiate a supplier contract to a target price",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
    "slug": "pm",
    "code": "PM",
    "name": "Prediction Markets",
@@ -157,10 +149,46 @@
    }
   },
   {
+   "slug": "str",
+   "code": "STR",
+   "name": "Strategy",
+   "area": "biz",
+   "shared": false,
+   "status": "In development",
+   "example": "Size a new market and recommend an entry plan",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "or",
+   "code": "OR",
+   "name": "Operations Research",
+   "area": "biz",
+   "shared": false,
+   "status": "In development",
+   "example": "Schedule a factory's shifts under constraints",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
    "slug": "econ",
    "code": "ECON",
    "name": "Economics",
-   "area": "fin",
+   "area": "biz",
    "shared": true,
    "status": "In development",
    "example": "Estimate the effect of a policy change",
@@ -175,13 +203,85 @@
    }
   },
   {
-   "slug": "rdma",
-   "code": "RDMA",
-   "name": "RDMA Networking",
-   "area": "sys",
+   "slug": "csd",
+   "code": "CSD",
+   "name": "Cloud Software Development",
+   "area": "soft",
    "shared": false,
    "status": "In development",
-   "example": "Debug a stalled RDMA queue pair",
+   "example": "Migrate a service to a new cloud region",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "web",
+   "code": "WEB",
+   "name": "Web Development",
+   "area": "soft",
+   "shared": true,
+   "status": "In development",
+   "example": "Fix a broken checkout flow in a web app",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "aiops",
+   "code": "AIOPS",
+   "name": "AIOps",
+   "area": "soft",
+   "shared": true,
+   "status": "In development",
+   "example": "Find the root cause of a latency spike",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "cgym",
+   "code": "CGYM",
+   "name": "CloudGym",
+   "area": "soft",
+   "shared": true,
+   "status": "In development",
+   "example": "Recover a misconfigured cloud deployment",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "ogym",
+   "code": "OGYM",
+   "name": "OmniGym",
+   "area": "soft",
+   "shared": true,
+   "status": "In development",
+   "example": "Complete a multi-tool operations task",
    "description": "",
    "paper": null,
    "examples": [],
@@ -211,24 +311,6 @@
    }
   },
   {
-   "slug": "csd",
-   "code": "CSD",
-   "name": "Cloud Software Development",
-   "area": "sys",
-   "shared": false,
-   "status": "In development",
-   "example": "Migrate a service to a new cloud region",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
    "slug": "inf",
    "code": "INF",
    "name": "Infrastructure Systems",
@@ -247,13 +329,13 @@
    }
   },
   {
-   "slug": "web",
-   "code": "WEB",
-   "name": "Web Development",
+   "slug": "rdma",
+   "code": "RDMA",
+   "name": "RDMA Networking",
    "area": "sys",
-   "shared": true,
+   "shared": false,
    "status": "In development",
-   "example": "Fix a broken checkout flow in a web app",
+   "example": "Debug a stalled RDMA queue pair",
    "description": "",
    "paper": null,
    "examples": [],
@@ -265,13 +347,13 @@
    }
   },
   {
-   "slug": "aiops",
-   "code": "AIOPS",
-   "name": "AIOps",
-   "area": "sys",
-   "shared": true,
+   "slug": "tel",
+   "code": "TEL",
+   "name": "Telecommunications",
+   "area": "tel",
+   "shared": false,
    "status": "In development",
-   "example": "Find the root cause of a latency spike",
+   "example": "Plan cell coverage for a new site",
    "description": "",
    "paper": null,
    "examples": [],
@@ -283,13 +365,13 @@
    }
   },
   {
-   "slug": "cgym",
-   "code": "CGYM",
-   "name": "CloudGym",
-   "area": "sys",
-   "shared": true,
+   "slug": "oran",
+   "code": "ORAN",
+   "name": "Open RAN",
+   "area": "tel",
+   "shared": false,
    "status": "In development",
-   "example": "Recover a misconfigured cloud deployment",
+   "example": "Tune a radio scheduler for fairness",
    "description": "",
    "paper": null,
    "examples": [],
@@ -301,13 +383,31 @@
    }
   },
   {
-   "slug": "ogym",
-   "code": "OGYM",
-   "name": "OmniGym",
-   "area": "sys",
-   "shared": true,
+   "slug": "sat",
+   "code": "SAT",
+   "name": "Satellite Systems",
+   "area": "earth",
+   "shared": false,
    "status": "In development",
-   "example": "Complete a multi-tool operations task",
+   "example": "Plan a satellite's imaging passes for a week",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "gis",
+   "code": "GIS",
+   "name": "Geography, Remote Sensing & GIS",
+   "area": "earth",
+   "shared": false,
+   "status": "In development",
+   "example": "Map flood extent from satellite images",
    "description": "",
    "paper": null,
    "examples": [],
@@ -380,24 +480,6 @@
    "shared": false,
    "status": "In development",
    "example": "Fix a timing bug in motor-control firmware",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "npu",
-   "code": "NPU",
-   "name": "NPU",
-   "area": "hw",
-   "shared": true,
-   "status": "In development",
-   "example": "Optimize a model to run on an NPU",
    "description": "",
    "paper": null,
    "examples": [],
@@ -499,121 +581,31 @@
    }
   },
   {
-   "slug": "acu",
-   "code": "ACU",
-   "name": "Acoustics",
-   "area": "eng",
-   "shared": false,
-   "status": "In development",
-   "example": "Design room treatment to meet a reverb target",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "lsr",
-   "code": "LSR",
-   "name": "Lasers & Photonics",
-   "area": "eng",
-   "shared": false,
-   "status": "In development",
-   "example": "Align a beam path and verify focus quality",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "tel",
-   "code": "TEL",
-   "name": "Telecommunications",
-   "area": "eng",
-   "shared": false,
-   "status": "In development",
-   "example": "Plan cell coverage for a new site",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "oran",
-   "code": "ORAN",
-   "name": "Open RAN",
-   "area": "eng",
-   "shared": false,
-   "status": "In development",
-   "example": "Tune a radio scheduler for fairness",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "sat",
-   "code": "SAT",
-   "name": "Satellite Systems",
-   "area": "eng",
-   "shared": false,
-   "status": "In development",
-   "example": "Plan a satellite's imaging passes for a week",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "auto",
-   "code": "AUTO",
-   "name": "Automotive Manufacturing",
-   "area": "eng",
-   "shared": false,
-   "status": "In development",
-   "example": "Rebalance an assembly line after a model change",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
    "slug": "rob",
    "code": "ROB",
    "name": "Embodied AI & Robotics",
-   "area": "eng",
+   "area": "rob",
    "shared": false,
    "status": "In development",
    "example": "Write a pick-and-place routine for a new part",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "drn",
+   "code": "DRN",
+   "name": "Drones",
+   "area": "rob",
+   "shared": true,
+   "status": "In development",
+   "example": "Plan an inspection flight around obstacles",
    "description": "",
    "paper": null,
    "examples": [],
@@ -643,13 +635,13 @@
    }
   },
   {
-   "slug": "or",
-   "code": "OR",
-   "name": "Operations Research",
+   "slug": "auto",
+   "code": "AUTO",
+   "name": "Automotive Manufacturing",
    "area": "eng",
    "shared": false,
    "status": "In development",
-   "example": "Schedule a factory's shifts under constraints",
+   "example": "Rebalance an assembly line after a model change",
    "description": "",
    "paper": null,
    "examples": [],
@@ -661,31 +653,13 @@
    }
   },
   {
-   "slug": "gis",
-   "code": "GIS",
-   "name": "Geography, Remote Sensing & GIS",
+   "slug": "acu",
+   "code": "ACU",
+   "name": "Acoustics",
    "area": "eng",
    "shared": false,
    "status": "In development",
-   "example": "Map flood extent from satellite images",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "drn",
-   "code": "DRN",
-   "name": "Drones",
-   "area": "eng",
-   "shared": true,
-   "status": "In development",
-   "example": "Plan an inspection flight around obstacles",
+   "example": "Design room treatment to meet a reverb target",
    "description": "",
    "paper": null,
    "examples": [],
@@ -718,7 +692,7 @@
    "slug": "phy",
    "code": "PHY",
    "name": "Physics",
-   "area": "sci",
+   "area": "phys",
    "shared": false,
    "status": "In development",
    "example": "Fit a model to noisy spectroscopy data",
@@ -733,28 +707,10 @@
    }
   },
   {
-   "slug": "chm",
-   "code": "CHM",
-   "name": "Chemistry",
-   "area": "sci",
-   "shared": false,
-   "status": "In development",
-   "example": "Plan a synthesis route for a target molecule",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
    "slug": "qnt",
    "code": "QNT",
    "name": "Quantum",
-   "area": "sci",
+   "area": "phys",
    "shared": false,
    "status": "In development",
    "example": "Compile a circuit for a noisy quantum device",
@@ -769,10 +725,46 @@
    }
   },
   {
+   "slug": "lsr",
+   "code": "LSR",
+   "name": "Lasers & Photonics",
+   "area": "phys",
+   "shared": false,
+   "status": "In development",
+   "example": "Align a beam path and verify focus quality",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "chm",
+   "code": "CHM",
+   "name": "Chemistry",
+   "area": "life",
+   "shared": false,
+   "status": "In development",
+   "example": "Plan a synthesis route for a target molecule",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
    "slug": "bio",
    "code": "BIO",
    "name": "Biology",
-   "area": "sci",
+   "area": "life",
    "shared": false,
    "status": "In development",
    "example": "Run a gene-expression analysis pipeline",
@@ -790,7 +782,7 @@
    "slug": "wet",
    "code": "WET",
    "name": "Wet Lab",
-   "area": "sci",
+   "area": "life",
    "shared": false,
    "status": "In development",
    "example": "Turn a paper's methods into a lab protocol",
@@ -805,28 +797,10 @@
    }
   },
   {
-   "slug": "pha",
-   "code": "PHA",
-   "name": "Pharmaceuticals",
-   "area": "sci",
-   "shared": false,
-   "status": "In development",
-   "example": "Review a batch record for compliance gaps",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
    "slug": "med",
    "code": "MED",
    "name": "Medical Imaging",
-   "area": "sci",
+   "area": "med",
    "shared": false,
    "status": "In development",
    "example": "Segment a tumor and report its volume",
@@ -844,10 +818,28 @@
    "slug": "rt",
    "code": "RT",
    "name": "Radiation Therapy",
-   "area": "sci",
+   "area": "med",
    "shared": false,
    "status": "In development",
    "example": "Draft a treatment plan within dose limits",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "pha",
+   "code": "PHA",
+   "name": "Pharmaceuticals",
+   "area": "med",
+   "shared": false,
+   "status": "In development",
+   "example": "Review a batch record for compliance gaps",
    "description": "",
    "paper": null,
    "examples": [],
@@ -877,13 +869,13 @@
    }
   },
   {
-   "slug": "edu",
-   "code": "EDU",
-   "name": "Education",
+   "slug": "gen",
+   "code": "GEN",
+   "name": "General & Cross-domain",
    "area": "edu",
-   "shared": true,
+   "shared": false,
    "status": "In development",
-   "example": "Build a lesson plan with graded exercises",
+   "example": "Solve a problem that spans several fields",
    "description": "",
    "paper": null,
    "examples": [],
@@ -895,10 +887,7 @@
    }
   }
  ],
- "seeking": [
-  "Political Science",
-  "Public Opinion Analysis"
- ],
+ "seeking": [],
  "rules": [
   "Real expert workflow, not simple Q&A",
   "Clear business value",
@@ -910,6 +899,6 @@
  ],
  "stats": {
   "plannedTasks": 6000,
-  "plannedModels": 15
+  "modelsTarget": "30–50"
  }
 }
