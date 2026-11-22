@@ -1,9 +1,11 @@
 # Experts' First Exam — public website
 
 One file, `index.html`. It contains only public information:
-domain names, planned figures from the design doc, and the scoring method.
-Fonts are built into the file, so the page loads nothing from Google except
-the embedded proposal form.
+domain and field names, illustrative example tasks, the scoring method and
+the release plan. Fonts are built into the file, so the page loads nothing
+from anywhere else. The proposal form is a Google Form that opens in a new tab.
+
+EFE is one benchmark. It is made of 46 **domains**, grouped into 14 **fields**.
 
 ## Put it on GitHub Pages
 
@@ -23,7 +25,7 @@ registrar, then tick **Enforce HTTPS** once it is offered.
 The published file is `index.html`. It is generated from the `src/` folder:
 
 - `src/template.html`: layout, styles and code
-- `src/data.json`: everything the site shows (benchmarks, areas, rules, figures)
+- `src/data.json`: everything the site shows (domains, fields, rules, figures)
 - `src/build.py`: puts template, data and fonts together
 
 To rebuild: `python3 src/build.py <fonts-folder> "<google-form-link>" index.html`.
@@ -33,60 +35,82 @@ Small text changes can also be made directly in `index.html` (search for
 ## Settings (top of the `<script>` in index.html)
 
 - `contactEmail`: shown in the footer and on the Contribute page.
-- `googleFormUrl`: the proposal form shown on the Contribute page.
+- `googleFormUrl`: the task proposal form (opens in a new tab).
+- `organizer`: who runs EFE, shown in the footer as "Organized by …".
+  Empty hides the line.
+- `releaseTarget`: the planned first release, e.g. `January 2027`. Shown on
+  the home page, the Leaderboard page and in the footer.
+- `githubUrl`, `paperUrl`: empty shows "coming soon" in the footer; add the
+  link when it exists.
 - `workspaceUrl`: address of the private workspace; empty hides "Team sign in".
-- `googleFormHeight`: height of the embedded form in pixels.
 
-## What the home page shows
+## Pages
 
-- **Ring of tiles**: every benchmark is a tile, grouped by field around a
-  wheel. Clicking a field name (or resting the mouse on it) turns the wheel to that field;
-  visitors can also drag it or use the arrows. Hovering a tile (or the first
-  tap on a phone) flips up a card with an example task; clicking opens the
-  benchmark's page.
-- **Explore by field**: a list of the fields. Hovering or clicking one shows
-  its drawing, its benchmarks (Core or Joint) and example tasks.
-- **How a task is scored**, then the leaderboard and contribute cards.
+The menu is: Leaderboard · Domains · How it works, plus a Contribute button.
+
+- **Home**: the wheel of domain tiles, then "Explore by field", a short
+  "How a task is scored", and the Leaderboard and Contribute cards.
+  - The current field's name sits right under its highlighted tiles, with
+    arrows on each side to step through the fields (dragging the wheel also
+    works). Clicking the name jumps to that field in "Explore by field".
+  - The wheel does not move on its own. Pointing at a tile shows its example
+    task; clicking a tile opens the domain's page. On phones the wheel is
+    hidden.
+  - "Explore by field" always shows the same field as the wheel.
+- **Leaderboard** (`#/leaderboard`): release date, what the leaderboard will
+  show, and how models are scored.
+- **Domains** (`#/domains`): all domains by field, with search (names, fields
+  and example tasks) and a Core / Joint filter.
+- **Domain pages** (`#/d/<slug>`).
+- **How it works** (`#/how`): the scoring diagram, the two scores, public and
+  private tasks, and what makes a good task.
+- **Contribute** (`#/contribute`): two paths (propose a task, or lead/partner
+  on a domain), what happens next, and the checklist.
+- Older addresses still work: `#/benchmarks`, `#/b/<slug>` and `#/results`.
+  Any other address shows "Page not found".
 
 ## Content (`src/data.json`)
 
-**`areas`**: the fields, in display order (`id`, `name`). Colors are spread
-evenly around the color wheel in this order, so adding or removing a field
-recolors the rest automatically. Each field also has a line drawing (14 are
-built in; a new field id falls back to the generic one).
+**`areas`**: the fields, in display order (`id`, `name`, `desc`). `desc` is the
+one-line description shown in "Explore by field".
+Colors follow this order around a color wheel, so neighbouring fields get
+neighbouring colors and the wheel reads as one gradient. Keep related fields
+next to each other. Adding, removing or moving a field recolors the rest
+automatically. Each field also has a line drawing (14 are built in; a new
+field id falls back to the generic one).
 
-**`benchmarks`**: one entry per benchmark:
-- `slug`: its web address, `#/b/<slug>`
+**`benchmarks`**: one entry per domain (the key keeps its old name):
+- `slug`: its web address, `#/d/<slug>`
 - `code`: the badge text
-- `name`, `area` (an area id), `status`
-- `shared`: `false` = **EFE Core** (built by the EFE team: solid card, black
-  CORE tag); `true` = **EFE Joint \*** (co-built with a partner team: dashed
-  orange card with hatching, JOINT * tag)
-- `example`: the illustrative task title shown on the tile's flip card and in
-  the field explorer (replaced by the first entry of `examples` once filled)
+- `name`, `area` (a field id), `status`
+- `shared`: `false` = **Core** (built by the EFE team, black "Core" tag);
+  `true` = **Joint \*** (co-built with a partner team, orange "Joint" tag and
+  a `*` after the name)
+- `example`: the illustrative task title shown on the wheel, in the field
+  explorer and on the domain's page (replaced by the first entry of
+  `examples` once filled)
 
 Fill these in as content becomes ready; anything left empty shows a
-placeholder on the benchmark's page:
+placeholder on the domain's page:
 - `description`: one paragraph for the Overview.
 - `paper`: `{"title", "authors", "venue", "arxiv", "pdf", "code", "bibtex"}`
   (links; missing links show as greyed-out buttons).
 - `examples`: up to 3 tasks, each `{"title", "steps": [...], "meta": [...]}`.
-  Use only public tasks, never hidden ones.
+  Use only public tasks, never private ones.
 - `taxonomy`: `[{"direction": "...", "categories": ["...", "..."]}]`.
 - `team`: `{"leads": [...], "members": [...], "contributors": [...]}`.
   Names here are public: add people only with their agreement.
 
-**`stats`**: `plannedTasks` and `modelsTarget` (shown as written, e.g. "30–50").
+**`stats`**: `modelsTarget` (shown as written, e.g. "30–50").
 **`seeking`**: fields looking for an expert partner (empty = a "Don't see your
-field?" card instead). **`rules`**: the "What makes a good task" list.
+field?" line instead). **`rules`**: the "What makes a good task" checklist.
 
 ## Security notes
 
-- The page sets a Content-Security-Policy: it may only show the Google Form
-  from docs.google.com and cannot load scripts, fonts or images from anywhere
-  else. If you later embed something new (e.g. a different form service),
-  add its address to `frame-src` in the `<meta http-equiv=
-  "Content-Security-Policy">` line, or it will be blocked.
+- The page sets a Content-Security-Policy: it cannot load scripts, fonts,
+  images or frames from anywhere else. If you later embed something (e.g. a
+  form inside the page), add its address as `frame-src` in the `<meta
+  http-equiv="Content-Security-Policy">` line, or it will be blocked.
 - Only upload `index.html` and this README to the public repository. Never
   add the prototype, `schema.sql`, task files or anything private: a public
   repository is visible to everyone, and GitHub keeps every old version even

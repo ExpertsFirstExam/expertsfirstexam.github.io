@@ -1,60 +1,74 @@
 {
  "areas": [
   {
-   "id": "fin",
-   "name": "Finance & Markets"
-  },
-  {
-   "id": "biz",
-   "name": "Business & Economics"
+   "id": "ai",
+   "name": "AI Agents & Safety",
+   "desc": "Agents that operate computers, stay secure, model the world and improve themselves."
   },
   {
    "id": "soft",
-   "name": "Software & Cloud"
+   "name": "Software & Cloud",
+   "desc": "Building, testing and running real software and cloud services."
   },
   {
    "id": "sys",
-   "name": "Systems & Networking"
+   "name": "Systems & Networking",
+   "desc": "Operating systems, large-scale infrastructure and high-speed networks."
   },
   {
    "id": "tel",
-   "name": "Telecom & Wireless"
-  },
-  {
-   "id": "earth",
-   "name": "Earth & Space"
+   "name": "Telecom & Wireless",
+   "desc": "Planning and running mobile and radio networks."
   },
   {
    "id": "hw",
-   "name": "Chips & Hardware"
-  },
-  {
-   "id": "ai",
-   "name": "AI Agents & Safety"
+   "name": "Chips & Hardware",
+   "desc": "Designing, checking and speeding up chips, GPUs and embedded devices."
   },
   {
    "id": "rob",
-   "name": "Robotics & Autonomy"
+   "name": "Robotics & Autonomy",
+   "desc": "Robots and drones that sense, plan and act in the physical world."
   },
   {
    "id": "eng",
-   "name": "Engineering & Design"
+   "name": "Engineering & Design",
+   "desc": "Buildings, vehicles, sound, and the CAD models behind them."
   },
   {
    "id": "phys",
-   "name": "Physical Sciences"
+   "name": "Physical Sciences",
+   "desc": "Experiments and analysis in physics, quantum systems and lasers."
+  },
+  {
+   "id": "earth",
+   "name": "Earth & Space",
+   "desc": "Satellites, remote sensing and maps of the Earth."
   },
   {
    "id": "life",
-   "name": "Chemistry & Life Sciences"
+   "name": "Chemistry & Life Sciences",
+   "desc": "Chemistry, biology and hands-on wet-lab work."
   },
   {
    "id": "med",
-   "name": "Medicine & Pharma"
+   "name": "Medicine & Pharma",
+   "desc": "Medical imaging, radiation therapy and drug development."
   },
   {
    "id": "edu",
-   "name": "Education & General"
+   "name": "Education & General",
+   "desc": "Education research, and tasks that cut across many fields."
+  },
+  {
+   "id": "biz",
+   "name": "Business & Economics",
+   "desc": "Strategy, operations research and economic analysis."
+  },
+  {
+   "id": "fin",
+   "name": "Finance & Markets",
+   "desc": "Trading, investing, crypto and prediction markets."
   }
  ],
  "benchmarks": [
@@ -889,13 +903,13 @@
  ],
  "seeking": [],
  "rules": [
-  "Real expert workflow, not simple Q&A",
-  "Clear business value",
-  "Hard enough for frontier models",
-  "Precise task definition (inputs, outputs, goal)",
-  "Verifiable and trainable (trajectory + ground truth)",
-  "Staged scoring across steps",
-  "30+ weighted rubric items"
+  "Real expert work, not simple questions and answers",
+  "Clear value to a business or a field",
+  "Hard enough that today's best models fail",
+  "Clear inputs, expected output and goal",
+  "A checkable answer, plus the steps to reach it",
+  "Scored step by step, not only at the end",
+  "A scoring rubric with 30+ weighted items"
  ],
  "stats": {
   "plannedTasks": 6000,

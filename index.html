@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; font-src data:; img-src data:; frame-src https://docs.google.com; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; font-src data:; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#F4F4F3">
 <title>Experts’ First Exam</title>
-<meta name="description" content="Experts’ First Exam (EFE): a family of benchmarks built from real expert workflows, measuring where frontier AI agents still fall short.">
+<meta name="description" content="Experts’ First Exam (EFE) tests whether AI agents can finish real work done by human experts, across 46 domains in 14 fields.">
 <meta property="og:title" content="Experts’ First Exam">
-<meta property="og:description" content="A family of benchmarks built from real expert workflows, with the people who do the work.">
+<meta property="og:description" content="We test whether AI agents can finish real work done by human experts.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230B0C0E'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-weight='700' font-size='17' fill='%23FFFFFF' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
 <style>
 /* Fonts (SIL Open Font License): Inter, JetBrains Mono — built in, nothing loads from Google. */
@@ -22,19 +22,19 @@
 
 :root{
   --bg:#F4F4F3;--glow:#FFFFFF;--surface:#FFFFFF;--surface2:#F8F8F7;--ink:#0B0C0E;--ink2:#26292E;--muted:#55585F;--faint:#7E8188;
-  --line:#D9D9D5;--line2:#E4E4E1;--accent:#D4461A;--accent-soft:#FBE3D9;--lift:0%;--deep:14%;
+  --line:#D9D9D5;--line2:#E4E4E1;--accent:#C2410C;--accent-soft:#FBE7DC;--lift:0%;--deep:12%;--anno:#3B4BF0;--anno-soft:rgba(59,75,240,.07);
   --shadow:0 1px 2px rgba(11,12,14,.05),0 14px 34px -10px rgba(11,12,14,.16);
   --tile-bg:linear-gradient(180deg,#FFFFFF,#F1F1EF);--tile-sh:0 1px 1px rgba(0,0,0,.04),0 14px 26px -10px rgba(0,0,0,.22),inset 0 1px 0 #fff;
   --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0B0C0E;--glow:#1A1C21;--surface:#141619;--surface2:#191B1F;--ink:#EDEDEA;--ink2:#D2D2CE;--muted:#A6A9B0;--faint:#7A7D84;
-  --line:#2C2F35;--line2:#212429;--accent:#FF7A4D;--accent-soft:#3A1E14;--lift:28%;--deep:0%;
+  --line:#2C2F35;--line2:#212429;--accent:#FF8A5C;--accent-soft:#3A1E14;--lift:30%;--deep:0%;--anno:#8C97FF;--anno-soft:rgba(140,151,255,.1);
   --shadow:0 1px 2px rgba(0,0,0,.5),0 14px 34px -10px rgba(0,0,0,.6);
   --tile-bg:linear-gradient(180deg,#22252A,#18191D);--tile-sh:0 1px 1px rgba(0,0,0,.3),0 14px 26px -10px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06);}}
 :root[data-theme="dark"]{
   --bg:#0B0C0E;--glow:#1A1C21;--surface:#141619;--surface2:#191B1F;--ink:#EDEDEA;--ink2:#D2D2CE;--muted:#A6A9B0;--faint:#7A7D84;
-  --line:#2C2F35;--line2:#212429;--accent:#FF7A4D;--accent-soft:#3A1E14;--lift:28%;--deep:0%;
+  --line:#2C2F35;--line2:#212429;--accent:#FF8A5C;--accent-soft:#3A1E14;--lift:30%;--deep:0%;--anno:#8C97FF;--anno-soft:rgba(140,151,255,.1);
   --shadow:0 1px 2px rgba(0,0,0,.5),0 14px 34px -10px rgba(0,0,0,.6);
   --tile-bg:linear-gradient(180deg,#22252A,#18191D);--tile-sh:0 1px 1px rgba(0,0,0,.3),0 14px 26px -10px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06);}
 *{box-sizing:border-box}
@@ -45,278 +45,327 @@ a{color:inherit;text-decoration:none}
 button,input{font:inherit;color:inherit}
 h1,h2,h3,h4{margin:0;letter-spacing:-.025em;font-weight:600}
 svg{display:block}
+:focus-visible{outline:2px solid var(--anno);outline-offset:2px;border-radius:6px}
+[id]{scroll-margin-top:84px}
 .container{max-width:1180px;margin:0 auto;padding:0 28px}
 .muted{color:var(--muted)}
-.mono{font-family:var(--mono)}
-.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.fc{--fcl:color-mix(in srgb,var(--fc),#fff var(--lift))}
+.code{font-family:var(--mono);font-size:12.5px}
+.eyebrow{font-size:13px;font-weight:500;color:var(--muted)}
+.fc{--fcl:color-mix(in srgb,var(--fc),#fff var(--lift));--fct:color-mix(in srgb,var(--fcl),#000 var(--deep))}
+.star{color:var(--accent);font-weight:700;margin-left:1px}
 
 /* header */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .2s,border-color .2s;border-bottom:1px solid transparent}
-.hdr.solid{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line2)}
+.hdr.solid,.hdr.open{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line2)}
 .hdr-in{display:flex;align-items:center;gap:20px;height:64px;max-width:1280px;margin:0 auto;padding:0 28px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;white-space:nowrap;letter-spacing:-.01em}
 .logo-mark{width:26px;height:26px;border-radius:7px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:700;font-size:13px}
-.logo .dot{color:var(--faint);font-weight:400}
-.nav{display:flex;gap:28px;margin:0 auto;font-size:14px;color:var(--ink2)}
+.logo .lsub{color:var(--muted);font-weight:400}
+.nav{display:flex;gap:30px;margin:0 auto;font-size:14.5px;color:var(--ink2)}
 .nav a:hover,.nav a.on{color:var(--ink)}
-.nav a.on{font-weight:500}
+.nav a.on{font-weight:600}
 .right{display:flex;gap:8px;align-items:center}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 17px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:14px;font-weight:500;white-space:nowrap;transition:transform .15s,border-color .15s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:14.5px;font-weight:500;white-space:nowrap;transition:transform .15s,border-color .15s}
 .btn:hover{border-color:var(--ink2)}
 .btn.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .btn.dark:hover{transform:translateY(-1px)}
-.btn.sm{height:34px;padding:0 14px;font-size:13px}
-.btn.icon{width:36px;padding:0;border-color:transparent;background:transparent}
-.btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
+.btn.lg{height:48px;padding:0 24px;font-size:15.5px}
+.btn.icon{width:40px;padding:0;border-color:transparent;background:transparent}
 .menu-btn{display:none}
 .mpanel{display:none}
 
-/* ---------- hero ring ---------- */
-.hero{position:relative;height:clamp(700px,100vh,900px);overflow:hidden;background:radial-gradient(1100px 720px at 50% 42%,var(--glow) 0%,transparent 70%);user-select:none;-webkit-user-select:none;touch-action:pan-y;
-  --R:1000px;--t:90px;--lw:106px;--top:126px;max-height:840px}
-.ring{position:absolute;left:50%;top:calc(var(--top) + var(--R));width:0;height:0;transform:rotate(var(--rot,0deg));transition:transform 1.1s cubic-bezier(.22,.72,.2,1)}
+/* ---------- hero: a calm wheel of benchmark tiles ---------- */
+.hero{position:relative;height:clamp(650px,84vh,710px);overflow:hidden;background:radial-gradient(1100px 720px at 50% 42%,var(--glow) 0%,transparent 70%);user-select:none;-webkit-user-select:none;touch-action:pan-y;
+  --R:1000px;--t:90px;--lw:106px;--top:120px}
+.ring{position:absolute;left:50%;top:calc(var(--top) + var(--R));width:0;height:0;transform:rotate(var(--rot,0deg));transition:transform 1s cubic-bezier(.22,.72,.2,1)}
 .ring.drag{transition:none}
-.tile{position:absolute;left:calc(var(--t) / -2);top:calc(var(--t) / -2);width:var(--t);transform:rotate(var(--a)) translateY(calc(var(--R) * -1));transition:opacity .5s,filter .5s;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.tface{position:relative;width:var(--t);height:var(--t);border-radius:24%;background:var(--tile-bg);box-shadow:var(--tile-sh),0 3px 0 -0px var(--fcl);display:grid;place-items:center;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
-.ticon{width:68%;height:68%;border-radius:23%;background:linear-gradient(150deg,color-mix(in srgb,var(--fc),#fff 22%),color-mix(in srgb,var(--fc),#000 18%));display:grid;place-items:center;color:#fff;font-weight:700;letter-spacing:-.03em;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 2px 6px -2px color-mix(in srgb,var(--fc),transparent 40%)}
+.arc{position:absolute;--Ra:var(--R);left:calc(var(--Ra) * -1);top:calc(var(--Ra) * -1);width:calc(var(--Ra) * 2);height:calc(var(--Ra) * 2);border-radius:50%;pointer-events:none;opacity:.55;
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1.5px))}
+.tile{position:absolute;left:calc(var(--t) / -2);top:calc(var(--t) / -2);width:var(--t);transform:rotate(var(--a)) translateY(calc(var(--R) * -1));transition:opacity .5s,filter .5s;cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none}
+.tface{position:relative;width:var(--t);height:var(--t);border-radius:24%;background:var(--tile-bg);box-shadow:var(--tile-sh),0 3px 0 var(--tcl,var(--tc));display:grid;place-items:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.ticon{width:68%;height:68%;border-radius:23%;background:linear-gradient(150deg,color-mix(in srgb,var(--tc),#fff 16%),color-mix(in srgb,var(--tc2),#000 6%));display:grid;place-items:center;color:#fff;font-weight:700;letter-spacing:-.03em;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 2px 6px -2px color-mix(in srgb,var(--tc),transparent 40%)}
 .ticon span{font-size:calc(var(--t) * .2)}
 .ticon span.l4{font-size:calc(var(--t) * .16)}
 .ticon span.l5{font-size:calc(var(--t) * .135)}
 .tile.joint .tface::after{content:"*";position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:15px;line-height:24px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.2)}
-.tlabel{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:center;font-size:11px;line-height:1.3;font-weight:500;color:var(--ink);margin-top:9px;width:var(--lw);margin-left:calc((var(--t) - var(--lw)) / 2);opacity:0;transition:opacity .45s}
+.tlabel{hyphens:auto;-webkit-hyphens:auto;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:center;font-size:12px;line-height:1.3;font-weight:500;color:var(--ink);margin-top:9px;width:var(--lw);margin-left:calc((var(--t) - var(--lw)) / 2);opacity:0;transition:opacity .45s}
 .tile.on .tlabel{opacity:1}
-.tile:not(.on){opacity:.66;filter:saturate(.7)}
+.tile:not(.on){opacity:.74;filter:saturate(.8)}
 .tile.on .tface{transform:translateY(-6px)}
-.tile:hover .tface,.tile.hot .tface{transform:translateY(-10px) scale(1.06)}
-.tile:focus-visible{outline:none}.tile:focus-visible .tface{outline:2px solid var(--fc);outline-offset:4px}
+.tile:hover .tface,.tile:focus-visible .tface{transform:translateY(-10px) scale(1.06)}
+.tile:focus-visible .tface{outline:2px solid var(--anno);outline-offset:4px}
 
-.hcopy{position:absolute;left:0;right:0;top:var(--copy,336px);text-align:center;padding:0 24px;pointer-events:none}
+.hcopy{position:absolute;left:0;right:0;top:260px;text-align:center;padding:0 24px;pointer-events:none}
 .hcopy>*{pointer-events:auto}
 .h-hero{font-weight:700;font-size:clamp(40px,6vw,76px);line-height:1;letter-spacing:-.05em;margin:0}
-.sub{font-size:16.5px;color:var(--ink2);max-width:580px;margin:16px auto 0}
-.fline{margin-top:26px;min-height:44px}
-.fline b{display:block;color:color-mix(in srgb,var(--fcl),#000 var(--deep));font-weight:600;font-size:15px;transition:color .4s}
-.fline span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink2)}
-.fpills{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:880px;margin:16px auto 0}
-.fpill{display:inline-flex;align-items:center;gap:7px;padding:5px 12px 5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:12.5px;color:var(--ink2);cursor:pointer;transition:all .25s;white-space:nowrap}
-.fpill i{width:8px;height:8px;border-radius:50%;background:var(--fcl)}
-.fpill:hover{border-color:var(--fcl);color:var(--ink)}
-.fpill.on{background:color-mix(in srgb,var(--fc) 12%,var(--surface));border-color:var(--fcl);color:var(--ink);font-weight:500}
-.hfoot{position:absolute;left:28px;right:28px;bottom:20px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ink2)}
-.hfoot .ctl{display:flex;gap:6px}
-.rbtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--ink2)}
+.sub{font-size:17px;color:var(--ink2);max-width:640px;margin:18px auto 0}
+.cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.key{margin-top:18px;font-size:13.5px;color:var(--muted)}
+.mstrip{display:none}
+.hfield{display:flex;justify-content:center;align-items:center;gap:10px;margin:0 0 30px}
+.fchip{display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 20px 0 16px;border-radius:999px;border:1.5px solid color-mix(in srgb,var(--fcl) 50%,transparent);background:color-mix(in srgb,var(--fc) 10%,var(--surface));box-shadow:var(--shadow);cursor:pointer;font-size:17.5px;white-space:nowrap;transition:border-color .4s,background .4s}
+.fchip:hover{border-color:var(--fcl)}
+.fchip i{width:12px;height:12px;border-radius:4px;background:var(--fcl);flex:none;transition:background .4s}
+.fchip b{font-weight:600;color:var(--fct);transition:color .4s}
+.fchip span{color:var(--muted);font-size:15px}
+.rbtn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--ink2)}
 .rbtn:hover{border-color:var(--ink2)}
 
-/* flip card */
-#pop{position:fixed;z-index:60;width:256px;background:#121316;color:#E9E9E6;border-radius:20px;padding:16px 16px 14px;box-shadow:0 22px 48px -12px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.06);display:none;cursor:pointer}
-#pop.show{display:block;animation:flip .32s cubic-bezier(.2,.8,.2,1)}
-@keyframes flip{from{opacity:0;transform:perspective(700px) rotateY(-80deg) scale(.92)}to{opacity:1;transform:none}}
-#pop .ph1{display:flex;align-items:center;gap:10px}
-#pop .ph1 b{font-size:14px;font-weight:600}
-#pop .ph1 em{margin-left:auto;font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:#BCBFC5}
-#pop .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--pc);margin:14px 0 6px}
-#pop h4{font-size:17px;line-height:1.28;color:#fff;letter-spacing:-.02em}
-#pop p{font-size:12.5px;color:#BCBFC5;margin:8px 0 0}
-#pop .pf{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:#BCBFC5;border-top:1px solid rgba(255,255,255,.08);margin-top:14px;padding-top:10px}
-#pop .pf b{color:#fff;font-weight:500}
+/* small preview shown next to a tile */
+#tip{position:fixed;z-index:60;width:252px;background:#121316;color:#E9E9E6;border-radius:16px;padding:14px 15px 13px;box-shadow:0 22px 48px -12px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.06);pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .15s,transform .15s;visibility:hidden}
+#tip.show{opacity:1;transform:none;visibility:visible}
+#tip .t1{display:flex;align-items:center;gap:10px}
+#tip .t1 b{font-size:14px;font-weight:600;line-height:1.25}
+#tip .lab{font-size:12px;color:#BCBFC5;margin:12px 0 3px}
+#tip h4{font-size:15.5px;line-height:1.3;color:#fff;letter-spacing:-.015em}
+#tip .t3{font-size:12px;color:#BCBFC5;margin-top:10px}
 
 /* mini tile icon (used outside the ring) */
-.mt{position:relative;flex:none;width:var(--s,34px);height:var(--s,34px);border-radius:27%;background:linear-gradient(150deg,color-mix(in srgb,var(--fc),#fff 22%),color-mix(in srgb,var(--fc),#000 18%));display:grid;place-items:center;color:#fff;font-weight:700;letter-spacing:-.03em;font-size:calc(var(--s,34px) * .3);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
-.mt.l4{font-size:calc(var(--s,34px) * .24)}.mt.l5{font-size:calc(var(--s,34px) * .2)}
+.mt{position:relative;flex:none;width:var(--s,34px);height:var(--s,34px);border-radius:27%;background:linear-gradient(150deg,color-mix(in srgb,var(--tc),#fff 16%),color-mix(in srgb,var(--tc2),#000 6%));display:grid;place-items:center;color:#fff;font-weight:700;letter-spacing:-.03em;font-size:calc(var(--s,34px) * .3);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.mt.l4{font-size:calc(var(--s,34px) * .25)}.mt.l5{font-size:calc(var(--s,34px) * .21)}
+
+/* tags */
+.kt{flex:none;font-size:12px;font-weight:500;line-height:1;padding:5px 8px;border-radius:6px;white-space:nowrap}
+.kt.core{background:var(--ink);color:var(--bg);border:1px solid var(--ink)}
+.kt.joint{color:var(--accent);border:1px solid var(--accent);background:var(--accent-soft)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--ink2);align-items:center}
+.legend span.li{display:inline-flex;align-items:center;gap:8px}
 
 /* sections */
-section.block{padding:96px 0}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;flex-wrap:wrap}
-.h-sec{font-size:clamp(30px,4vw,48px);line-height:1.04;letter-spacing:-.045em;font-weight:700}
-.sec-head p{margin:12px 0 0;color:var(--muted);max-width:560px;font-size:16px}
-.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink2)}
-.legend span{display:inline-flex;align-items:center;gap:8px}
-.sw{width:22px;height:14px;border-radius:4px;display:inline-block}
-.sw.core{background:var(--surface);border:1.5px solid var(--ink2)}
-.sw.joint{background:repeating-linear-gradient(135deg,var(--surface) 0 3px,var(--accent-soft) 3px 5px);border:1.5px dashed var(--accent)}
+section.block{padding:72px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px 28px;margin-bottom:28px;flex-wrap:wrap}
+.h-sec{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.045em;font-weight:700}
+.sec-head p{margin:10px 0 0;color:var(--muted);max-width:580px;font-size:16px}
 
 /* field explorer */
-.ex{display:grid;grid-template-columns:290px minmax(0,1fr);gap:24px;align-items:start}
+.ex{display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px;align-items:start}
 .flist{display:flex;flex-direction:column;gap:2px;position:sticky;top:84px}
-.frow{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border-radius:12px;border:0;background:none;cursor:pointer;text-align:left;font-size:14.5px;color:var(--ink2);transition:background .2s,color .2s}
-.frow i{width:11px;height:11px;border-radius:3px;background:var(--fcl);flex:none}
-.frow .n{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.flist::before{content:"";position:absolute;left:17px;top:24px;bottom:24px;width:2px;border-radius:2px;background:var(--thread);opacity:.4}
+.frow{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-height:44px;padding:10px 12px;border-radius:12px;border:0;background:none;cursor:pointer;text-align:left;font-size:15px;color:var(--ink2);transition:background .2s,color .2s;scroll-margin-top:80px}
+.frow i{position:relative;width:12px;height:12px;border-radius:4px;background:var(--fcl);flex:none;box-shadow:0 0 0 3px var(--bg)}
+.frow .n{margin-left:auto;font-size:13px;color:var(--muted)}
 .frow:hover{background:color-mix(in srgb,var(--surface) 70%,transparent);color:var(--ink)}
-.frow.on{background:var(--surface);color:var(--ink);font-weight:500;box-shadow:var(--shadow)}
-.frow.on .n{color:color-mix(in srgb,var(--fcl),#000 var(--deep));font-weight:500}
-.fpanel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;animation:fade .35s ease}
-@keyframes fade{from{opacity:.0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.ffig{position:relative;height:180px;border-radius:14px;color:color-mix(in srgb,var(--fcl),#000 var(--deep));background:linear-gradient(color-mix(in srgb,var(--fc) 11%,transparent) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,color-mix(in srgb,var(--fc) 11%,transparent) 1px,transparent 1px) 0 0/28px 28px,color-mix(in srgb,var(--fc) 9%,var(--surface2));overflow:hidden}
+.frow:hover i{box-shadow:0 0 0 3px color-mix(in srgb,var(--surface) 70%,var(--bg))}
+.frow.on{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:var(--shadow)}
+.frow.on i{box-shadow:0 0 0 3px var(--surface)}
+.frow.on .n{color:var(--fct)}
+.fpanel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:24px;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.fptop{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:20px;align-items:start}
+.fptop h3{font-size:27px;letter-spacing:-.035em;margin-top:4px}
+.fptop p{margin:8px 0 0;color:var(--ink2);font-size:15.5px}
+.fptop .cnt{margin-top:10px;font-size:13.5px;color:var(--muted)}
+.ffig{position:relative;height:124px;border-radius:14px;color:var(--fct);background:linear-gradient(color-mix(in srgb,var(--fc) 11%,transparent) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,color-mix(in srgb,var(--fc) 11%,transparent) 1px,transparent 1px) 0 0/24px 24px,color-mix(in srgb,var(--fc) 8%,var(--surface2));overflow:hidden}
 .ffig svg{width:100%;height:100%}
-.ffig.big{height:240px;border:1px solid var(--line)}
-.ffig .ft{position:absolute;left:14px;top:12px;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:inherit}
-.fhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin:20px 0 14px}
-.fhead h3{font-size:24px;letter-spacing:-.035em}
-.fhead span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted)}
-.dcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:8px}
-.dcard{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:12px;min-width:0;transition:transform .15s,box-shadow .15s}
-.dcard:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.dcard .nm{font-size:13.5px;font-weight:500;line-height:1.3;min-width:0}
-.dcard .kt{margin-left:auto;flex:none;font-family:var(--mono);font-size:9px;letter-spacing:.1em;padding:2px 6px;border-radius:5px;white-space:nowrap}
-.dcard.core{background:var(--surface);border:1px solid var(--line)}
-.dcard.core .kt{background:var(--ink);color:var(--bg)}
-.dcard.joint{background:repeating-linear-gradient(135deg,transparent 0 8px,color-mix(in srgb,var(--accent) 8%,transparent) 8px 9px),var(--surface2);border:1.5px dashed color-mix(in srgb,var(--accent) 70%,transparent)}
-.dcard.joint .kt{color:var(--accent);border:1px solid var(--accent)}
-.star{color:var(--accent);font-weight:700}
-.tasks{margin-top:20px}
-.trow{display:flex;align-items:center;gap:12px;padding:12px 2px;border-top:1px solid var(--line2);font-size:14px}
+.dcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin-top:20px}
+.dcard{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;min-width:0;background:var(--surface);border:1px solid var(--line);transition:transform .15s,box-shadow .15s,border-color .15s}
+.dcard:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--faint)}
+.dcard .nm{font-size:14.5px;font-weight:500;line-height:1.3;min-width:0;flex:1;overflow-wrap:anywhere}
+.bcard{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 12px;align-items:center;padding:14px;border-radius:14px;background:var(--surface);border:1px solid var(--line);transition:transform .15s,box-shadow .15s,border-color .15s}
+.bcard:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--faint)}
+.bcard .nm{font-size:15px;font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+.bcard .exl{grid-column:2 / 4;font-size:13.5px;color:var(--muted);line-height:1.4}
+.bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.tasks{margin-top:22px}
+.tasks-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.tasks-h b{font-size:15px;font-weight:600}
+.tasks-h span{font-size:13px;color:var(--muted)}
+.trow{display:flex;align-items:center;gap:12px;padding:12px 2px;border-top:1px solid var(--line2);font-size:15px}
 .trow .tt{min-width:0}
-.trow .tt small{display:block;color:var(--muted);font-size:12px}
-.trow .go{margin-left:auto;color:var(--faint)}
+.trow .tt small{display:block;color:var(--muted);font-size:13px}
+.trow .go{margin-left:auto;color:var(--muted);font-size:13px;white-space:nowrap;display:flex;align-items:center;gap:6px}
 .trow:hover .go{color:var(--ink)}
-.note{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--line);border-radius:6px;padding:2px 7px}
 
-/* scoring diagram */
-.diagram{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;--anno:#4353FF;--anno-soft:rgba(67,83,255,.08)}
+/* how a task is scored (home strip) */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px}
+.step .n{display:inline-block;font-family:var(--mono);font-size:12px;color:#fff;background:var(--anno);padding:3px 8px;border-radius:5px}
+.step h4{font-size:18px;margin:14px 0 6px}
+.step p{margin:0;font-size:14.5px;color:var(--muted)}
+.scores{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:14px;padding:18px 20px;border-radius:18px;background:var(--surface);border:1px solid var(--line);font-size:15px;color:var(--ink2)}
+.scores p{margin:0;max-width:760px}
+
+/* scoring diagram (How it works page) */
+.diagram{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px}
 .diagram .mob{display:none}
 .dlist{display:none}
-.atag{font-family:var(--mono);font-size:10px;letter-spacing:.06em;background:var(--anno,#4353FF);color:#fff;padding:3px 7px;line-height:1.2}
+.atag{font-family:var(--mono);font-size:12px;background:var(--anno);color:#fff;padding:3px 8px;border-radius:5px;line-height:1.2;flex:none}
+.cap{font-size:13px;color:var(--muted);margin:14px 0 0}
 
 /* bottom pair */
-.pair{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .pcard{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px;position:relative;overflow:hidden}
 .pcard.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.pcard.dark p{color:color-mix(in srgb,var(--bg) 62%,transparent)}
-.pcard.dark .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
-.pcard h3{font-size:26px;letter-spacing:-.04em;font-weight:700}
-.pcard p{margin:10px 0 0;color:var(--muted)}
-.bars{display:flex;align-items:flex-end;gap:5px;height:120px;margin-top:22px;border-bottom:1px solid var(--line)}
-.bars i{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 85%,var(--surface2)),color-mix(in srgb,var(--c) 40%,var(--surface2)))}
+.pcard.dark .eyebrow,.pcard.dark p{color:color-mix(in srgb,var(--bg) 68%,transparent)}
+.pcard h3{font-size:25px;letter-spacing:-.035em;font-weight:700;margin-top:8px}
+.pcard p{margin:8px 0 0;color:var(--muted)}
+.tl{list-style:none;padding:0;margin:18px 0 0}
+.tl li{display:grid;grid-template-columns:128px minmax(0,1fr);gap:14px;padding:13px 0;border-top:1px solid var(--line2);font-size:14.5px}
+.tl li b{font-weight:600}
+.tl .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:1px}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 0;border-top:1px solid color-mix(in srgb,var(--bg) 18%,transparent)}
+.opt b{display:block;font-size:16.5px;font-weight:600}
+.opt span{font-size:13.5px;color:color-mix(in srgb,var(--bg) 68%,transparent)}
+.opt .ar{width:36px;height:36px;border-radius:50%;background:var(--bg);color:var(--ink);display:grid;place-items:center;flex:none;transition:transform .15s}
+.opt:hover .ar{transform:translateX(3px)}
 
-footer.pf{border-top:1px solid var(--line);padding:40px 0 48px;font-size:13.5px;color:var(--muted)}
-.fgrid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
-.flinks{display:flex;gap:22px;flex-wrap:wrap}
-.flinks a:hover{color:var(--ink)}
+/* footer */
+footer.pf{border-top:1px solid var(--line);padding:44px 0 36px;font-size:14px;color:var(--muted)}
+.fgrid{display:grid;grid-template-columns:1.4fr repeat(3,minmax(0,1fr));gap:28px}
+.fgrid h5{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.fgrid ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.fgrid a:hover{color:var(--ink)}
+.soon{font-size:12px;color:var(--faint);margin-left:4px}
+.fbot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:18px;border-top:1px solid var(--line2);font-size:13px}
 
-/* all benchmarks page */
-.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:24px}
+/* list page */
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:26px}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:12.5px;cursor:pointer;white-space:nowrap}
+.chip{display:inline-flex;align-items:center;min-height:38px;padding:0 15px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:14px;cursor:pointer;white-space:nowrap}
 .chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.search{height:38px;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:0 16px;font-size:14px;min-width:240px}
+.search{height:42px;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:0 18px;font-size:15px;min-width:320px}
 .area{margin-bottom:30px}
 .area-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.area-head i{width:10px;height:10px;border-radius:3px;background:var(--fcl)}
-.area-head h3{font-size:17px}
-.area-head .cnt{font-family:var(--mono);font-size:11px;color:var(--muted)}
-.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}
+.area-head i{width:12px;height:12px;border-radius:4px;background:var(--fcl)}
+.area-head h3{font-size:18px}
+.area-head .cnt{font-size:13.5px;color:var(--muted)}
+.empty{padding:28px;text-align:center;color:var(--ink2);border:1px dashed var(--line);border-radius:14px}
+.linkbtn{background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-weight:500}
 
 /* benchmark page */
 .page-top{padding:112px 0 0}
-.crumb{display:inline-flex;gap:6px;font-size:13.5px;color:var(--muted);margin-bottom:24px}
+.crumb{display:inline-flex;gap:6px;font-size:14px;color:var(--muted);margin-bottom:24px;padding:6px 0}
 .crumb:hover{color:var(--ink)}
-.bhead{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;align-items:center}
-.bhead h1{font-weight:700;font-size:clamp(38px,5.6vw,68px);line-height:1;letter-spacing:-.05em;margin-top:18px}
+.bhead h1{font-weight:700;font-size:clamp(38px,5.6vw,66px);line-height:1;letter-spacing:-.05em;margin-top:14px}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-.tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font-size:12.5px;border:1px solid var(--line);background:var(--surface);color:var(--ink2)}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink2)}
 .tag.core{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.tag.joint{border:1px dashed var(--accent);color:var(--accent);background:var(--accent-soft)}
-.subnav{position:sticky;top:64px;z-index:20;display:flex;gap:6px;margin:40px 0 0;padding:10px 0;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line2)}
+.tag.joint{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.exbox{margin-top:22px;max-width:720px;padding:16px 18px;border-radius:14px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--tc)}
+.exbox small{display:block;font-size:13px;color:var(--muted)}
+.exbox b{display:block;font-size:17px;font-weight:600;margin-top:2px}
+.subnav{position:sticky;top:64px;z-index:20;display:flex;gap:6px;margin:36px 0 0;padding:10px 0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line2)}
 .subnav::-webkit-scrollbar{display:none}
 .bsec{padding:40px 0 8px;scroll-margin-top:130px}
 .bsec h2{font-size:26px;margin-bottom:16px;letter-spacing:-.035em}
 .ph{position:relative;border:1px dashed var(--line);border-radius:18px;background:var(--surface);padding:22px}
-.ph-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);background:var(--surface2);padding:2px 7px;border-radius:5px}
+.ph-tag{font-size:12px;color:var(--muted);border:1px solid var(--line);background:var(--surface2);padding:3px 8px;border-radius:6px}
 .real{border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:22px}
 .skel{height:10px;border-radius:5px;background:var(--line2);margin:9px 0}
 .paper{display:grid;grid-template-columns:110px 1fr;gap:22px;align-items:start}
-.paper .cover{aspect-ratio:3/4;border-radius:8px;border:1px solid var(--line);background:repeating-linear-gradient(180deg,var(--surface2) 0 14px,var(--line2) 14px 15px);display:grid;place-items:center;font-family:var(--mono);font-size:11px;color:var(--faint)}
+.paper .cover{aspect-ratio:3/4;border-radius:8px;border:1px solid var(--line);background:repeating-linear-gradient(180deg,var(--surface2) 0 14px,var(--line2) 14px 15px);display:grid;place-items:center;font-size:12px;color:var(--faint)}
 .paper h3{font-size:20px}
 .paper .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
 .tgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .tcard h4{font-size:16.5px;margin:12px 0 8px;line-height:1.3}
 .tcard .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
-.tcard .meta span{font-family:var(--mono);font-size:10.5px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
-.tcard ol{margin:8px 0 0;padding-left:18px;color:var(--ink2);font-size:13.5px}
+.tcard .meta span{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+.tcard ol{margin:8px 0 0;padding-left:18px;color:var(--ink2);font-size:14px}
 .tax{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .tax-dir h4{font-size:15.5px;margin-bottom:12px;display:flex;justify-content:space-between;gap:8px}
 .cats{display:flex;flex-wrap:wrap;gap:6px}
-.cat{font-size:12.5px;padding:4px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface2);color:var(--ink2)}
+.cat{font-size:13px;padding:4px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface2);color:var(--ink2)}
 .cat.sk{color:transparent;min-width:84px;background:var(--line2);border-color:transparent}
 .team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .person{display:flex;gap:12px;align-items:center;margin-top:14px}
 .av{width:40px;height:40px;border-radius:50%;background:var(--line2);flex:none;display:grid;place-items:center;font-size:12px;font-weight:600;color:var(--muted)}
 .person .nm{font-weight:500;font-size:14px}
-.person .rl{font-size:12.5px;color:var(--muted)}
-.pn{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:56px}
+.person .rl{font-size:13px;color:var(--muted)}
+.more{margin-top:56px}
+.more h3{font-size:20px;letter-spacing:-.03em;margin-bottom:4px}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
 .pn a{padding:18px 20px;border-radius:16px;border:1px solid var(--line);background:var(--surface)}
 .pn a:hover{border-color:var(--ink2)}
 .pn .r{text-align:right}
 
-/* contribute + leaderboard pages */
-.split{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
-.card h3{font-size:19px}
-ul.rules{margin:12px 0 0;padding-left:18px;color:var(--ink2);font-size:14px;display:grid;gap:6px}
-.gform{width:100%;border:0;border-radius:10px;background:#fff;display:block}
-.card a:not(.btn){text-decoration:underline;text-underline-offset:2px}
-.feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+/* generic cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px}
+.card h3{font-size:20px;letter-spacing:-.03em}
+.card p{margin:8px 0 0;color:var(--ink2)}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.lead{font-size:17.5px;color:var(--ink2);margin:16px 0 0;max-width:680px}
+h2.h2{font-size:28px;letter-spacing:-.04em;margin:56px 0 16px}
+ul.rules{margin:12px 0 0;padding-left:20px;color:var(--ink2);font-size:15px;display:grid;gap:6px}
+.rtable{width:100%;border-collapse:collapse;font-size:14.5px}
+.rtable th{text-align:left;font-weight:500;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line)}
+.rtable td{padding:22px 14px;color:var(--muted);text-align:center}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:4px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);color:var(--ink2)}
+.path h3{font-size:23px;margin-top:12px}
+.path .btn{margin-top:20px}
+.small{font-size:13.5px;color:var(--muted);margin:12px 0 0}
+.small a{text-decoration:underline;text-underline-offset:2px}
+ol.next{list-style:none;padding:0;margin:0;counter-reset:n;display:grid;gap:10px}
+ol.next li{counter-increment:n;display:flex;gap:14px;align-items:flex-start;font-size:15.5px;color:var(--ink2)}
+ol.next li::before{content:counter(n);flex:none;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:13px;font-weight:600}
+details.more-crit{margin-top:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:4px 18px}
+details.more-crit summary{cursor:pointer;padding:12px 0;font-weight:500;list-style-position:inside}
+details.more-crit[open]{padding-bottom:16px}
+.nf{min-height:60vh;display:grid;place-items:center;text-align:center;padding:120px 20px 40px}
 
 /* ---------- responsive ---------- */
 @media (max-width:1100px){.hero{--R:860px;--t:80px;--lw:92px}}
 @media (max-width:900px){
   .nav,.right .desk{display:none}
   .menu-btn{display:inline-flex}
-  .hdr.open{background:var(--bg)}
   .hdr.open .mpanel{display:block;position:absolute;left:0;right:0;top:64px;background:var(--bg);border-bottom:1px solid var(--line);padding:6px 24px 18px}
-  .mpanel a{display:flex;justify-content:space-between;padding:14px 2px;border-bottom:1px solid var(--line2);font-size:19px;font-weight:500;letter-spacing:-.02em}
+  .mpanel a{display:flex;justify-content:space-between;align-items:center;min-height:52px;border-bottom:1px solid var(--line2);font-size:19px;font-weight:500;letter-spacing:-.02em}
   .mpanel a:last-child{border-bottom:0}
   .right{margin-left:auto}
   .ex{grid-template-columns:1fr}
-  .flist{position:static}
-  .fpanel{margin:6px 0 10px}
-  .pair{grid-template-columns:1fr}
-  .bhead{grid-template-columns:1fr;gap:24px}
-  .tgrid,.feats{grid-template-columns:1fr}
-  .split{grid-template-columns:1fr}
-  .diagram .desk{display:none}.diagram .mob{display:block}.dlist{display:grid;gap:12px;margin-top:20px}
+  .flist{position:static}.flist::before{display:none}
+  .fpanel{margin:6px 0 10px;padding:20px}
+  .fptop{grid-template-columns:1fr}.fptop .ffig{display:none}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pair,.g2,.g3,.tgrid{grid-template-columns:1fr}
+  .diagram .desk{display:none}.diagram .mob{display:block}.dlist{display:grid;gap:14px;margin-top:20px}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .fgrid>div:first-child{grid-column:1 / -1}
 }
 @media (max-width:640px){
   .container{padding:0 18px}.hdr-in{padding:0 18px}
-  .hero{--R:620px;--t:60px;--lw:68px;--top:100px;height:auto;padding-bottom:76px}
-  .hcopy{position:relative;top:auto;padding:196px 18px 0}
-  .tlabel{font-size:9.5px;margin-top:6px}
-  .tile.joint .tface::after{width:16px;height:16px;font-size:12px;line-height:19px;top:-5px;right:-5px}
-  .sub{font-size:15.5px}
-  .fpills{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;margin:16px -18px 0;padding:2px 18px 4px;scroll-snap-type:x proximity}
-  .fpills::-webkit-scrollbar{display:none}
-  .fpill{scroll-snap-align:center}
-  .hfoot{left:18px;right:18px;bottom:16px}
-  .hfoot .hint{display:none}
   .logo .lsub{display:none}
-  .hfoot{justify-content:center}
-  section.block{padding:64px 0}
+  .hero{height:auto;padding:0 0 8px}
+  .ring,.hfield{display:none}
+  .hcopy{position:relative;top:auto;padding:116px 18px 24px}
+  .h-hero{font-size:44px}
+  .sub{font-size:16.5px}
+  .cta{flex-direction:column;align-items:stretch;max-width:360px;margin-left:auto;margin-right:auto}
+  .mstrip{display:block;height:6px;border-radius:6px;max-width:360px;margin:26px auto 0}
+  section.block{padding:52px 0}
+  .steps{grid-template-columns:1fr}
   .team,.tax{grid-template-columns:1fr}
   .paper{grid-template-columns:1fr}.paper .cover{display:none}
   .pn{grid-template-columns:1fr}
-  .ffig.big{height:170px}
-  .dcards{grid-template-columns:1fr}
+  .dcards,.bgrid{grid-template-columns:1fr}
   .search{min-width:0;width:100%}
-  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px;width:calc(100% + 36px)}
-  .chips::-webkit-scrollbar{display:none}
-  #pop{width:236px}
+  .chip{min-height:42px}
+  .btn{min-height:44px}
+  .fgrid ul{gap:2px}.fgrid li a,.fgrid li span{display:inline-block;padding:9px 0}
+  .tl li{grid-template-columns:104px minmax(0,1fr)}
+  .rtable th:nth-child(4),.rtable th:nth-child(3){display:none}
+  .scores{padding:16px}
+  .trow .gl{display:none}
 }
-@media (prefers-reduced-motion:reduce){.ring{transition:none}#pop.show{animation:none}}
+@media (prefers-reduced-motion:reduce){.ring{transition:none}.fpanel{animation:none}}
 </style>
 </head>
 <body>
 <div id="root"></div>
-<div id="pop" role="dialog" aria-live="polite"></div>
+<div id="tip" aria-hidden="true"></div>
 <script>
 /* =====================================================================
    SETTINGS: edit these
    ===================================================================== */
 const CONFIG = {
-  contactEmail: 'efe-team@example.org',  // shown in the footer and as the backup on the Contribute page
-  googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSe4x-62FICzl4fT1-hh2j1Au8mVuXfWY5LfKDmzpw6MfgxVkw/viewform?usp=publish-editor',
-  googleFormHeight: 1100,               // height of the embedded form in pixels
-  workspaceUrl: ''                      // link for "Team sign in"; empty = hidden
+  contactEmail: 'liu.xiang@u.nus.edu',   // footer, Contribute page
+  googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSe4x-62FICzl4fT1-hh2j1Au8mVuXfWY5LfKDmzpw6MfgxVkw/viewform?usp=publish-editor',          // the task proposal form (opens in a new tab)
+  organizer: '',                         // e.g. 'the EFE team at <institution>'; shown in the footer, empty = hidden
+  releaseTarget: 'January 2027',         // first release and results
+  githubUrl: '',                         // empty = "coming soon"
+  paperUrl: '',                          // empty = "coming soon"
+  workspaceUrl: ''                       // link for "Team sign in"; empty = hidden
 };
 
 /* =====================================================================
@@ -325,60 +374,74 @@ const CONFIG = {
 const DATA = {
  "areas": [
   {
-   "id": "fin",
-   "name": "Finance & Markets"
-  },
-  {
-   "id": "biz",
-   "name": "Business & Economics"
+   "id": "ai",
+   "name": "AI Agents & Safety",
+   "desc": "Agents that operate computers, stay secure, model the world and improve themselves."
   },
   {
    "id": "soft",
-   "name": "Software & Cloud"
+   "name": "Software & Cloud",
+   "desc": "Building, testing and running real software and cloud services."
   },
   {
    "id": "sys",
-   "name": "Systems & Networking"
+   "name": "Systems & Networking",
+   "desc": "Operating systems, large-scale infrastructure and high-speed networks."
   },
   {
    "id": "tel",
-   "name": "Telecom & Wireless"
-  },
-  {
-   "id": "earth",
-   "name": "Earth & Space"
+   "name": "Telecom & Wireless",
+   "desc": "Planning and running mobile and radio networks."
   },
   {
    "id": "hw",
-   "name": "Chips & Hardware"
-  },
-  {
-   "id": "ai",
-   "name": "AI Agents & Safety"
+   "name": "Chips & Hardware",
+   "desc": "Designing, checking and speeding up chips, GPUs and embedded devices."
   },
   {
    "id": "rob",
-   "name": "Robotics & Autonomy"
+   "name": "Robotics & Autonomy",
+   "desc": "Robots and drones that sense, plan and act in the physical world."
   },
   {
    "id": "eng",
-   "name": "Engineering & Design"
+   "name": "Engineering & Design",
+   "desc": "Buildings, vehicles, sound, and the CAD models behind them."
   },
   {
    "id": "phys",
-   "name": "Physical Sciences"
+   "name": "Physical Sciences",
+   "desc": "Experiments and analysis in physics, quantum systems and lasers."
+  },
+  {
+   "id": "earth",
+   "name": "Earth & Space",
+   "desc": "Satellites, remote sensing and maps of the Earth."
   },
   {
    "id": "life",
-   "name": "Chemistry & Life Sciences"
+   "name": "Chemistry & Life Sciences",
+   "desc": "Chemistry, biology and hands-on wet-lab work."
   },
   {
    "id": "med",
-   "name": "Medicine & Pharma"
+   "name": "Medicine & Pharma",
+   "desc": "Medical imaging, radiation therapy and drug development."
   },
   {
    "id": "edu",
-   "name": "Education & General"
+   "name": "Education & General",
+   "desc": "Education research, and tasks that cut across many fields."
+  },
+  {
+   "id": "biz",
+   "name": "Business & Economics",
+   "desc": "Strategy, operations research and economic analysis."
+  },
+  {
+   "id": "fin",
+   "name": "Finance & Markets",
+   "desc": "Trading, investing, crypto and prediction markets."
   }
  ],
  "benchmarks": [
@@ -1213,13 +1276,13 @@ const DATA = {
  ],
  "seeking": [],
  "rules": [
-  "Real expert workflow, not simple Q&A",
-  "Clear business value",
-  "Hard enough for frontier models",
-  "Precise task definition (inputs, outputs, goal)",
-  "Verifiable and trainable (trajectory + ground truth)",
-  "Staged scoring across steps",
-  "30+ weighted rubric items"
+  "Real expert work, not simple questions and answers",
+  "Clear value to a business or a field",
+  "Hard enough that today's best models fail",
+  "Clear inputs, expected output and goal",
+  "A checkable answer, plus the steps to reach it",
+  "Scored step by step, not only at the end",
+  "A scoring rubric with 30+ weighted items"
  ],
  "stats": {
   "plannedTasks": 6000,
@@ -1229,34 +1292,57 @@ const DATA = {
 
 /* ===================================================================== */
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt=n=>Number(n).toLocaleString('en-US');
 const pad=n=>String(n).padStart(2,'0');
 const NA=DATA.areas.length;
-// field colors: evenly spaced around the color wheel, so the ring reads like a palette
-const hueOf=i=>(150+i*360/NA)%360;
-// each hue is darkened just enough that white text on it (and it on white) reaches 4.6:1 contrast
-const relLum=(h,s,l)=>{const k=n=>(n+h/30)%12,a=s*Math.min(l,1-l),f=n=>l-a*Math.max(-1,Math.min(k(n)-3,9-k(n),1));
-  const c=v=>v<=.03928?v/12.92:((v+.055)/1.055)**2.4;return .2126*c(f(0))+.7152*c(f(8))+.0722*c(f(4))};
-const colOf=i=>{const h=hueOf(i),s=.78;let l=.46;while(l>.22&&1.05/(relLum(h,s,l)+.05)<4.6)l-=.01;return`hsl(${h.toFixed(0)} ${s*100}% ${(l*100).toFixed(0)}%)`};
-const AREA=Object.fromEntries(DATA.areas.map((a,i)=>[a.id,{...a,i,col:colOf(i)}]));
 const B=DATA.benchmarks, BY=Object.fromEntries(B.map(b=>[b.slug,b]));
 const inArea=id=>B.filter(b=>b.area===id);
+
+/* ---------- colors: one spectrum around the wheel ----------
+   Fields are spaced evenly around the OKLCH color wheel (which looks even to the eye),
+   in the order of data.json, so neighbouring fields have neighbouring colors.
+   Each color is darkened just enough for white text on it to reach 4.6:1 contrast.
+   Benchmarks inside a field shift slightly toward the next field, so the wheel reads as one gradient. */
+const oklchLin=(L,C,h)=>{const r=h*Math.PI/180,a=C*Math.cos(r),b=C*Math.sin(r);
+  const l=(L+.3963377774*a+.2158037573*b)**3,m=(L-.1055613458*a-.0638541728*b)**3,s=(L-.0894841775*a-1.291485548*b)**3;
+  return[4.0767416621*l-3.3077115913*m+.2309699292*s,-1.2684380046*l+2.6097574011*m-.3413193965*s,-.0041960863*l-.7034186147*m+1.707614701*s]};
+const enc=v=>{v=Math.min(1,Math.max(0,v));return Math.round(255*(v<=.0031308?12.92*v:1.055*v**(1/2.4)-.055))};
+function tone(h){h=((h%360)+360)%360;
+  for(let L=.66;L>.3;L-=.005){let c=.16,rgb=oklchLin(L,c,h);
+    while(c>.03&&!rgb.every(v=>v>=-.0005&&v<=1.0005)){c-=.005;rgb=oklchLin(L,c,h)}
+    const Y=.2126*Math.max(0,rgb[0])+.7152*Math.max(0,rgb[1])+.0722*Math.max(0,rgb[2]);
+    if(1.05/(Y+.05)>=4.6)return`rgb(${rgb.map(enc).join(' ')})`}
+  return'#555'}
+const STEP=360/NA,H0=305;
+const hueOf=i=>H0-i*STEP;
+const AREA=Object.fromEntries(DATA.areas.map((a,i)=>[a.id,{...a,i,h:hueOf(i),col:tone(hueOf(i))}]));
+const BC={};
+DATA.areas.forEach(a=>{const L=inArea(a.id),n=L.length;L.forEach((b,k)=>{const h=AREA[a.id].h-(k-(n-1)/2)*(STEP*.75/Math.max(n,1));BC[b.slug]={c:tone(h),c2:tone(h-14)}})});
 const fcv=id=>`--fc:${AREA[id].col}`;
+const tcv=b=>`--fc:${AREA[b.area].col};--tc:${BC[b.slug].c};--tc2:${BC[b.slug].c2}`;
 const exTitle=b=>(b.examples&&b.examples[0]&&b.examples[0].title)||b.example;
 const I={
- moon:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>',
+ moon:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>',
+ sun:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>',
  arrow:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
- left:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>',
- right:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>',
+ ext:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>',
+ left:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>',
+ right:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>',
  menu:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'
 };
 const lc=code=>code.length>=5?'l5':code.length===4?'l4':'';
-const mt=(b,s)=>`<span class="mt fc ${lc(b.code)}" style="${fcv(b.area)};--s:${s||34}px">${esc(b.code)}</span>`;
-const star=b=>b.shared?'<span class="star" title="Joint benchmark, co-built with a partner team">*</span>':'';
-const kindTag=b=>`<span class="kt">${b.shared?'JOINT *':'CORE'}</span>`;
+// soft hyphens so long single words can break under a tile, in every browser
+const SHY={Telecommunications:'Tele\u00ADcommuni\u00ADcations',Pharmaceuticals:'Pharma\u00ADceuticals',Infrastructure:'Infra\u00ADstructure',Manufacturing:'Manu\u00ADfacturing',Improvement:'Improve\u00ADment',Development:'Develop\u00ADment'};
+const shy=t=>esc(t).replace(/[A-Za-z]{11,}/g,w=>SHY[w]||w);
+const mt=(b,s)=>`<span class="mt fc ${lc(b.code)}" style="${tcv(b)};--s:${s||34}px" aria-hidden="true">${esc(b.code)}</span>`;
+const star=b=>b.shared?'<span class="star" title="Joint domain, co-built with a partner team">*</span>':'';
+const kindTag=b=>b.shared?'<span class="kt joint">Joint</span>':'<span class="kt core">Core</span>';
+const legend=()=>`<div class="legend"><span class="li"><span class="kt core">Core</span>built by the EFE team</span><span class="li"><span class="kt joint">Joint</span><span><span class="star">*</span> co-built with a partner team</span></span></div>`;
 const PH='<span class="ph-tag">Placeholder</span>';
+const isDark=()=>{const r=document.documentElement;return r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches};
+const formUrl=()=>(CONFIG.googleFormUrl||'').trim();
+const mailto=(subj)=>`mailto:${esc(CONFIG.contactEmail)}?subject=${encodeURIComponent(subj)}`;
 
-/* ---------- area drawings (original line art, one per field) ---------- */
+/* ---------- field drawings (original line art, one per field) ---------- */
 const SV=(inner)=>`<svg viewBox="0 0 240 140" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
 const ART={
  fin:()=>{let s='';const h=[[40,70],[55,62],[48,80],[66,58],[60,84],[78,50],[70,76],[88,44],[82,60],[96,38]];h.forEach(([lo,hi],i)=>{const x=24+i*20,up=i%3!==1,t=140-hi,bt=140-(lo+hi)/2-10;s+=`<line x1="${x}" y1="${t-8}" x2="${x}" y2="${140-lo+8}" opacity=".5"/><rect x="${x-5}" y="${Math.min(t,bt)}" width="10" height="${Math.abs(bt-t)+12}" ${up?'fill="currentColor" fill-opacity=".85"':''}/>`});return SV(s+'<path d="M16 96 C60 90 90 80 120 70 S190 50 228 34" stroke-dasharray="4 4" opacity=".7"/>')},
@@ -1278,307 +1364,360 @@ const art=id=>(ART[id]||ART.edu)();
 
 /* ---------- header / footer ---------- */
 function header(on){
-  const L=[['#/benchmarks','Benchmarks','b'],['#/','Fields','f'],['#/leaderboard','Leaderboard','l'],['#/contribute','Contribute','c']];
+  const L=[['#/leaderboard','Leaderboard','r'],['#/domains','Domains','b'],['#/how','How it works','h']];
   return`<header class="hdr" id="hdr"><div class="hdr-in">
-   <a class="logo" href="#/"><span class="logo-mark">E</span>EFE<span class="lsub"><span class="dot">·</span> <span class="muted" style="font-weight:400">Experts’ First Exam</span></span></a>
-   <nav class="nav" aria-label="Main">${L.map(([h,t,k])=>`<a href="${h}" ${k==='f'?'data-act="jump" data-v="fields"':''} class="${on===k?'on':''}">${t}</a>`).join('')}</nav>
-   <div class="right"><button class="btn icon" data-act="theme" aria-label="Switch light or dark">${I.moon}</button>
-    ${CONFIG.workspaceUrl?`<a class="btn sm desk" href="${esc(CONFIG.workspaceUrl)}">Team sign in</a>`:''}
-    <a class="btn sm dark desk" href="#/contribute">Contribute a task</a>
-    <button class="btn sm menu-btn" data-act="menu" aria-label="Open menu">${I.menu} Menu</button></div>
-   <div class="mpanel">${L.map(([h,t,k])=>`<a href="${h}" ${k==='f'?'data-act="jump" data-v="fields"':''}>${t}<span>${I.arrow}</span></a>`).join('')}${CONFIG.workspaceUrl?`<a href="${esc(CONFIG.workspaceUrl)}">Team sign in<span>${I.arrow}</span></a>`:''}</div>
+   <a class="logo" href="#/"><span class="logo-mark">E</span>EFE<span class="lsub">· Experts’ First Exam</span></a>
+   <nav class="nav" aria-label="Main">${L.map(([h,t,k])=>`<a href="${h}" class="${on===k?'on':''}" ${on===k?'aria-current="page"':''}>${t}</a>`).join('')}</nav>
+   <div class="right"><button class="btn icon" data-act="theme" aria-label="${isDark()?'Switch to light mode':'Switch to dark mode'}">${isDark()?I.sun:I.moon}</button>
+    ${CONFIG.workspaceUrl?`<a class="btn desk" href="${esc(CONFIG.workspaceUrl)}">Team sign in</a>`:''}
+    <a class="btn dark desk" href="#/contribute">Contribute</a>
+    <button class="btn menu-btn" data-act="menu" aria-label="Open menu" aria-expanded="false">${I.menu} Menu</button></div>
+   <div class="mpanel">${[...L,['#/contribute','Contribute','c']].map(([h,t])=>`<a href="${h}">${t}<span>${I.arrow}</span></a>`).join('')}${CONFIG.workspaceUrl?`<a href="${esc(CONFIG.workspaceUrl)}">Team sign in<span>${I.arrow}</span></a>`:''}</div>
   </div></header>`;
 }
-const foot=()=>`<footer class="pf"><div class="container fgrid">
-  <div><div class="logo" style="color:var(--ink)"><span class="logo-mark">E</span>Experts’ First Exam</div><p style="margin:10px 0 0;max-width:360px">Benchmarks built from real expert workflows.</p></div>
-  <div class="flinks"><a href="#/benchmarks">Benchmarks</a><a href="#/leaderboard">Leaderboard</a><a href="#/contribute">Contribute</a><a href="mailto:${esc(CONFIG.contactEmail)}">${esc(CONFIG.contactEmail)}</a></div>
+function foot(){
+  const soon=(label,url)=>url?`<a href="${esc(url)}" target="_blank" rel="noopener">${label}</a>`:`<span>${label}<span class="soon">coming soon</span></span>`;
+  return`<footer class="pf"><div class="container">
+  <div class="fgrid">
+   <div><div class="logo" style="color:var(--ink)"><span class="logo-mark">E</span>Experts’ First Exam</div>
+    <p style="margin:12px 0 0;max-width:340px">We test whether AI agents can finish real work done by human experts.</p>
+    ${CONFIG.organizer?`<p style="margin:8px 0 0">Organized by ${esc(CONFIG.organizer)}.</p>`:''}</div>
+   <div><h5>Explore</h5><ul><li><a href="#/leaderboard">Leaderboard</a></li><li><a href="#/domains">Domains</a></li><li><a href="#/how">How it works</a></li></ul></div>
+   <div><h5>Get involved</h5><ul><li><a href="#/contribute">Contribute</a></li><li><a href="${mailto('EFE')}">${esc(CONFIG.contactEmail)}</a></li></ul></div>
+   <div><h5>Resources</h5><ul><li>${soon('Paper',CONFIG.paperUrl)}</li><li>${soon('GitHub',CONFIG.githubUrl)}</li></ul></div>
+  </div>
+  <div class="fbot"><span>© ${new Date().getFullYear()} Experts’ First Exam</span><span>First release planned for ${esc(CONFIG.releaseTarget)}</span></div>
  </div></footer>`;
+}
 
-/* ---------- hero: ring of benchmark tiles, grouped by field ---------- */
+/* ---------- hero: the wheel ---------- */
 const GAP=0.7;                       // empty slots between fields
 const SLOTS=B.length+NA*GAP;
 const ANG={},CENTER={};
 (()=>{let s=0;DATA.areas.forEach(a=>{const st=s;inArea(a.id).forEach(b=>{ANG[b.slug]=(s+.5)*360/SLOTS;s+=1});CENTER[a.id]=((st+s)/2)*360/SLOTS;s+=GAP})})();
 const ORDERED=DATA.areas.flatMap(a=>inArea(a.id));
-let heroField=DATA.areas[0].id, rot=-CENTER[heroField], auto=null, touched=false;
+const ARC=(()=>{const st=ORDERED.map(b=>`${BC[b.slug].c} ${ANG[b.slug].toFixed(2)}deg`);return`conic-gradient(${BC[ORDERED[0].slug].c} 0deg,${st.join(',')},${BC[ORDERED[0].slug].c} 360deg)`})();
+const THREAD=`linear-gradient(180deg,${DATA.areas.map(a=>AREA[a.id].col).join(',')})`;
+let cur=DATA.areas[0].id, rot=-CENTER[cur];
 
 function hero(){
-  return`<section class="hero" id="hero">
-   <div class="ring" id="ring" style="--rot:${rot}deg">${ORDERED.map(b=>`<a class="tile fc ${b.shared?'joint':''} ${b.area===heroField?'on':''}" style="${fcv(b.area)};--a:${ANG[b.slug].toFixed(2)}deg" href="#/b/${b.slug}" data-tile="${b.slug}" aria-label="${esc(b.name)}"><span class="tface"><span class="ticon"><span class="${lc(b.code)}">${esc(b.code)}</span></span></span><span class="tlabel">${esc(b.name)}</span></a>`).join('')}</div>
+  const j=B.filter(b=>b.shared).length;
+  return`<section class="hero" id="hero" tabindex="-1">
+   <div class="ring" id="ring" style="--rot:${rot}deg"><div class="arc" style="background:${ARC}"></div>${ORDERED.map(b=>`<a class="tile fc ${b.shared?'joint':''} ${b.area===cur?'on':''}" style="${tcv(b)};--a:${ANG[b.slug].toFixed(2)}deg" href="#/d/${b.slug}" data-tile="${b.slug}" aria-label="${esc(b.name)}${b.shared?' (joint)':''}"><span class="tface"><span class="ticon"><span class="${lc(b.code)}">${esc(b.code)}</span></span></span><span class="tlabel">${shy(b.name)}</span></a>`).join('')}</div>
    <div class="hcopy">
+    <div class="hfield fc" id="hfield" style="${fcv(cur)}"><button class="rbtn" data-act="step" data-v="-1" aria-label="Previous field">${I.left}</button><button class="fchip" id="fname" data-act="jump" data-v="fields" aria-live="polite" title="See this field's domains">${fname(cur)}</button><button class="rbtn" data-act="step" data-v="1" aria-label="Next field">${I.right}</button></div>
     <h1 class="h-hero">Experts’ First Exam</h1>
-    <p class="sub">${B.length} benchmarks across ${NA} fields, built from real expert work. Agents must finish the job, and every result is checked against expert rubrics.</p>
-    <div class="fline fc" id="fline" style="${fcv(heroField)}">${fline(heroField)}</div>
-    <div class="fpills" id="fpills" role="tablist" aria-label="Fields">${DATA.areas.map(x=>`<button class="fpill fc ${x.id===heroField?'on':''}" style="${fcv(x.id)}" data-act="field" data-v="${x.id}" role="tab" aria-selected="${x.id===heroField}"><i></i>${esc(x.name)}</button>`).join('')}</div>
+    <p class="sub">We test whether AI agents can finish real work done by human experts, from chip design to medicine. Every result is checked against a rubric written by experts.</p>
+    <div class="cta"><button class="btn dark lg" data-act="jump" data-v="fields">Explore the domains ${I.arrow}</button><a class="btn lg" href="#/contribute">Propose a task</a></div>
+    <p class="key">${B.length} domains in ${NA} fields · <span class="star">*</span> marks the ${j} joint domains, co-built with partner teams</p>
+    <div class="mstrip" style="background:${THREAD.replace('180deg','90deg')}" aria-hidden="true"></div>
    </div>
-   <div class="hfoot"><span class="hint">CLICK A FIELD · DRAG TO SPIN · POINT AT A TILE TO SEE A TASK</span><span class="ctl"><button class="rbtn" data-act="step" data-v="-1" aria-label="Previous field">${I.left}</button><button class="rbtn" data-act="step" data-v="1" aria-label="Next field">${I.right}</button></span></div>
   </section>`;
 }
-function fline(id){const a=AREA[id],list=inArea(id),j=list.filter(b=>b.shared).length;
-  return`<b>${esc(a.name)}</b><span>${pad(a.i+1)} · ${list.length} BENCHMARK${list.length>1?'S':''}${j?` · ${j} JOINT`:''}</span>`}
-function setField(id,user){
-  if(user){touched=true;stopAuto()}
-  if(id===heroField&&!user)return;
-  heroField=id;
-  let target=-CENTER[id];let d=((target-rot)%360+540)%360-180;rot+=d;
-  const ring=document.getElementById('ring');if(!ring)return;
-  ring.style.setProperty('--rot',rot+'deg');
-  ring.querySelectorAll('.tile').forEach(t=>t.classList.toggle('on',BY[t.dataset.tile].area===id));
-  const fl=document.getElementById('fline');fl.style.cssText=fcv(id);fl.innerHTML=fline(id);
-  document.querySelectorAll('.fpill').forEach(p=>{const on=p.dataset.v===id;p.classList.toggle('on',on);p.setAttribute('aria-selected',on);if(on&&user!=='hover'&&p.parentElement.scrollWidth>p.parentElement.clientWidth)p.parentElement.scrollTo({left:p.offsetLeft-p.parentElement.clientWidth/2+p.offsetWidth/2,behavior:'smooth'})});
-  hidePop();
-}
-function step(n,user){const ids=DATA.areas.map(a=>a.id);setField(ids[(ids.indexOf(heroField)+n+ids.length)%ids.length],user)}
-function startAuto(){stopAuto();if(touched||matchMedia('(prefers-reduced-motion: reduce)').matches)return;auto=setInterval(()=>{if(document.getElementById('ring')&&!document.hidden)step(1,false)},4200)}
-function stopAuto(){if(auto){clearInterval(auto);auto=null}}
+function fname(id){const n=inArea(id).length;return`<i></i><b>${esc(AREA[id].name)}</b><span>${n} domain${n>1?'s':''}</span>`}
 
-/* flip card for a tile */
-let popSlug=null,popTimer=null;
-function showPop(tile){
-  const b=BY[tile.dataset.tile];const a=AREA[b.area];const p=document.getElementById('pop');
-  popSlug=b.slug;clearTimeout(popTimer);
-  document.querySelectorAll('.tile.hot').forEach(t=>t.classList.remove('hot'));tile.classList.add('hot');
-  p.style.setProperty('--pc',`color-mix(in srgb,${a.col},#fff 35%)`);
-  p.innerHTML=`<div class="ph1">${mt(b,30)}<b>${esc(b.name)}</b><em>${b.shared?'JOINT *':'CORE'}</em></div>
-   <div class="k">Exam task · ${esc(a.name)}</div><h4>${esc(exTitle(b))}</h4>
-   <p>Illustrative example. Real tasks will appear here as the benchmark is released.</p>
-   <div class="pf"><span>EFE-${esc(b.code)}</span><b>Open →</b></div>`;
-  p.classList.remove('show');void p.offsetWidth;p.classList.add('show');
+/* one shared "current field" for the wheel and the explorer */
+function setField(id,from){
+  if(!AREA[id])return;
+  cur=id;
+  const ring=document.getElementById('ring');
+  if(ring){
+    let d=((-CENTER[id]-rot)%360+540)%360-180;rot+=d;
+    ring.style.setProperty('--rot',rot+'deg');
+    ring.querySelectorAll('.tile').forEach(t=>t.classList.toggle('on',BY[t.dataset.tile].area===id));
+    const hf=document.getElementById('hfield');hf.style.cssText=fcv(id);document.getElementById('fname').innerHTML=fname(id);
+  }
+  updateEx(from);hideTip();
+}
+function step(n){const ids=DATA.areas.map(a=>a.id);setField(ids[(ids.indexOf(cur)+n+ids.length)%ids.length],'hero')}
+
+/* small preview next to a tile (no clicks needed: clicking the tile opens its page) */
+function showTip(tile){
+  const b=BY[tile.dataset.tile],a=AREA[b.area],p=document.getElementById('tip');
+  p.innerHTML=`<div class="t1">${mt(b,30)}<b>${esc(b.name)}${star(b)}</b></div>
+   <div class="lab">Example task</div><h4>${esc(exTitle(b))}</h4>
+   <div class="t3">${b.shared?'Joint':'Core'} · ${esc(a.name)} · illustrative</div>`;
   const r=tile.querySelector('.tface').getBoundingClientRect(),pw=p.offsetWidth,ph=p.offsetHeight;
-  let x=r.left+r.width/2-pw/2,y=r.top-ph-12;if(y<74)y=r.bottom+14;
-  x=Math.max(10,Math.min(window.innerWidth-pw-10,x));
-  p.style.left=x+'px';p.style.top=y+'px';
+  let x=r.left+r.width/2-pw/2,y=r.top-ph-14;
+  if(y<72){y=Math.max(72,r.top-8);x=r.right+18;if(x+pw>innerWidth-10)x=r.left-pw-18}
+  x=Math.max(10,Math.min(innerWidth-pw-10,x));
+  p.style.left=x+'px';p.style.top=y+'px';p.classList.add('show');
 }
-function hidePop(){const p=document.getElementById('pop');p.classList.remove('show');popSlug=null;document.querySelectorAll('.tile.hot').forEach(t=>t.classList.remove('hot'))}
+function hideTip(){const p=document.getElementById('tip');if(p)p.classList.remove('show')}
 
-const REST_MS=260;let restT=null,exRestT=null;
-/* drag to spin */
+const REST_MS=260;let exRestT=null;
 function bindHero(){
   const hero=document.getElementById('hero'),ring=document.getElementById('ring');if(!hero)return;
   let down=null,moved=false;
-  hero.addEventListener('pointerdown',e=>{if(e.target.closest('button,.fpills'))return;down={x:e.clientX,r:rot};moved=false});
+  hero.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'||e.target.closest('button,a.btn,.hcopy'))return;down={x:e.clientX,r:rot};moved=false});
   window.addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-down.x;if(!moved&&Math.abs(dx)<6)return;
-    if(!moved){moved=true;touched=true;stopAuto();hidePop();ring.classList.add('drag')}
-    rot=down.r+dx*(innerWidth<640?0.09:0.06);ring.style.setProperty('--rot',rot+'deg')});
+    if(!moved){moved=true;hideTip();ring.classList.add('drag')}
+    rot=down.r+dx*0.06;ring.style.setProperty('--rot',rot+'deg')});
   window.addEventListener('pointerup',()=>{if(!down)return;const was=moved;down=null;ring.classList.remove('drag');
-    if(was){const front=((-rot)%360+360)%360;let best=null,bd=1e9;DATA.areas.forEach(a=>{const d=Math.abs(((CENTER[a.id]-front)%360+540)%360-180);if(d<bd){bd=d;best=a.id}});heroField=null;setField(best,true)}});
-  hero.addEventListener('click',e=>{if(moved){e.preventDefault();moved=false;return}
-    const t=e.target.closest('.tile');if(!t)return;
-    if(matchMedia('(hover: none)').matches&&popSlug!==t.dataset.tile){e.preventDefault();showPop(t)}});
-  ring.addEventListener('mouseover',e=>{const t=e.target.closest('.tile');if(t&&matchMedia('(hover: hover)').matches&&t.dataset.tile!==popSlug)showPop(t)});
-  ring.addEventListener('mouseleave',()=>{popTimer=setTimeout(()=>{if(!document.getElementById('pop').matches(':hover'))hidePop()},220)});
-  // pointing at a field selects it only once the mouse rests there, so passing over other
-  // field names on the way to a tile does not turn the wheel
-  const pills=document.getElementById('fpills');
-  pills.addEventListener('mousemove',e=>{clearTimeout(restT);const p=e.target.closest('.fpill');
-    if(p&&p.dataset.v!==heroField&&matchMedia('(hover: hover)').matches)restT=setTimeout(()=>setField(p.dataset.v,'hover'),REST_MS)});
-  pills.addEventListener('mouseleave',()=>clearTimeout(restT));
-  hero.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){step(1,true)}else if(e.key==='ArrowLeft'){step(-1,true)}});
-  startAuto();
+    if(was){const front=((-rot)%360+360)%360;let best=cur,bd=1e9;DATA.areas.forEach(a=>{const d=Math.abs(((CENTER[a.id]-front)%360+540)%360-180);if(d<bd){bd=d;best=a.id}});setField(best,'hero')}});
+  hero.addEventListener('click',e=>{if(moved){e.preventDefault();moved=false}},true);
+  ring.addEventListener('mouseover',e=>{const t=e.target.closest('.tile');if(t&&!down&&matchMedia('(hover: hover)').matches)showTip(t)});
+  ring.addEventListener('mouseout',e=>{if(!e.relatedTarget||!e.relatedTarget.closest||!e.relatedTarget.closest('.tile'))hideTip()});
+  ring.addEventListener('focusin',e=>{const t=e.target.closest('.tile');if(t)showTip(t)});
+  ring.addEventListener('focusout',hideTip);
+  hero.addEventListener('keydown',e=>{if(e.target.closest('input'))return;if(e.key==='ArrowRight'){step(1)}else if(e.key==='ArrowLeft'){step(-1)}});
 }
 
-/* ---------- explorer: fields → benchmarks, figure, tasks ---------- */
-let exField=DATA.areas[0].id;
-function dcard(b){return`<a class="dcard ${b.shared?'joint':'core'}" href="#/b/${b.slug}">${mt(b,32)}<span class="nm">${esc(b.name)}${star(b)}</span>${kindTag(b)}</a>`}
+/* ---------- explorer: fields → benchmarks and example tasks ---------- */
+const isMob=()=>matchMedia('(max-width:900px)').matches;
+function dcard(b){return`<a class="dcard" href="#/d/${b.slug}">${mt(b,34)}<span class="nm">${esc(b.name)}${star(b)}</span>${kindTag(b)}</a>`}
+function bcard(b){return`<a class="bcard" href="#/d/${b.slug}">${mt(b,38)}<span class="nm">${esc(b.name)}${star(b)}</span>${kindTag(b)}<span class="exl">Example: ${esc(exTitle(b))}</span></a>`}
 function fpanel(id){
   const a=AREA[id],list=inArea(id),j=list.filter(b=>b.shared).length;
-  return`<div class="fpanel fc" style="${fcv(id)}">
-    <div class="ffig">${art(id)}<span class="ft">Field ${pad(a.i+1)} / ${NA}</span></div>
-    <div class="fhead"><h3>${esc(a.name)}</h3><span>${list.length} BENCHMARK${list.length>1?'S':''} · ${list.length-j} CORE${j?` · ${j} JOINT`:''}</span></div>
+  return`<div class="fpanel fc" style="${fcv(id)}" id="fpanel">
+    <div class="fptop"><div><div class="eyebrow">Field ${a.i+1} of ${NA}</div><h3>${esc(a.name)}</h3>${a.desc?`<p>${esc(a.desc)}</p>`:''}
+      <div class="cnt">${list.length} domain${list.length>1?'s':''} · ${list.length-j} Core${j?` · ${j} Joint`:''}</div></div>
+     <div class="ffig">${art(id)}</div></div>
     <div class="dcards">${list.map(dcard).join('')}</div>
-    <div class="tasks"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><span class="eyebrow">Example tasks</span><span class="note">Illustrative</span></div>
-     ${list.slice(0,3).map(b=>`<a class="trow" href="#/b/${b.slug}">${mt(b,28)}<span class="tt">${esc(exTitle(b))}<small>${esc(b.name)}</small></span><span class="go">${I.arrow}</span></a>`).join('')}</div>
+    <div class="tasks"><div class="tasks-h"><b>Example tasks</b><span>Illustrative until release</span></div>
+     ${list.slice(0,3).map(b=>`<a class="trow" href="#/d/${b.slug}">${mt(b,30)}<span class="tt">${esc(exTitle(b))}<small>${esc(b.name)}</small></span><span class="go"><span class="gl">View domain</span>${I.arrow}</span></a>`).join('')}</div>
   </div>`;
 }
 function explorer(){
-  const mob=matchMedia('(max-width:900px)').matches;
-  const rows=DATA.areas.map(a=>{const row=`<button class="frow fc ${a.id===exField?'on':''}" style="${fcv(a.id)}" data-act="ex" data-v="${a.id}" aria-expanded="${a.id===exField}"><i></i>${esc(a.name)}<span class="n">${inArea(a.id).length}</span></button>`;return row+(mob&&a.id===exField?fpanel(a.id):'')}).join('');
-  return`<div class="ex"><div class="flist" role="tablist" aria-label="Fields">${rows}</div>${mob?'':`<div id="fpanelwrap">${fpanel(exField)}</div>`}</div>`;
+  const mob=isMob();
+  const rows=DATA.areas.map(a=>{const row=`<button class="frow fc ${a.id===cur?'on':''}" style="${fcv(a.id)}" data-act="ex" data-v="${a.id}" aria-expanded="${a.id===cur}"><i></i>${esc(a.name)}<span class="n">${inArea(a.id).length}</span></button>`;return row+(mob&&a.id===cur?fpanel(a.id):'')}).join('');
+  return`<div class="ex"><div class="flist" style="--thread:${THREAD}">${rows}</div>${mob?'':`<div id="fpanelwrap">${fpanel(cur)}</div>`}</div>`;
 }
-function setEx(id){clearTimeout(exRestT);exField=id;const w=document.getElementById('exwrap');if(w)w.innerHTML=explorer()}
+function updateEx(from){
+  const w=document.getElementById('exwrap');if(!w)return;
+  if(isMob()){w.innerHTML=explorer();if(from==='ex'){const r=w.querySelector('.frow.on');if(r&&r.getBoundingClientRect().top<70)r.scrollIntoView({block:'start'})}return}
+  w.querySelectorAll('.frow').forEach(x=>{const on=x.dataset.v===cur;x.classList.toggle('on',on);x.setAttribute('aria-expanded',on)});
+  const p=document.getElementById('fpanelwrap');if(p)p.innerHTML=fpanel(cur);
+}
 
-/* ---------- scoring diagram ---------- */
+/* ---------- scoring ---------- */
+const STEPS=[['01','Inputs','The files, tools and context an expert would have.'],['02','Stages','Progress is checked after each step.'],['03','Rubric','30+ weighted items, each giving partial credit.'],['04','Two scores','Pass or fail, plus a 0–100 rubric score.']];
+const SCORES_TXT='Every task gets two scores. <b>Pass or fail</b> says whether the agent finished the job. The <b>rubric score</b> (0–100) says how much of the work it got right, so partial progress counts.';
 function diagram(){
-  const L=[['01','Inputs','The files, tools and context an expert would have.'],['02','Stages','Each step is checked as the agent works.'],['03','Rubric','30+ weighted items give partial credit.'],['04','Verdict','The final output passes or fails.']];
+  const T=(x,y,s,txt,o='')=>`<text x="${x}" y="${y}" font-family="var(--sans)" font-size="${s}" fill="var(--ink2)" ${o}>${txt}</text>`;
   const win=(x)=>`<g transform="translate(${x},0)"><rect x="0" y="20" width="430" height="380" rx="10" fill="var(--surface2)" stroke="var(--line)"/><path d="M0 52H430" stroke="var(--line)"/><circle cx="18" cy="36" r="4" fill="var(--line)"/><circle cx="32" cy="36" r="4" fill="var(--line)"/><circle cx="46" cy="36" r="4" fill="var(--line)"/>
-   <text x="24" y="86" font-family="var(--mono)" font-size="12" fill="var(--muted)">TASK · EFE-CHIP</text>
-   <text x="24" y="112" font-family="var(--sans)" font-weight="600" font-size="18" fill="var(--ink)">Close timing on a failing block</text>
-   ${[0,1,2].map(i=>`<rect x="24" y="${134+i*16}" width="${[360,320,250][i]}" height="7" rx="3.5" fill="var(--line)"/>`).join('')}
-   ${[0,1,2,3].map(i=>`<rect x="${24+i*98}" y="206" width="86" height="50" rx="6" fill="var(--surface)" stroke="var(--line)"/><rect x="${36+i*98}" y="220" width="${40+i*8}" height="6" rx="3" fill="var(--line)"/><rect x="${36+i*98}" y="234" width="30" height="6" rx="3" fill="var(--line)"/>`).join('')}
-   ${[0,1,2,3,4].map(i=>`<rect x="24" y="${294+i*11}" width="${[300,280,330,260,310][i]}" height="6" rx="3" fill="var(--line)"/>`).join('')}
-   <rect x="300" y="364" width="106" height="28" rx="14" fill="var(--ink)"/><text x="353" y="383" text-anchor="middle" font-family="var(--sans)" font-size="12" fill="var(--bg)">Submit</text></g>`;
+   <text x="26" y="92" font-family="var(--mono)" font-size="12" fill="var(--muted)">TASK · EFE-CHIP</text>
+   <text x="26" y="117" font-family="var(--sans)" font-weight="600" font-size="18" fill="var(--ink)">Close timing on a failing block</text>
+   ${T(26,142,13,'Given: the design files, the timing limits and')}${T(26,160,13,'a report showing which paths are too slow.')}
+   ${['Find the path','Change design','Re-run timing','Check others'].map((s,i)=>`<rect x="${24+i*98}" y="208" width="88" height="46" rx="6" fill="var(--surface)" stroke="var(--line)"/><text x="${68+i*98}" y="228" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--muted)">${i+1}</text><text x="${68+i*98}" y="244" text-anchor="middle" font-family="var(--sans)" font-size="11.5" fill="var(--ink2)">${s}</text>`).join('')}
+   ${T(26,304,12.5,'✓ Timing met on every path · 10 pts')}${T(26,322,12.5,'✓ No new design-rule errors · 8 pts')}${T(26,340,12.5,'✗ Power stays within budget · 6 pts')}
+   <rect x="296" y="362" width="114" height="30" rx="15" fill="var(--ink)"/><text x="353" y="381.5" text-anchor="middle" font-family="var(--sans)" font-size="12" fill="var(--bg)">Fail · 72 / 100</text></g>`;
   const boxes=[[16,74,410,98],[16,198,410,66],[16,284,342,62],[292,358,122,38]];
   const ys=[100,190,280,370];
   const desk=`<svg class="desk" viewBox="0 0 1000 410" width="100%" role="img" aria-label="How an EFE task is scored">${win(0)}
-    ${boxes.map(([x,y,w,h],i)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="var(--anno-soft)" stroke="var(--anno)" stroke-width="1.5"/><rect x="${x}" y="${y-16}" width="26" height="16" fill="var(--anno)"/><text x="${x+13}" y="${y-4}" text-anchor="middle" font-family="var(--mono)" font-size="10" fill="#fff">${L[i][0]}</text>
+    ${boxes.map(([x,y,w,h],i)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="var(--anno-soft)" stroke="var(--anno)" stroke-width="1.5"/><rect x="${x}" y="${y-17}" width="28" height="17" rx="3" fill="var(--anno)"/><text x="${x+14}" y="${y-4.5}" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="#fff">${STEPS[i][0]}</text>
       <path d="M${x+w} ${y+h/2} C${x+w+80} ${y+h/2} 560 ${ys[i]} 600 ${ys[i]}" stroke="var(--anno)" stroke-width="1.2" fill="none"/><circle cx="600" cy="${ys[i]}" r="3.5" fill="var(--anno)"/>
-      <text x="620" y="${ys[i]-4}" font-family="var(--sans)" font-weight="600" font-size="21" fill="var(--ink)">${L[i][1]}</text><text x="620" y="${ys[i]+18}" font-family="var(--sans)" font-size="14" fill="var(--muted)">${L[i][2]}</text>`).join('')}</svg>`;
-  const mob=`<svg class="mob" viewBox="0 0 440 410" width="100%" aria-hidden="true">${win(5)}${boxes.map(([x,y,w,h],i)=>`<rect x="${x+5}" y="${y}" width="${w}" height="${h}" rx="4" fill="var(--anno-soft)" stroke="var(--anno)" stroke-width="1.5"/><rect x="${x+5}" y="${y-18}" width="30" height="18" fill="var(--anno)"/><text x="${x+20}" y="${y-5}" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="#fff">${L[i][0]}</text>`).join('')}</svg>
-   <div class="dlist">${L.map(([n,t,d])=>`<div style="display:flex;gap:12px;align-items:flex-start"><span class="atag">${n}</span><div><b style="font-weight:600;font-size:16px">${t}</b><div class="muted" style="font-size:14px">${d}</div></div></div>`).join('')}</div>`;
-  return`<div class="diagram">${desk}${mob}</div>`;
+      <text x="620" y="${ys[i]-4}" font-family="var(--sans)" font-weight="600" font-size="21" fill="var(--ink)">${STEPS[i][1]}</text><text x="620" y="${ys[i]+19}" font-family="var(--sans)" font-size="15" fill="var(--muted)">${STEPS[i][2]}</text>`).join('')}</svg>`;
+  const mob=`<svg class="mob" viewBox="0 0 440 410" width="100%" aria-hidden="true">${win(5)}${boxes.map(([x,y,w,h],i)=>`<rect x="${x+5}" y="${y}" width="${w}" height="${h}" rx="4" fill="var(--anno-soft)" stroke="var(--anno)" stroke-width="1.5"/><rect x="${x+5}" y="${y-18}" width="30" height="18" rx="3" fill="var(--anno)"/><text x="${x+20}" y="${y-5}" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="#fff">${STEPS[i][0]}</text>`).join('')}</svg>
+   <div class="dlist">${STEPS.map(([n,t,d])=>`<div style="display:flex;gap:12px;align-items:flex-start"><span class="atag">${n}</span><div><b style="font-weight:600;font-size:16.5px">${t}</b><div class="muted" style="font-size:15px">${d}</div></div></div>`).join('')}</div>`;
+  return`<div class="diagram">${desk}${mob}<p class="cap">Illustrative example. Real tasks will be published with the first release.</p></div>`;
 }
 
 /* ---------- pages ---------- */
 function home(){
-  const bars=Array.from({length:30},(_,i)=>`<i style="height:${Math.max(14,Math.round(94-i*2.5-((i*37)%7)))}%;--c:${AREA[DATA.areas[i%NA].id].col}"></i>`).join('');
-  return header('h')+hero()+`
+  return header('')+hero()+`
   <section class="block" id="fields"><div class="container">
-   <div class="sec-head"><div><div class="eyebrow">Explore by field</div><h2 class="h-sec" style="margin-top:12px">${NA} fields, ${B.length} benchmarks</h2><p>Choose a field to see its benchmarks and example tasks.</p></div>
-    <div class="legend"><span><span class="sw core"></span>Core · built by the EFE team</span><span><span class="sw joint"></span>Joint <span class="star">*</span> · co-built with partner teams</span></div></div>
+   <div class="sec-head"><div><div class="eyebrow">Explore by field</div><h2 class="h-sec" style="margin-top:10px">${NA} fields, ${B.length} domains</h2><p>Choose a field to see its domains and example tasks.</p></div>${legend()}</div>
    <div id="exwrap">${explorer()}</div>
   </div></section>
 
-  <section class="block" style="padding-top:24px"><div class="container">
-   <div class="sec-head"><div><div class="eyebrow">Method</div><h2 class="h-sec" style="margin-top:12px">How a task is scored</h2><p>Partial progress counts. Pass rate shows who finishes; rubric score shows how far each model gets.</p></div></div>
-   ${diagram()}
+  <section class="block" style="padding-top:8px"><div class="container">
+   <div class="sec-head"><div><div class="eyebrow">Method</div><h2 class="h-sec" style="margin-top:10px">How a task is scored</h2></div></div>
+   <div class="steps">${STEPS.map(([n,t,d])=>`<div class="step"><span class="n">${n}</span><h4>${t}</h4><p>${d}</p></div>`).join('')}</div>
+   <div class="scores"><p>${SCORES_TXT}</p><a class="btn" href="#/how">How it works ${I.arrow}</a></div>
   </div></section>
 
-  <section class="block" style="padding-top:24px"><div class="container pair">
-   <a class="pcard" href="#/leaderboard"><div class="eyebrow">Leaderboard</div><h3 style="margin-top:10px">Results arrive with the first release</h3><p>We plan to evaluate ${esc(DATA.stats.modelsTarget)} models and agents on every field.</p><div class="bars" aria-hidden="true">${bars}</div></a>
-   <div class="pcard dark"><div class="eyebrow" style="color:color-mix(in srgb,var(--bg) 55%,transparent)">Contribute</div><h3 style="margin-top:10px">Lead a benchmark, or propose a task in your field.</h3><p>Experts are credited in the benchmark paper and on this site.</p><a class="btn" style="margin-top:22px" href="#/contribute">Contribute ${I.arrow}</a></div>
+  <section class="block" style="padding-top:8px"><div class="container pair">
+   <div class="pcard"><div class="eyebrow">Leaderboard</div><h3>First results in ${esc(CONFIG.releaseTarget)}</h3>
+    <ul class="tl"><li><b><span class="dot"></span>Now</b><span>${B.length} domains in development across ${NA} fields</span></li>
+     <li><b>${esc(CONFIG.releaseTarget)}</b><span>First release, with results for ${esc(DATA.stats.modelsTarget)} models and agents</span></li>
+     <li><b>Paper &amp; code</b><span>Coming soon</span></li></ul>
+    <a class="btn" style="margin-top:18px" href="#/leaderboard">See the leaderboard ${I.arrow}</a></div>
+   <div class="pcard dark"><div class="eyebrow">Contribute</div><h3>Help build EFE</h3><p>Experts are credited in the EFE papers and on this site.</p>
+    <div style="margin-top:16px">
+     <a class="opt" href="#/contribute"><div><b>Propose a task</b><span>About 5 minutes · describe one piece of real work</span></div><span class="ar">${I.arrow}</span></a>
+     <a class="opt" href="#/contribute" data-act="goto" data-v="lead"><div><b>Lead or partner on a domain</b><span>Lead the domain for your field with us</span></div><span class="ar">${I.arrow}</span></a>
+    </div></div>
   </div></section>`+foot();
 }
 
-let gFilter='all',gKind='all',gQuery='';
+let gKind='all',gQuery='';
 function grid(){
   const q=gQuery.trim().toLowerCase();
-  const list=B.filter(b=>(gFilter==='all'||b.area===gFilter)&&(gKind==='all'||(gKind==='joint')===b.shared)&&(!q||b.name.toLowerCase().includes(q)||b.code.toLowerCase().includes(q)));
+  const hit=b=>!q||[b.name,b.code,exTitle(b),AREA[b.area].name,b.description||''].some(s=>String(s).toLowerCase().includes(q));
+  const list=B.filter(b=>(gKind==='all'||(gKind==='joint')===b.shared)&&hit(b));
   const groups=DATA.areas.map(a=>({a,items:list.filter(b=>b.area===a.id)})).filter(g=>g.items.length);
-  return groups.length?groups.map(({a,items})=>`<div class="area"><div class="area-head fc" style="${fcv(a.id)}"><i></i><h3>${esc(a.name)}</h3><span class="cnt">${items.length}</span></div><div class="dcards">${items.map(dcard).join('')}</div></div>`).join(''):'<div class="empty">No benchmark matches.</div>';
+  if(!groups.length){const parts=[];if(q)parts.push(`“${esc(gQuery.trim())}”`);
+    return`<div class="empty">No ${gKind==='all'?'':gKind==='core'?'Core ':'Joint '}domains match ${parts.join('')||'these filters'}. <button class="linkbtn" data-act="clear">Clear search and filters</button></div>`}
+  return groups.map(({a,items})=>`<div class="area"><div class="area-head fc" style="${fcv(a.id)}"><i></i><h3>${esc(a.name)}</h3><span class="cnt">${items.length}</span></div><div class="bgrid">${items.map(bcard).join('')}</div></div>`).join('');
 }
 function allPage(){
-  const j=B.filter(b=>b.shared).length;
   return header('b')+`<section class="page-top"><div class="container">
-   <div class="eyebrow">The EFE benchmarks</div><h1 class="h-sec" style="margin-top:12px">All ${B.length} benchmarks</h1>
-   <div class="legend" style="margin-top:18px"><span><span class="sw core"></span>${B.length-j} Core · built by the EFE team</span><span><span class="sw joint"></span>${j} Joint <span class="star">*</span> · co-built with partner teams</span></div>
+   <div class="eyebrow">The EFE domains</div><h1 class="h-sec" style="margin-top:10px">All ${B.length} domains</h1>
+   <div style="margin-top:18px">${legend()}</div>
   </div></section>
-  <section class="block" style="padding-top:32px"><div class="container">
-   <div class="toolbar"><input class="search" type="search" placeholder="Search benchmarks" value="${esc(gQuery)}" data-input="q" aria-label="Search benchmarks">
-    <div class="chips">${[['all','All'],['core','Core'],['joint','Joint *']].map(([k,l])=>`<button class="chip ${gKind===k?'on':''}" data-act="kind" data-v="${k}">${l}</button>`).join('')}</div></div>
-   <div class="toolbar"><div class="chips">${[['all','All fields'],...DATA.areas.map(a=>[a.id,a.name])].map(([k,l])=>`<button class="chip ${gFilter===k?'on':''}" data-act="filter" data-v="${k}">${esc(l)}</button>`).join('')}</div></div>
+  <section class="block" style="padding-top:30px"><div class="container">
+   <div class="toolbar"><input class="search" type="search" placeholder="Search domains, fields or tasks" value="${esc(gQuery)}" data-input="q" aria-label="Search domains, fields or tasks">
+    <div class="chips" role="group" aria-label="Show">${[['all','All'],['core','Core'],['joint','Joint *']].map(([k,l])=>`<button class="chip ${gKind===k?'on':''}" data-act="kind" data-v="${k}" aria-pressed="${gKind===k}">${l}</button>`).join('')}</div></div>
    <div id="gridwrap">${grid()}</div>
   </div></section>`+foot();
 }
 
-function benchPage(slug){
-  const b=BY[slug];if(!b)return home();
+function benchPage(b){
   const a=AREA[b.area];const i=B.indexOf(b);const prev=B[(i-1+B.length)%B.length],next=B[(i+1)%B.length];
   const secs=[['overview','Overview'],['paper','Paper'],['examples','Task examples'],['taxonomy','Taxonomy'],['team','Team & contributors']];
   const overview=b.description?`<div class="real"><p style="margin:0;font-size:16px;color:var(--ink2)">${esc(b.description)}</p></div>`
     :`<div class="ph">${PH}<p style="margin:12px 0 4px;color:var(--ink2)">A short summary of what <b>${esc(b.name)}</b> covers, who the experts are, and what makes the work hard for AI agents.</p><div class="skel" style="width:92%"></div><div class="skel" style="width:76%"></div></div>`;
   const p=b.paper;
   const paper=`<div class="${p?'real':'ph'} paper"><div class="cover">PDF</div><div>${p?'':PH}
-    <h3 style="margin-top:${p?0:12}px">${esc(p&&p.title||`EFE-${b.code}: ${b.name} benchmark`)}</h3>
+    <h3 style="margin-top:${p?0:12}px">${esc(p&&p.title||`EFE-${b.code}: ${b.name}`)}</h3>
     <p class="muted" style="margin:6px 0 0">${esc(p&&p.authors||'Authors to be announced')} · ${esc(p&&p.venue||'In preparation')}</p>
-    <div class="btns">${[['arXiv',p&&p.arxiv],['PDF',p&&p.pdf],['Code & data',p&&p.code],['BibTeX',p&&p.bibtex]].map(([l,u])=>u?`<a class="btn sm" href="${esc(u)}" target="_blank" rel="noopener">${l}</a>`:`<span class="btn sm" aria-disabled="true">${l}</span>`).join('')}</div></div></div>`;
+    <div class="btns">${[['arXiv',p&&p.arxiv],['PDF',p&&p.pdf],['Code & data',p&&p.code],['BibTeX',p&&p.bibtex]].map(([l,u])=>u?`<a class="btn" href="${esc(u)}" target="_blank" rel="noopener">${l}</a>`:`<span class="btn" aria-disabled="true">${l}</span>`).join('')}</div></div></div>`;
   const ex=(b.examples&&b.examples.length?b.examples:[{title:b.example}]).slice(0,3);while(ex.length<3)ex.push(null);
   const tasks=`<div class="tgrid">${ex.map((t,k)=>{const real=t&&t.steps;return`<div class="${real?'real':'ph'} tcard"><div style="display:flex;justify-content:space-between;align-items:center">${mt(b,30)}${real?'':PH}</div>
      <h4>${t?esc(t.title):'Example task '+(k+1)}</h4>${real?`<ol>${t.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol><div class="meta">${(t.meta||[]).map(m=>`<span>${esc(m)}</span>`).join('')}</div>`
      :`<ol><li>What the expert is given</li><li>The steps the agent must carry out</li><li>How the result is checked</li></ol><div class="meta"><span>stages: –</span><span>rubric: 30+</span><span>split: public</span></div>`}</div>`}).join('')}</div>`;
   const tx=b.taxonomy;
-  const taxonomy=tx&&tx.length?`<div class="tax">${tx.map(d=>`<div class="real tax-dir"><h4>${esc(d.direction)}<span class="mono muted" style="font-size:11.5px">${d.categories.length}</span></h4><div class="cats">${d.categories.map(c=>`<span class="cat">${esc(c)}</span>`).join('')}</div></div>`).join('')}</div>`
+  const taxonomy=tx&&tx.length?`<div class="tax">${tx.map(d=>`<div class="real tax-dir"><h4>${esc(d.direction)}<span class="muted" style="font-size:12.5px">${d.categories.length}</span></h4><div class="cats">${d.categories.map(c=>`<span class="cat">${esc(c)}</span>`).join('')}</div></div>`).join('')}</div>`
     :`<div class="tax">${[0,1,2,3].map(k=>`<div class="ph tax-dir"><h4>Direction ${k+1}${k?'':PH}</h4><div class="cats">${Array.from({length:6+k%3},()=>'<span class="cat sk">·</span>').join('')}</div></div>`).join('')}</div>
-     <p class="muted" style="font-size:13.5px;margin:12px 0 0">Each benchmark is organized into 80–150 task categories, grounded in research papers and industry practice.</p>`;
+     <p class="muted" style="font-size:14px;margin:12px 0 0">Each domain is organized into 80–150 task categories, grounded in research papers and industry practice.</p>`;
   const tm=b.team||{};const has=x=>x&&x.length;
   const people=(arr,role)=>has(arr)?arr.map(n=>`<div class="person"><span class="av">${esc(String(n).split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase())}</span><div><div class="nm">${esc(n)}</div><div class="rl">${role}</div></div></div>`).join('')
     :`<div class="person"><span class="av"></span><div><div class="nm muted">To be announced</div><div class="rl">${role}</div></div></div>`;
   const team=`<div class="team">
-    <div class="${has(tm.leads)?'real':'ph'}"><div class="eyebrow">Benchmark lead</div>${people(tm.leads,'Lead')}</div>
+    <div class="${has(tm.leads)?'real':'ph'}"><div class="eyebrow">Domain lead</div>${people(tm.leads,'Lead')}</div>
     <div class="${has(tm.members)?'real':'ph'}"><div class="eyebrow">${b.shared?'Partner team':'EFE team'}</div>${people(tm.members,b.shared?'Partner':'Team member')}</div>
-    <div class="${has(tm.contributors)?'real':'ph'}"><div class="eyebrow">Task contributors</div>${people(tm.contributors,'Contributor')}<a class="btn sm" style="margin-top:16px" href="#/contribute">Become a contributor</a></div></div>`;
+    <div class="${has(tm.contributors)?'real':'ph'}"><div class="eyebrow">Task contributors</div>${people(tm.contributors,'Contributor')}<a class="btn" style="margin-top:16px" href="#/contribute">Become a contributor</a></div></div>`;
+  const others=inArea(b.area).filter(x=>x!==b);
   return header('b')+`<section class="page-top"><div class="container">
-   <a class="crumb" href="#/benchmarks">← All benchmarks</a>
-   <div class="bhead"><div>${mt(b,64)}<div class="eyebrow" style="margin-top:20px">${esc(a.name)} · EFE-${esc(b.code)}</div><h1>${esc(b.name)}${b.shared?'<span class="star">*</span>':''}</h1>
-     <div class="tags">${b.shared?'<span class="tag joint">Joint * · co-built with a partner team</span>':'<span class="tag core">Core · built by the EFE team</span>'}<span class="tag">Status: ${esc(b.status||'In development')}</span></div></div>
-    <div class="ffig big fc" style="${fcv(b.area)}">${art(b.area)}<span class="ft">Field ${pad(a.i+1)} · ${esc(a.name)}</span></div></div>
-   <nav class="subnav" aria-label="Sections">${secs.map(([id,l])=>`<button class="chip" data-act="jump" data-v="${id}">${l}</button>`).join('')}</nav>
+   <a class="crumb" href="#/domains">← All domains</a>
+   <div class="bhead fc" style="${tcv(b)}">${mt(b,60)}<div class="eyebrow" style="margin-top:18px">${esc(a.name)} · <span class="code">EFE-${esc(b.code)}</span></div><h1>${esc(b.name)}</h1>
+     <div class="tags">${b.shared?'<span class="tag joint">Joint <span class="star" style="color:inherit">*</span> co-built with a partner team</span>':'<span class="tag core">Core · built by the EFE team</span>'}<span class="tag">${esc(b.status||'In development')}</span></div>
+     <div class="exbox"><small>Example task · illustrative</small><b>${esc(exTitle(b))}</b></div></div>
+   <nav class="subnav" aria-label="Sections">${secs.map(([id,l])=>`<button class="chip" data-act="jump" data-v="${id}" data-sec="${id}">${l}</button>`).join('')}</nav>
    <div class="bsec" id="overview"><h2>Overview</h2>${overview}</div>
    <div class="bsec" id="paper"><h2>Paper</h2>${paper}</div>
    <div class="bsec" id="examples"><h2>Task examples</h2>${tasks}</div>
    <div class="bsec" id="taxonomy"><h2>Taxonomy</h2>${taxonomy}</div>
    <div class="bsec" id="team"><h2>Team &amp; contributors</h2>${team}</div>
-   <div class="pn"><a href="#/b/${prev.slug}"><div class="eyebrow">← Previous</div><div style="font-weight:500;margin-top:6px">${esc(prev.name)}${star(prev)}</div></a><a class="r" href="#/b/${next.slug}"><div class="eyebrow">Next →</div><div style="font-weight:500;margin-top:6px">${esc(next.name)}${star(next)}</div></a></div>
+   <div class="more"><h3>More in ${esc(a.name)}</h3><div class="dcards" style="margin-top:12px">${others.map(dcard).join('')}</div></div>
+   <div class="pn"><a href="#/d/${prev.slug}"><div class="eyebrow">← Previous</div><div style="font-weight:500;margin-top:6px">${esc(prev.name)}${star(prev)}</div></a><a class="r" href="#/d/${next.slug}"><div class="eyebrow">Next →</div><div style="font-weight:500;margin-top:6px">${esc(next.name)}${star(next)}</div></a></div>
   </div></section><div style="height:64px"></div>`+foot();
 }
 
-function leaderboard(){
-  const bars=Array.from({length:36},(_,i)=>`<i style="height:${Math.max(12,Math.round(94-i*2.2-((i*37)%7)))}%;--c:${AREA[DATA.areas[i%NA].id].col}"></i>`).join('');
-  return header('l')+`<section class="page-top"><div class="container">
-   <div class="eyebrow">Leaderboard</div><h1 class="h-sec" style="margin-top:12px">Leaderboard</h1><p class="muted" style="font-size:16px;margin:14px 0 0;max-width:560px">Scores will use public tasks only. Hidden tasks are evaluated privately and never shown.</p>
-   <div class="pcard" style="margin-top:32px"><div class="eyebrow">Coming with the first release</div><h3 style="margin-top:10px">${esc(DATA.stats.modelsTarget)} models and agents, every field</h3><div class="bars" style="height:180px" aria-hidden="true">${bars}</div></div>
-   <h3 style="font-size:24px;margin:48px 0 16px;letter-spacing:-.035em">How models will be scored</h3>
-   <div class="feats">
-    <div class="card"><h3>Pass rate</h3><p class="muted" style="margin:6px 0 0">Share of runs where the agent fully completes the task.</p></div>
-    <div class="card"><h3>Rubric score</h3><p class="muted" style="margin:6px 0 0">Weighted share of 30+ rubric items met, scored stage by stage (0–100).</p></div>
-    <div class="card"><h3>Versioned releases</h3><p class="muted" style="margin:6px 0 0">Scores are tied to a benchmark version so results stay comparable as tasks rotate.</p></div>
-   </div></div></section><div style="height:80px"></div>`+foot();
+function howPage(){
+  return header('h')+`<section class="page-top"><div class="container">
+   <div class="eyebrow">How it works</div><h1 class="h-sec" style="margin-top:10px">Real expert work, scored step by step</h1>
+   <p class="lead">Each EFE task is a piece of real work from an expert’s job. An AI agent gets the same inputs the expert would have, does the work, and is scored against a rubric written by experts in that field.</p>
+   <div style="margin-top:32px">${diagram()}</div>
+   <h2 class="h2">Two scores for every task</h2>
+   <div class="g3">
+    <div class="card"><h3>Pass or fail</h3><p>Did the agent fully finish the job? Across many tasks, this gives the <b>pass rate</b>.</p></div>
+    <div class="card"><h3>Rubric score</h3><p>How much of the work was done right, from 0 to 100. Each of the 30+ rubric items carries a weight, so partial progress counts.</p></div>
+    <div class="card"><h3>Versioned releases</h3><p>Scores are tied to an EFE release, so results stay comparable as tasks are added.</p></div>
+   </div>
+   <h2 class="h2">Public and private tasks</h2>
+   <div class="card"><p style="margin:0">Scores include both public and private tasks. Public tasks show anyone how the scoring works. Private tasks are never published, so models cannot be trained on them, but they count toward every score.</p></div>
+   <h2 class="h2">What makes a good task</h2>
+   <div class="card"><ul class="rules" style="margin:0">${DATA.rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>
+   <div class="scores" style="margin-top:28px"><p>Do you do work like this? Propose a task from your field.</p><a class="btn dark" href="#/contribute">Contribute ${I.arrow}</a></div>
+  </div></section><div style="height:72px"></div>`+foot();
 }
 
-function formLinks(){
-  const u=(CONFIG.googleFormUrl||'').trim();if(!u)return null;
-  const embeddable=/^https:\/\/docs\.google\.com\/forms\//.test(u);
-  return{open:u,embed:embeddable?u.replace(/\/(edit|viewform)?(\?.*)?(#.*)?$/,'/viewform')+'?embedded=true':null};
+function results(){
+  return header('r')+`<section class="page-top"><div class="container">
+   <div class="eyebrow">Leaderboard</div><h1 class="h-sec" style="margin-top:10px">Leaderboard</h1>
+   <p class="lead">The first results are planned for <b>${esc(CONFIG.releaseTarget)}</b>. We will publish scores for ${esc(DATA.stats.modelsTarget)} models and agents on every field.</p>
+   <div class="card" style="margin-top:32px;overflow-x:auto"><div class="eyebrow" style="margin-bottom:10px">What the leaderboard will show</div>
+    <table class="rtable"><thead><tr><th>Model or agent</th><th>Pass rate</th><th>Rubric score</th><th>Fields covered</th></tr></thead>
+    <tbody><tr><td colspan="4">No results yet. First release: ${esc(CONFIG.releaseTarget)}.</td></tr></tbody></table></div>
+   <h2 class="h2">How models will be scored</h2>
+   <div class="g3">
+    <div class="card"><h3>Pass rate</h3><p>Share of tasks the agent fully completes.</p></div>
+    <div class="card"><h3>Rubric score</h3><p>Weighted share of rubric items met, scored step by step (0–100).</p></div>
+    <div class="card"><h3>Public and private tasks</h3><p>Both count toward the scores. Private tasks are never published, so models cannot be trained on them.</p></div>
+   </div>
+   <p class="small" style="margin-top:20px"><a href="#/how">Read how a task is scored</a></p>
+  </div></section><div style="height:72px"></div>`+foot();
 }
+
 function contribute(){
-  const f=formLinks();
-  const mail=`<a href="mailto:${esc(CONFIG.contactEmail)}?subject=${encodeURIComponent('EFE task proposal')}">${esc(CONFIG.contactEmail)}</a>`;
-  const formCard=f?`<div class="card">
-     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:6px"><h3>Submit a task proposal</h3><a class="btn sm" href="${esc(f.open)}" target="_blank" rel="noopener">Open in a new tab ↗</a></div>
-     <p class="muted" style="font-size:14px;margin:0 0 16px">Describe the workflow first. The EFE team will follow up with the Harbor template.</p>
-     ${f.embed?`<iframe class="gform" src="${esc(f.embed)}" style="height:${Number(CONFIG.googleFormHeight)||1100}px" title="EFE task proposal form" loading="lazy">Loading…</iframe>`:`<a class="btn dark" href="${esc(f.open)}" target="_blank" rel="noopener">Open the proposal form ↗</a>`}
-     <p class="muted" style="font-size:13px;margin:14px 0 0">Form not loading? Email your proposal to ${mail} instead.</p></div>`
-   :`<div class="card"><h3>Submit a task proposal</h3><p class="muted" style="font-size:14px;margin:6px 0 0">Email a short description of the workflow to ${mail}.</p></div>`;
+  const f=formUrl();const em=esc(CONFIG.contactEmail);
   return header('c')+`<section class="page-top"><div class="container">
-   <div class="eyebrow">Contribute</div><h1 class="h-sec" style="margin-top:12px">Help build EFE</h1><p class="muted" style="font-size:16px;margin:14px 0 0">Contributors are credited in the benchmark paper and on this site.</p>
-  </div></section>
-  <section class="block" style="padding-top:32px"><div class="container"><div class="split">${formCard}
-    <div style="display:grid;gap:16px;align-content:start">
-     ${DATA.seeking.length?`<div class="card"><h3>New fields looking for an expert partner</h3><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px">${DATA.seeking.map(n=>`<span class="tag joint">${esc(n)}</span>`).join('')}</div></div>`
-       :`<div class="card"><h3>Don’t see your field?</h3><p class="muted" style="font-size:14px;margin:8px 0 0">We welcome new fields. Propose one with the form, and tell us what experts in your field do day to day.</p></div>`}
-     <div class="card"><h3>What makes a good task</h3><ul class="rules">${DATA.rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>
-    </div></div></div></section>`+foot();
+   <div class="eyebrow">Contribute</div><h1 class="h-sec" style="margin-top:10px">Help build EFE</h1>
+   <p class="lead">EFE is built with the people who do the work. Contributors are credited in the EFE papers and on this site.</p>
+   <div class="g2" style="margin-top:32px">
+    <div class="card path"><span class="pill">About 5 minutes</span><h3>Propose a task</h3>
+     <p>Describe one piece of real work from your job that today’s AI would struggle with. A short description is enough to start.</p>
+     ${f?`<a class="btn dark" href="${esc(f)}" target="_blank" rel="noopener">Open the proposal form ${I.ext}</a>`:`<a class="btn dark" href="${mailto('EFE task proposal')}">Email your proposal</a>`}
+     <p class="small">The form opens in a new tab. Can’t open Google Forms? Email your proposal to <a href="${mailto('EFE task proposal')}">${em}</a>.</p></div>
+    <div class="card path" id="lead"><span class="pill">For experts and teams</span><h3>Lead or partner on a domain</h3>
+     <p>Lead the domain for your field with the EFE team, as the lead expert or as a partner team.</p>
+     <a class="btn" href="${mailto('EFE domain partnership')}">Email us</a>
+     <p class="small">Write to <a href="${mailto('EFE domain partnership')}">${em}</a> with your field and a few lines about your work.</p></div>
+   </div>
+   <h2 class="h2">What happens next</h2>
+   <div class="card"><ol class="next"><li>You send a short proposal.</li><li>We read it and reply by email.</li><li>If it fits, we work with you to turn it into a full task: the inputs, the steps, and a scoring rubric.</li></ol></div>
+   <h2 class="h2">What makes a good task</h2>
+   <div class="card"><p style="margin:0">To start, we only need a short description of the work, what a good result looks like, and roughly how long it takes an expert. A good final task is:</p>
+    <ul class="rules">${DATA.rules.slice(0,4).map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
+    <details class="more-crit"><summary>See the full checklist</summary><ul class="rules">${DATA.rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></details>
+    ${DATA.seeking.length?`<p class="small">Fields looking for an expert partner: ${DATA.seeking.map(esc).join(', ')}.</p>`:`<p class="small">Don’t see your field? Propose it with the same form.</p>`}</div>
+  </div></section><div style="height:72px"></div>`+foot();
+}
+
+function notFound(){
+  return header('')+`<section class="nf"><div><div class="eyebrow">Page not found</div><h1 class="h-sec" style="margin-top:10px">We couldn’t find that page</h1>
+   <p class="lead" style="margin-left:auto;margin-right:auto">The link may be out of date.</p>
+   <div class="cta"><a class="btn dark" href="#/">Go to the home page</a><a class="btn" href="#/domains">See all domains</a></div></div></section>`+foot();
 }
 
 /* ---------- router & events ---------- */
-function route(){return location.hash||'#/'}
 function render(){
-  stopAuto();hidePop();
-  const h=route();let html;
-  if(h.startsWith('#/b/'))html=benchPage(decodeURIComponent(h.slice(4)));
-  else if(h==='#/benchmarks')html=allPage();
-  else if(h==='#/leaderboard')html=leaderboard();
+  hideTip();
+  const h=location.hash||'#/';let html,title='Experts’ First Exam';
+  if(!h.startsWith('#/')||h==='#/')html=home();
+  else if(h.startsWith('#/d/')||h.startsWith('#/b/')){const b=BY[decodeURIComponent(h.slice(4))];if(b){html=benchPage(b);title=`${b.name} · Experts’ First Exam`}else{html=notFound();title='Page not found · Experts’ First Exam'}}
+  else if(h==='#/domains'||h==='#/benchmarks')html=allPage();
+  else if(h==='#/how')html=howPage();
+  else if(h==='#/leaderboard'||h==='#/results')html=results();
   else if(h==='#/contribute')html=contribute();
-  else html=home();
-  document.getElementById('root').innerHTML=html;
-  const b=h.startsWith('#/b/')&&BY[decodeURIComponent(h.slice(4))];
-  document.title=b?`${b.name} · Experts’ First Exam`:'Experts’ First Exam';
+  else{html=notFound();title='Page not found · Experts’ First Exam'}
+  document.getElementById('root').innerHTML=html;document.title=title;
   bindHero();onScroll();
 }
-function onScroll(){const hd=document.getElementById('hdr');if(hd)hd.classList.toggle('solid',scrollY>8||!document.getElementById('hero'))}
-window.addEventListener('scroll',onScroll,{passive:true});
-window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#/')||!location.hash){render();window.scrollTo(0,0)}});
-let wasMob=matchMedia('(max-width:900px)').matches;
-window.addEventListener('resize',()=>{hidePop();const m=matchMedia('(max-width:900px)').matches;if(m!==wasMob){wasMob=m;const w=document.getElementById('exwrap');if(w)w.innerHTML=explorer()}});
+function closeMenu(){const hd=document.getElementById('hdr');if(hd&&hd.classList.contains('open')){hd.classList.remove('open');const b=hd.querySelector('[data-act=menu]');if(b)b.setAttribute('aria-expanded','false')}}
+function onScroll(){
+  const hd=document.getElementById('hdr');if(hd)hd.classList.toggle('solid',scrollY>8||!document.getElementById('hero'));
+  const sn=document.querySelector('.subnav');
+  if(sn){let on=null;document.querySelectorAll('.bsec').forEach(s=>{if(s.getBoundingClientRect().top<150)on=s.id});
+    sn.querySelectorAll('[data-sec]').forEach(c=>{const a=c.dataset.sec===on;c.classList.toggle('on',a);if(a)c.setAttribute('aria-current','true');else c.removeAttribute('aria-current')})}
+}
+let lastY=0;
+window.addEventListener('scroll',()=>{onScroll();hideTip();if(Math.abs(scrollY-lastY)>30){closeMenu();lastY=scrollY}},{passive:true});
+window.addEventListener('hashchange',()=>{render();const g=takeJump();if(g){const el=document.getElementById(g);if(el){el.scrollIntoView();return}}window.scrollTo(0,0)});
+let pendingJump=null;function takeJump(){const g=pendingJump;pendingJump=null;return g}
+let wasMob=isMob();
+window.addEventListener('resize',()=>{hideTip();const m=isMob();if(m!==wasMob){wasMob=m;const w=document.getElementById('exwrap');if(w)w.innerHTML=explorer()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();hideTip()}});
 document.addEventListener('click',e=>{
   const hdr=document.getElementById('hdr');
-  if(hdr&&hdr.classList.contains('open')&&!e.target.closest('[data-act=menu]'))hdr.classList.remove('open');
-  if(!e.target.closest('#pop')&&!e.target.closest('.tile'))hidePop();
+  if(hdr&&hdr.classList.contains('open')&&!e.target.closest('[data-act=menu]'))closeMenu();
   const a=e.target.closest('[data-act]');if(!a)return;
   const act=a.dataset.act,v=a.dataset.v;
-  if(act==='theme'){const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=dark?'light':'dark';try{localStorage.setItem('efe-theme',r.dataset.theme)}catch(err){}}
-  else if(act==='menu'){hdr.classList.toggle('open')}
-  else if(act==='jump'){const el=document.getElementById(v);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'})}else if(v==='fields'){e.preventDefault();location.hash='#/';setTimeout(()=>{const f=document.getElementById('fields');if(f)f.scrollIntoView()},60)}}
-  else if(act==='field'){clearTimeout(restT);setField(v,true)}
-  else if(act==='step'){step(Number(v),true)}
-  else if(act==='ex'){setEx(v)}
-  else if(act==='filter'){gFilter=v;document.querySelectorAll('[data-act=filter]').forEach(c=>c.classList.toggle('on',c.dataset.v===v));document.getElementById('gridwrap').innerHTML=grid()}
-  else if(act==='kind'){gKind=v;document.querySelectorAll('[data-act=kind]').forEach(c=>c.classList.toggle('on',c.dataset.v===v));document.getElementById('gridwrap').innerHTML=grid()}
+  if(act==='theme'){const r=document.documentElement;r.dataset.theme=isDark()?'light':'dark';try{localStorage.setItem('efe-theme',r.dataset.theme)}catch(err){}
+    a.innerHTML=isDark()?I.sun:I.moon;a.setAttribute('aria-label',isDark()?'Switch to light mode':'Switch to dark mode')}
+  else if(act==='menu'){const o=hdr.classList.toggle('open');a.setAttribute('aria-expanded',o);lastY=scrollY}
+  else if(act==='jump'){const el=document.getElementById(v);if(el){e.preventDefault();el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}}
+  else if(act==='goto'){pendingJump=v}
+  else if(act==='step'){step(Number(v))}
+  else if(act==='ex'){clearTimeout(exRestT);setField(v,'ex')}
+  else if(act==='kind'){gKind=v;document.querySelectorAll('[data-act=kind]').forEach(c=>{c.classList.toggle('on',c.dataset.v===v);c.setAttribute('aria-pressed',c.dataset.v===v)});document.getElementById('gridwrap').innerHTML=grid()}
+  else if(act==='clear'){gKind='all';gQuery='';render()}
 });
-document.getElementById('pop').addEventListener('click',()=>{if(popSlug)location.hash='#/b/'+popSlug});
-document.getElementById('pop').addEventListener('mouseleave',()=>{popTimer=setTimeout(hidePop,200)});
-function showEx(id){exField=id;document.querySelectorAll('.frow').forEach(x=>{x.classList.toggle('on',x.dataset.v===exField);x.setAttribute('aria-expanded',x.dataset.v===exField)});const w=document.getElementById('fpanelwrap');if(w)w.innerHTML=fpanel(exField)}
-document.addEventListener('mousemove',e=>{clearTimeout(exRestT);const r=e.target.closest('.frow');
-  if(r&&r.dataset.v!==exField&&matchMedia('(hover: hover) and (min-width: 901px)').matches)exRestT=setTimeout(()=>showEx(r.dataset.v),REST_MS)});
+/* explorer rows: pointing selects only once the mouse rests on a row, so crossing rows on the way to the panel doesn't change it */
+document.addEventListener('mousemove',e=>{clearTimeout(exRestT);const r=e.target.closest&&e.target.closest('.frow');
+  if(r&&r.dataset.v!==cur&&matchMedia('(hover: hover) and (min-width: 901px)').matches)exRestT=setTimeout(()=>setField(r.dataset.v,'ex'),REST_MS)});
 document.addEventListener('input',e=>{if(e.target.dataset.input==='q'){gQuery=e.target.value;document.getElementById('gridwrap').innerHTML=grid()}});
 try{const t=localStorage.getItem('efe-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
 render();
