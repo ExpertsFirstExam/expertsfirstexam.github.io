@@ -60,7 +60,10 @@ The menu is: Leaderboard · Domains · How it works, plus a Contribute button.
 - **Leaderboard** (`#/leaderboard`): release date, what the leaderboard will
   show, and how models are scored.
 - **Domains** (`#/domains`): all domains by field, with search (names, fields
-  and example tasks) and a Core / Joint filter.
+  and example tasks), a field dropdown and a Core / Joint filter. When a
+  filter is on, it shows "Showing N of 46 domains".
+- The browser's Back button returns to the same spot (and the same search or
+  field). Arriving from a menu link starts fresh at the top.
 - **Domain pages** (`#/d/<slug>`).
 - **How it works** (`#/how`): the scoring diagram, the two scores, public and
   private tasks, and what makes a good task.
@@ -83,9 +86,9 @@ field id falls back to the generic one).
 - `slug`: its web address, `#/d/<slug>`
 - `code`: the badge text
 - `name`, `area` (a field id), `status`
-- `shared`: `false` = **Core** (built by the EFE team, black "Core" tag);
-  `true` = **Joint \*** (co-built with a partner team, orange "Joint" tag and
-  a `*` after the name)
+- `shared`: `false` = **Core** (built by the EFE team; no tag on cards);
+  `true` = **Joint \*** (co-built with a partner team; an orange "Joint \*"
+  tag on cards and a `*` badge on its wheel tile)
 - `example`: the illustrative task title shown on the wheel, in the field
   explorer and on the domain's page (replaced by the first entry of
   `examples` once filled)
