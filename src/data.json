@@ -2,13 +2,23 @@
  "areas": [
   {
    "id": "ai",
-   "name": "AI Agents & Safety",
-   "desc": "Agents that operate computers, stay secure, model the world and improve themselves."
+   "name": "AI Agents",
+   "desc": "Agents that operate computers, learn from their own runs, model the world and improve themselves."
+  },
+  {
+   "id": "sec",
+   "name": "Security",
+   "desc": "Keeping agents and software safe: attacks, hidden bugs and cryptography."
   },
   {
    "id": "soft",
-   "name": "Software & Cloud",
-   "desc": "Building, testing and running real software and cloud services."
+   "name": "Software & Web",
+   "desc": "Building, testing and shipping real software and websites."
+  },
+  {
+   "id": "cloud",
+   "name": "Cloud & Operations",
+   "desc": "Running cloud services and fixing them when they break."
   },
   {
    "id": "sys",
@@ -27,18 +37,18 @@
   },
   {
    "id": "rob",
-   "name": "Robotics & Autonomy",
-   "desc": "Robots and drones that sense, plan and act in the physical world."
+   "name": "Robotics & Embodied AI",
+   "desc": "Robots and drones that sense, plan and act, and the first-person data behind them."
   },
   {
    "id": "eng",
-   "name": "Engineering & Design",
-   "desc": "Buildings, vehicles, sound, and the CAD models behind them."
+   "name": "Engineering & Manufacturing",
+   "desc": "Vehicles, sound, and the CAD models behind them."
   },
   {
-   "id": "phys",
-   "name": "Physical Sciences",
-   "desc": "Experiments and analysis in physics, quantum systems and lasers."
+   "id": "arch",
+   "name": "Architecture & Civil Engineering",
+   "desc": "Designing buildings, pricing construction work, and water and ground engineering."
   },
   {
    "id": "earth",
@@ -46,24 +56,44 @@
    "desc": "Satellites, remote sensing and maps of the Earth."
   },
   {
+   "id": "math",
+   "name": "Mathematics",
+   "desc": "Proofs and problem solving at research level."
+  },
+  {
+   "id": "phys",
+   "name": "Physics",
+   "desc": "Experiments and analysis in physics, quantum systems and lasers."
+  },
+  {
+   "id": "chem",
+   "name": "Chemistry & Materials",
+   "desc": "Chemistry, materials, batteries and hands-on wet-lab work."
+  },
+  {
    "id": "life",
-   "name": "Chemistry & Life Sciences",
-   "desc": "Chemistry, biology and hands-on wet-lab work."
+   "name": "Biology & Neuroscience",
+   "desc": "Biology and brain signals."
   },
   {
    "id": "med",
-   "name": "Medicine & Pharma",
-   "desc": "Medical imaging, radiation therapy and drug development."
+   "name": "Medicine",
+   "desc": "Medical imaging, and radiation and proton therapy."
+  },
+  {
+   "id": "pharma",
+   "name": "Pharma & Healthcare Business",
+   "desc": "Drug development and the business side of healthcare."
   },
   {
    "id": "edu",
-   "name": "Education & General",
-   "desc": "Education research, and tasks that cut across many fields."
+   "name": "Education",
+   "desc": "Research on how people teach and learn."
   },
   {
    "id": "biz",
    "name": "Business & Economics",
-   "desc": "Strategy, operations research and economic analysis."
+   "desc": "Strategy, economics, operations research and tendering."
   },
   {
    "id": "fin",
@@ -73,13 +103,13 @@
  ],
  "benchmarks": [
   {
-   "slug": "fin",
-   "code": "FIN",
-   "name": "Finance",
-   "area": "fin",
+   "slug": "cua",
+   "code": "CUA",
+   "name": "Computer-Use Agents",
+   "area": "ai",
    "shared": false,
    "status": "In development",
-   "example": "Reconcile a quarter's ledger against bank statements",
+   "example": "Fill in a multi-app expense claim end to end",
    "description": "",
    "paper": null,
    "examples": [],
@@ -91,13 +121,13 @@
    }
   },
   {
-   "slug": "fcu",
-   "code": "FCU",
-   "name": "Financial Computer Use",
-   "area": "fin",
+   "slug": "traj",
+   "code": "TRAJ",
+   "name": "Agent Trajectories",
+   "area": "ai",
    "shared": false,
    "status": "In development",
-   "example": "Build a cash-flow report inside a trading terminal",
+   "example": "Find the step where an agent's run went wrong",
    "description": "",
    "paper": null,
    "examples": [],
@@ -109,13 +139,13 @@
    }
   },
   {
-   "slug": "ifx",
-   "code": "IFX",
-   "name": "Investment & Foreign Exchange",
-   "area": "fin",
+   "slug": "wm",
+   "code": "WM",
+   "name": "World Models",
+   "area": "ai",
    "shared": false,
    "status": "In development",
-   "example": "Hedge a currency exposure for an importer",
+   "example": "Predict the next frames of a physical scene",
    "description": "",
    "paper": null,
    "examples": [],
@@ -127,31 +157,13 @@
    }
   },
   {
-   "slug": "cry",
-   "code": "CRY",
-   "name": "Crypto",
-   "area": "fin",
-   "shared": false,
-   "status": "In development",
-   "example": "Audit a smart contract for a reentrancy bug",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "pm",
-   "code": "PM",
-   "name": "Prediction Markets",
-   "area": "fin",
+   "slug": "rsi",
+   "code": "RSI",
+   "name": "Recursive Self-Improvement",
+   "area": "ai",
    "shared": true,
    "status": "In development",
-   "example": "Price a market from news and base rates",
+   "example": "Improve an agent's own training loop",
    "description": "",
    "paper": null,
    "examples": [],
@@ -163,13 +175,13 @@
    }
   },
   {
-   "slug": "str",
-   "code": "STR",
-   "name": "Strategy",
-   "area": "biz",
+   "slug": "imgc",
+   "code": "IMG",
+   "name": "Coding Agents for Image Generation",
+   "area": "ai",
    "shared": false,
    "status": "In development",
-   "example": "Size a new market and recommend an entry plan",
+   "example": "Write code that renders an image to match a reference",
    "description": "",
    "paper": null,
    "examples": [],
@@ -181,13 +193,13 @@
    }
   },
   {
-   "slug": "or",
-   "code": "OR",
-   "name": "Operations Research",
-   "area": "biz",
+   "slug": "asec",
+   "code": "ASEC",
+   "name": "Agent Security",
+   "area": "sec",
    "shared": false,
    "status": "In development",
-   "example": "Schedule a factory's shifts under constraints",
+   "example": "Find a prompt-injection path in an agent workflow",
    "description": "",
    "paper": null,
    "examples": [],
@@ -199,13 +211,31 @@
    }
   },
   {
-   "slug": "econ",
-   "code": "ECON",
-   "name": "Economics",
-   "area": "biz",
+   "slug": "vuln",
+   "code": "VULN",
+   "name": "Vulnerability Detection",
+   "area": "sec",
+   "shared": false,
+   "status": "In development",
+   "example": "Find and explain a memory-safety bug in a C library",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "csec",
+   "code": "CSEC",
+   "name": "Cryptography & Security",
+   "area": "sec",
    "shared": true,
    "status": "In development",
-   "example": "Estimate the effect of a policy change",
+   "example": "Find the weakness in a custom encryption scheme",
    "description": "",
    "paper": null,
    "examples": [],
@@ -256,7 +286,7 @@
    "slug": "aiops",
    "code": "AIOPS",
    "name": "AIOps",
-   "area": "soft",
+   "area": "cloud",
    "shared": true,
    "status": "In development",
    "example": "Find the root cause of a latency spike",
@@ -274,7 +304,7 @@
    "slug": "cgym",
    "code": "CGYM",
    "name": "CloudGym",
-   "area": "soft",
+   "area": "cloud",
    "shared": true,
    "status": "In development",
    "example": "Recover a misconfigured cloud deployment",
@@ -292,7 +322,7 @@
    "slug": "ogym",
    "code": "OGYM",
    "name": "OmniGym",
-   "area": "soft",
+   "area": "cloud",
    "shared": true,
    "status": "In development",
    "example": "Complete a multi-tool operations task",
@@ -397,42 +427,6 @@
    }
   },
   {
-   "slug": "sat",
-   "code": "SAT",
-   "name": "Satellite Systems",
-   "area": "earth",
-   "shared": false,
-   "status": "In development",
-   "example": "Plan a satellite's imaging passes for a week",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "gis",
-   "code": "GIS",
-   "name": "Geography, Remote Sensing & GIS",
-   "area": "earth",
-   "shared": false,
-   "status": "In development",
-   "example": "Map flood extent from satellite images",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
    "slug": "chip",
    "code": "CHIP",
    "name": "Chip Design",
@@ -523,78 +517,6 @@
    }
   },
   {
-   "slug": "cua",
-   "code": "CUA",
-   "name": "Computer-Use Agents",
-   "area": "ai",
-   "shared": false,
-   "status": "In development",
-   "example": "Fill in a multi-app expense claim end to end",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "asec",
-   "code": "ASEC",
-   "name": "Agent Security",
-   "area": "ai",
-   "shared": false,
-   "status": "In development",
-   "example": "Find a prompt-injection path in an agent workflow",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "wm",
-   "code": "WM",
-   "name": "World Models",
-   "area": "ai",
-   "shared": false,
-   "status": "In development",
-   "example": "Predict the next frames of a physical scene",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "rsi",
-   "code": "RSI",
-   "name": "Recursive Self-Improvement",
-   "area": "ai",
-   "shared": true,
-   "status": "In development",
-   "example": "Improve an agent's own training loop",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
    "slug": "rob",
    "code": "ROB",
    "name": "Embodied AI & Robotics",
@@ -602,6 +524,24 @@
    "shared": false,
    "status": "In development",
    "example": "Write a pick-and-place routine for a new part",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "rbt",
+   "code": "RBT",
+   "name": "Robotics (Embodied First Exam)",
+   "area": "rob",
+   "shared": false,
+   "status": "In development",
+   "example": "Pack mixed items into a box with a robot arm",
    "description": "",
    "paper": null,
    "examples": [],
@@ -631,13 +571,13 @@
    }
   },
   {
-   "slug": "arch",
-   "code": "ARCH",
-   "name": "Architecture",
-   "area": "eng",
+   "slug": "fpv",
+   "code": "FPV",
+   "name": "First-Person View Data",
+   "area": "rob",
    "shared": false,
    "status": "In development",
-   "example": "Check a floor plan against fire-exit rules",
+   "example": "Label the actions in a first-person cooking video",
    "description": "",
    "paper": null,
    "examples": [],
@@ -667,6 +607,24 @@
    }
   },
   {
+   "slug": "cad",
+   "code": "CAD",
+   "name": "CAD",
+   "area": "eng",
+   "shared": true,
+   "status": "In development",
+   "example": "Model a bracket from an engineering drawing",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
    "slug": "acu",
    "code": "ACU",
    "name": "Acoustics",
@@ -685,13 +643,103 @@
    }
   },
   {
-   "slug": "cad",
-   "code": "CAD",
-   "name": "CAD",
-   "area": "eng",
-   "shared": true,
+   "slug": "arch",
+   "code": "ARCH",
+   "name": "Architectural Design",
+   "area": "arch",
+   "shared": false,
    "status": "In development",
-   "example": "Model a bracket from an engineering drawing",
+   "example": "Check a floor plan against fire-exit rules",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "cost",
+   "code": "COST",
+   "name": "Construction Cost Estimation",
+   "area": "arch",
+   "shared": false,
+   "status": "In development",
+   "example": "Estimate a building's cost from its drawings",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "geo",
+   "code": "GEO",
+   "name": "Hydraulic & Geotechnical Engineering",
+   "area": "arch",
+   "shared": false,
+   "status": "In development",
+   "example": "Check a slope's stability from soil test results",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "sat",
+   "code": "SAT",
+   "name": "Satellite Systems",
+   "area": "earth",
+   "shared": false,
+   "status": "In development",
+   "example": "Plan a satellite's imaging passes for a week",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "gis",
+   "code": "GIS",
+   "name": "Geography, Remote Sensing & GIS",
+   "area": "earth",
+   "shared": false,
+   "status": "In development",
+   "example": "Map flood extent from satellite images",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "math",
+   "code": "MATH",
+   "name": "Mathematics",
+   "area": "math",
+   "shared": false,
+   "status": "In development",
+   "example": "Write a complete proof of a research-level lemma",
    "description": "",
    "paper": null,
    "examples": [],
@@ -760,10 +808,46 @@
    "slug": "chm",
    "code": "CHM",
    "name": "Chemistry",
-   "area": "life",
+   "area": "chem",
    "shared": false,
    "status": "In development",
    "example": "Plan a synthesis route for a target molecule",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "mat",
+   "code": "MAT",
+   "name": "Materials & Electrochemistry",
+   "area": "chem",
+   "shared": false,
+   "status": "In development",
+   "example": "Estimate a battery's capacity fade from cycling data",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "wet",
+   "code": "WET",
+   "name": "Wet Lab",
+   "area": "chem",
+   "shared": false,
+   "status": "In development",
+   "example": "Turn a paper's methods into a lab protocol",
    "description": "",
    "paper": null,
    "examples": [],
@@ -793,13 +877,13 @@
    }
   },
   {
-   "slug": "wet",
-   "code": "WET",
-   "name": "Wet Lab",
+   "slug": "eeg",
+   "code": "EEG",
+   "name": "EEG & Brain Signals",
    "area": "life",
    "shared": false,
    "status": "In development",
-   "example": "Turn a paper's methods into a lab protocol",
+   "example": "Clean an EEG recording and flag seizure events",
    "description": "",
    "paper": null,
    "examples": [],
@@ -847,13 +931,49 @@
    }
   },
   {
-   "slug": "pha",
-   "code": "PHA",
-   "name": "Pharmaceuticals",
+   "slug": "prt",
+   "code": "PRT",
+   "name": "Proton Therapy",
    "area": "med",
    "shared": false,
    "status": "In development",
+   "example": "Check a proton plan's range margins against dose limits",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "pha",
+   "code": "PHA",
+   "name": "Pharmaceuticals",
+   "area": "pharma",
+   "shared": false,
+   "status": "In development",
    "example": "Review a batch record for compliance gaps",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "hba",
+   "code": "HBA",
+   "name": "Healthcare Business Analysis",
+   "area": "pharma",
+   "shared": false,
+   "status": "In development",
+   "example": "Size the market for a new medical device",
    "description": "",
    "paper": null,
    "examples": [],
@@ -883,13 +1003,139 @@
    }
   },
   {
-   "slug": "gen",
-   "code": "GEN",
-   "name": "General & Cross-domain",
-   "area": "edu",
+   "slug": "str",
+   "code": "STR",
+   "name": "Strategy",
+   "area": "biz",
    "shared": false,
    "status": "In development",
-   "example": "Solve a problem that spans several fields",
+   "example": "Size a new market and recommend an entry plan",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "econ",
+   "code": "ECON",
+   "name": "Economics",
+   "area": "biz",
+   "shared": true,
+   "status": "In development",
+   "example": "Estimate the effect of a policy change",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "or",
+   "code": "OR",
+   "name": "Operations Research",
+   "area": "biz",
+   "shared": false,
+   "status": "In development",
+   "example": "Schedule a factory's shifts under constraints",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "tender",
+   "code": "BID",
+   "name": "Tendering & Bidding",
+   "area": "biz",
+   "shared": false,
+   "status": "In development",
+   "example": "Score supplier bids against a tender's criteria",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "fcu",
+   "code": "FCU",
+   "name": "Financial Computer Use",
+   "area": "fin",
+   "shared": false,
+   "status": "In development",
+   "example": "Build a cash-flow report inside a trading terminal",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "ifx",
+   "code": "IFX",
+   "name": "Investment & Foreign Exchange",
+   "area": "fin",
+   "shared": false,
+   "status": "In development",
+   "example": "Hedge a currency exposure for an importer",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "cry",
+   "code": "CRY",
+   "name": "Crypto",
+   "area": "fin",
+   "shared": false,
+   "status": "In development",
+   "example": "Audit a smart contract for a reentrancy bug",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "pm",
+   "code": "PM",
+   "name": "Prediction Markets",
+   "area": "fin",
+   "shared": true,
+   "status": "In development",
+   "example": "Price a market from news and base rates",
    "description": "",
    "paper": null,
    "examples": [],

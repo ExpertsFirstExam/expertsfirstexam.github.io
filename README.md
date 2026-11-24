@@ -5,7 +5,7 @@ domain and field names, illustrative example tasks, the scoring method and
 the release plan. Fonts are built into the file, so the page loads nothing
 from anywhere else. The proposal form is a Google Form that opens in a new tab.
 
-EFE is one benchmark. It is made of 46 **domains**, grouped into 14 **fields**.
+EFE is one benchmark. It is made of 58 **domains**, grouped into 20 **fields**.
 
 ## Put it on GitHub Pages
 
@@ -34,7 +34,10 @@ Small text changes can also be made directly in `index.html` (search for
 
 ## Settings (top of the `<script>` in index.html)
 
-- `contactEmail`: shown in the footer and on the Contribute page.
+- `orgEmail`: the project address (expertsfirstexam@gmail.com). Shown in the
+  footer and on the Contribute page; the "Email us" button writes to it.
+- `contactEmail`: the personal address. Shown next to the project address,
+  and copied (cc) on messages sent with the "Email us" button.
 - `googleFormUrl`: the task proposal form (opens in a new tab).
 - `organizer`: who runs EFE, shown in the footer as "Organized by …".
   Empty hides the line.
@@ -61,7 +64,7 @@ The menu is: Leaderboard · Domains · How it works, plus a Contribute button.
   show, and how models are scored.
 - **Domains** (`#/domains`): all domains by field, with search (names, fields
   and example tasks), a field dropdown and a Core / Joint filter. When a
-  filter is on, it shows "Showing N of 46 domains".
+  filter is on, it shows "Showing N of 58 domains".
 - The browser's Back button returns to the same spot (and the same search or
   field). Arriving from a menu link starts fresh at the top.
 - **Domain pages** (`#/d/<slug>`).
@@ -87,8 +90,9 @@ field id falls back to the generic one).
 - `code`: the badge text
 - `name`, `area` (a field id), `status`
 - `shared`: `false` = **Core** (built by the EFE team; no tag on cards);
-  `true` = **Joint \*** (co-built with a partner team; an orange "Joint \*"
-  tag on cards and a `*` badge on its wheel tile)
+  `true` = **Joint** (co-built with a partner team): a solid orange "✱ Joint"
+  badge on cards and pages, an orange ring and ✱ badge on its wheel tile, and
+  a light orange tint on its card
 - `example`: the illustrative task title shown on the wheel, in the field
   explorer and on the domain's page (replaced by the first entry of
   `examples` once filled)

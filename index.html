@@ -76,7 +76,7 @@ svg{display:block}
 
 /* ---------- hero: a calm wheel of benchmark tiles ---------- */
 .hero{position:relative;height:clamp(640px,80vh,670px);overflow:hidden;background:radial-gradient(1100px 720px at 50% 42%,var(--glow) 0%,transparent 70%);user-select:none;-webkit-user-select:none;touch-action:pan-y;
-  --R:1000px;--t:90px;--lw:106px;--top:120px}
+  --R:1150px;--t:84px;--lw:98px;--top:118px}
 .ring{position:absolute;left:50%;top:calc(var(--top) + var(--R));width:0;height:0;transform:rotate(var(--rot,0deg));transition:transform 1s cubic-bezier(.22,.72,.2,1)}
 .ring.drag{transition:none}
 .arc{position:absolute;--Ra:var(--R);left:calc(var(--Ra) * -1);top:calc(var(--Ra) * -1);width:calc(var(--Ra) * 2);height:calc(var(--Ra) * 2);border-radius:50%;pointer-events:none;opacity:.55;
@@ -87,7 +87,8 @@ svg{display:block}
 .ticon span{font-size:calc(var(--t) * .2)}
 .ticon span.l4{font-size:calc(var(--t) * .16)}
 .ticon span.l5{font-size:calc(var(--t) * .135)}
-.tile.joint .tface::after{content:"*";position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:15px;line-height:24px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.tile.joint .tface{box-shadow:var(--tile-sh),0 3px 0 var(--tc),0 0 0 2.5px #E4572E}
+.tile.joint .tface::after{content:"";position:absolute;top:-9px;right:-9px;width:26px;height:26px;border-radius:50%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.5v15M5.5 8.25l13 7.5M5.5 15.75l13-7.5' stroke='white' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E") center/15px no-repeat,linear-gradient(135deg,#F2672F,#C2410C);box-shadow:0 0 0 2.5px var(--bg),0 3px 8px rgba(194,65,12,.5)}
 .tlabel{hyphens:auto;-webkit-hyphens:auto;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:center;font-size:12px;line-height:1.3;font-weight:500;color:var(--ink);margin-top:9px;width:var(--lw);margin-left:calc((var(--t) - var(--lw)) / 2);opacity:0;transition:opacity .45s}
 .tile.on .tlabel{opacity:1}
 .tile:not(.on){opacity:.74;filter:saturate(.8)}
@@ -101,6 +102,7 @@ svg{display:block}
 .sub{font-size:17px;color:var(--ink2);max-width:640px;margin:18px auto 0}
 .cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px}
 .key{margin-top:18px;font-size:13.5px;color:var(--muted)}
+.key .jb{vertical-align:-5px;margin:0 2px}
 .mstrip{display:none}
 .hfield{display:flex;justify-content:center;align-items:center;gap:10px;margin:0 0 30px}
 .fchip{display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 20px 0 16px;border-radius:999px;border:1.5px solid color-mix(in srgb,var(--fcl) 50%,transparent);background:color-mix(in srgb,var(--fc) 10%,var(--surface));box-shadow:var(--shadow);cursor:pointer;font-size:17.5px;white-space:nowrap;transition:border-color .4s,background .4s}
@@ -128,6 +130,16 @@ svg{display:block}
 .kt{flex:none;font-size:13px;font-weight:500;line-height:1;padding:5px 8px;border-radius:6px;white-space:nowrap}
 .kt.core{background:var(--ink);color:var(--bg);border:1px solid var(--ink)}
 .kt.joint{color:var(--accent);border:1px solid var(--accent);background:var(--accent-soft)}
+/* Joint badge: a solid orange pill with the * in a white circle */
+.jb{display:inline-flex;align-items:center;gap:6px;flex:none;height:26px;padding:0 11px 0 3px;border-radius:999px;background:linear-gradient(135deg,#F2672F,#C2410C);color:#fff;font-size:13px;font-weight:600;letter-spacing:.01em;white-space:nowrap;line-height:1;box-shadow:0 2px 8px -2px rgba(194,65,12,.55),inset 0 1px 0 rgba(255,255,255,.25)}
+.jb i{display:grid;place-items:center;width:20px;height:20px;padding:3.5px;border-radius:50%;background:#fff;color:#C2410C;flex:none}
+.jb i svg{width:100%;height:100%}
+.jb.sm{height:22px;font-size:12px;gap:5px;padding:0 9px 0 3px}
+.jb.sm i{width:16px;height:16px;padding:3px}
+.jb.lg{height:34px;font-size:14px;gap:8px;padding:0 15px 0 4px}
+.jb.lg i{width:26px;height:26px;padding:4.5px}
+.dcard.joint,.bcard.joint{border-color:color-mix(in srgb,#D9480F 50%,var(--line));background:linear-gradient(120deg,color-mix(in srgb,#E4572E 10%,var(--surface)) 0%,var(--surface) 48%)}
+.dcard.joint:hover,.bcard.joint:hover{border-color:#D9480F}
 .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--ink2);align-items:center}
 .legend span.li{display:inline-flex;align-items:center;gap:8px}
 
@@ -139,9 +151,9 @@ section.block{padding:72px 0}
 
 /* field explorer */
 .ex{display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px;align-items:start}
-.flist{display:flex;flex-direction:column;gap:2px;position:sticky;top:84px}
-.flist::before{content:"";position:absolute;left:17px;top:24px;bottom:24px;width:2px;border-radius:2px;background:var(--thread);opacity:.4}
-.frow{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-height:44px;padding:10px 12px;border-radius:12px;border:0;background:none;cursor:pointer;text-align:left;font-size:15px;color:var(--ink2);transition:background .2s,color .2s;scroll-margin-top:80px}
+.flist{position:relative;display:flex;flex-direction:column;gap:2px}
+.flist::before{content:"";position:absolute;left:17px;top:20px;bottom:20px;width:2px;border-radius:2px;background:var(--thread);opacity:.4}
+.frow{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-height:40px;padding:8px 12px;border-radius:12px;border:0;background:none;cursor:pointer;text-align:left;font-size:14.5px;color:var(--ink2);transition:background .2s,color .2s;scroll-margin-top:80px}
 .frow i{position:relative;width:12px;height:12px;border-radius:4px;background:var(--fcl);flex:none;box-shadow:0 0 0 3px var(--bg)}
 .frow .n{margin-left:auto;font-size:13px;color:var(--muted)}
 .frow:hover{background:color-mix(in srgb,var(--surface) 70%,transparent);color:var(--ink)}
@@ -314,7 +326,7 @@ details.more-crit[open]{padding-bottom:16px}
 .nf{min-height:60vh;display:grid;place-items:center;text-align:center;padding:120px 20px 40px}
 
 /* ---------- responsive ---------- */
-@media (max-width:1100px){.hero{--R:860px;--t:80px;--lw:92px}}
+@media (max-width:1100px){.hero{--R:1000px;--t:74px;--lw:86px}}
 @media (max-width:900px){
   .nav,.right .desk{display:none}
   .menu-btn{display:inline-flex}
@@ -368,7 +380,8 @@ details.more-crit[open]{padding-bottom:16px}
    SETTINGS: edit these
    ===================================================================== */
 const CONFIG = {
-  contactEmail: 'liu.xiang@u.nus.edu',   // footer, Contribute page
+  orgEmail: 'expertsfirstexam@gmail.com', // project address: footer, Contribute page, "Email us" buttons
+  contactEmail: 'liu.xiang@u.nus.edu',     // personal address: shown next to it, and copied on "Email us" messages
   googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSe4x-62FICzl4fT1-hh2j1Au8mVuXfWY5LfKDmzpw6MfgxVkw/viewform?usp=publish-editor',          // the task proposal form (opens in a new tab)
   organizer: '',                         // e.g. 'the EFE team at <institution>'; shown in the footer, empty = hidden
   releaseTarget: 'January 2027',         // first release and results
@@ -384,13 +397,23 @@ const DATA = {
  "areas": [
   {
    "id": "ai",
-   "name": "AI Agents & Safety",
-   "desc": "Agents that operate computers, stay secure, model the world and improve themselves."
+   "name": "AI Agents",
+   "desc": "Agents that operate computers, learn from their own runs, model the world and improve themselves."
+  },
+  {
+   "id": "sec",
+   "name": "Security",
+   "desc": "Keeping agents and software safe: attacks, hidden bugs and cryptography."
   },
   {
    "id": "soft",
-   "name": "Software & Cloud",
-   "desc": "Building, testing and running real software and cloud services."
+   "name": "Software & Web",
+   "desc": "Building, testing and shipping real software and websites."
+  },
+  {
+   "id": "cloud",
+   "name": "Cloud & Operations",
+   "desc": "Running cloud services and fixing them when they break."
   },
   {
    "id": "sys",
@@ -409,18 +432,18 @@ const DATA = {
   },
   {
    "id": "rob",
-   "name": "Robotics & Autonomy",
-   "desc": "Robots and drones that sense, plan and act in the physical world."
+   "name": "Robotics & Embodied AI",
+   "desc": "Robots and drones that sense, plan and act, and the first-person data behind them."
   },
   {
    "id": "eng",
-   "name": "Engineering & Design",
-   "desc": "Buildings, vehicles, sound, and the CAD models behind them."
+   "name": "Engineering & Manufacturing",
+   "desc": "Vehicles, sound, and the CAD models behind them."
   },
   {
-   "id": "phys",
-   "name": "Physical Sciences",
-   "desc": "Experiments and analysis in physics, quantum systems and lasers."
+   "id": "arch",
+   "name": "Architecture & Civil Engineering",
+   "desc": "Designing buildings, pricing construction work, and water and ground engineering."
   },
   {
    "id": "earth",
@@ -428,24 +451,44 @@ const DATA = {
    "desc": "Satellites, remote sensing and maps of the Earth."
   },
   {
+   "id": "math",
+   "name": "Mathematics",
+   "desc": "Proofs and problem solving at research level."
+  },
+  {
+   "id": "phys",
+   "name": "Physics",
+   "desc": "Experiments and analysis in physics, quantum systems and lasers."
+  },
+  {
+   "id": "chem",
+   "name": "Chemistry & Materials",
+   "desc": "Chemistry, materials, batteries and hands-on wet-lab work."
+  },
+  {
    "id": "life",
-   "name": "Chemistry & Life Sciences",
-   "desc": "Chemistry, biology and hands-on wet-lab work."
+   "name": "Biology & Neuroscience",
+   "desc": "Biology and brain signals."
   },
   {
    "id": "med",
-   "name": "Medicine & Pharma",
-   "desc": "Medical imaging, radiation therapy and drug development."
+   "name": "Medicine",
+   "desc": "Medical imaging, and radiation and proton therapy."
+  },
+  {
+   "id": "pharma",
+   "name": "Pharma & Healthcare Business",
+   "desc": "Drug development and the business side of healthcare."
   },
   {
    "id": "edu",
-   "name": "Education & General",
-   "desc": "Education research, and tasks that cut across many fields."
+   "name": "Education",
+   "desc": "Research on how people teach and learn."
   },
   {
    "id": "biz",
    "name": "Business & Economics",
-   "desc": "Strategy, operations research and economic analysis."
+   "desc": "Strategy, economics, operations research and tendering."
   },
   {
    "id": "fin",
@@ -455,13 +498,13 @@ const DATA = {
  ],
  "benchmarks": [
   {
-   "slug": "fin",
-   "code": "FIN",
-   "name": "Finance",
-   "area": "fin",
+   "slug": "cua",
+   "code": "CUA",
+   "name": "Computer-Use Agents",
+   "area": "ai",
    "shared": false,
    "status": "In development",
-   "example": "Reconcile a quarter's ledger against bank statements",
+   "example": "Fill in a multi-app expense claim end to end",
    "description": "",
    "paper": null,
    "examples": [],
@@ -473,13 +516,13 @@ const DATA = {
    }
   },
   {
-   "slug": "fcu",
-   "code": "FCU",
-   "name": "Financial Computer Use",
-   "area": "fin",
+   "slug": "traj",
+   "code": "TRAJ",
+   "name": "Agent Trajectories",
+   "area": "ai",
    "shared": false,
    "status": "In development",
-   "example": "Build a cash-flow report inside a trading terminal",
+   "example": "Find the step where an agent's run went wrong",
    "description": "",
    "paper": null,
    "examples": [],
@@ -491,13 +534,13 @@ const DATA = {
    }
   },
   {
-   "slug": "ifx",
-   "code": "IFX",
-   "name": "Investment & Foreign Exchange",
-   "area": "fin",
+   "slug": "wm",
+   "code": "WM",
+   "name": "World Models",
+   "area": "ai",
    "shared": false,
    "status": "In development",
-   "example": "Hedge a currency exposure for an importer",
+   "example": "Predict the next frames of a physical scene",
    "description": "",
    "paper": null,
    "examples": [],
@@ -509,31 +552,13 @@ const DATA = {
    }
   },
   {
-   "slug": "cry",
-   "code": "CRY",
-   "name": "Crypto",
-   "area": "fin",
-   "shared": false,
-   "status": "In development",
-   "example": "Audit a smart contract for a reentrancy bug",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "pm",
-   "code": "PM",
-   "name": "Prediction Markets",
-   "area": "fin",
+   "slug": "rsi",
+   "code": "RSI",
+   "name": "Recursive Self-Improvement",
+   "area": "ai",
    "shared": true,
    "status": "In development",
-   "example": "Price a market from news and base rates",
+   "example": "Improve an agent's own training loop",
    "description": "",
    "paper": null,
    "examples": [],
@@ -545,13 +570,13 @@ const DATA = {
    }
   },
   {
-   "slug": "str",
-   "code": "STR",
-   "name": "Strategy",
-   "area": "biz",
+   "slug": "imgc",
+   "code": "IMG",
+   "name": "Coding Agents for Image Generation",
+   "area": "ai",
    "shared": false,
    "status": "In development",
-   "example": "Size a new market and recommend an entry plan",
+   "example": "Write code that renders an image to match a reference",
    "description": "",
    "paper": null,
    "examples": [],
@@ -563,13 +588,13 @@ const DATA = {
    }
   },
   {
-   "slug": "or",
-   "code": "OR",
-   "name": "Operations Research",
-   "area": "biz",
+   "slug": "asec",
+   "code": "ASEC",
+   "name": "Agent Security",
+   "area": "sec",
    "shared": false,
    "status": "In development",
-   "example": "Schedule a factory's shifts under constraints",
+   "example": "Find a prompt-injection path in an agent workflow",
    "description": "",
    "paper": null,
    "examples": [],
@@ -581,13 +606,31 @@ const DATA = {
    }
   },
   {
-   "slug": "econ",
-   "code": "ECON",
-   "name": "Economics",
-   "area": "biz",
+   "slug": "vuln",
+   "code": "VULN",
+   "name": "Vulnerability Detection",
+   "area": "sec",
+   "shared": false,
+   "status": "In development",
+   "example": "Find and explain a memory-safety bug in a C library",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "csec",
+   "code": "CSEC",
+   "name": "Cryptography & Security",
+   "area": "sec",
    "shared": true,
    "status": "In development",
-   "example": "Estimate the effect of a policy change",
+   "example": "Find the weakness in a custom encryption scheme",
    "description": "",
    "paper": null,
    "examples": [],
@@ -638,7 +681,7 @@ const DATA = {
    "slug": "aiops",
    "code": "AIOPS",
    "name": "AIOps",
-   "area": "soft",
+   "area": "cloud",
    "shared": true,
    "status": "In development",
    "example": "Find the root cause of a latency spike",
@@ -656,7 +699,7 @@ const DATA = {
    "slug": "cgym",
    "code": "CGYM",
    "name": "CloudGym",
-   "area": "soft",
+   "area": "cloud",
    "shared": true,
    "status": "In development",
    "example": "Recover a misconfigured cloud deployment",
@@ -674,7 +717,7 @@ const DATA = {
    "slug": "ogym",
    "code": "OGYM",
    "name": "OmniGym",
-   "area": "soft",
+   "area": "cloud",
    "shared": true,
    "status": "In development",
    "example": "Complete a multi-tool operations task",
@@ -779,42 +822,6 @@ const DATA = {
    }
   },
   {
-   "slug": "sat",
-   "code": "SAT",
-   "name": "Satellite Systems",
-   "area": "earth",
-   "shared": false,
-   "status": "In development",
-   "example": "Plan a satellite's imaging passes for a week",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "gis",
-   "code": "GIS",
-   "name": "Geography, Remote Sensing & GIS",
-   "area": "earth",
-   "shared": false,
-   "status": "In development",
-   "example": "Map flood extent from satellite images",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
    "slug": "chip",
    "code": "CHIP",
    "name": "Chip Design",
@@ -905,78 +912,6 @@ const DATA = {
    }
   },
   {
-   "slug": "cua",
-   "code": "CUA",
-   "name": "Computer-Use Agents",
-   "area": "ai",
-   "shared": false,
-   "status": "In development",
-   "example": "Fill in a multi-app expense claim end to end",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "asec",
-   "code": "ASEC",
-   "name": "Agent Security",
-   "area": "ai",
-   "shared": false,
-   "status": "In development",
-   "example": "Find a prompt-injection path in an agent workflow",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "wm",
-   "code": "WM",
-   "name": "World Models",
-   "area": "ai",
-   "shared": false,
-   "status": "In development",
-   "example": "Predict the next frames of a physical scene",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
-   "slug": "rsi",
-   "code": "RSI",
-   "name": "Recursive Self-Improvement",
-   "area": "ai",
-   "shared": true,
-   "status": "In development",
-   "example": "Improve an agent's own training loop",
-   "description": "",
-   "paper": null,
-   "examples": [],
-   "taxonomy": [],
-   "team": {
-    "leads": [],
-    "members": [],
-    "contributors": []
-   }
-  },
-  {
    "slug": "rob",
    "code": "ROB",
    "name": "Embodied AI & Robotics",
@@ -984,6 +919,24 @@ const DATA = {
    "shared": false,
    "status": "In development",
    "example": "Write a pick-and-place routine for a new part",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "rbt",
+   "code": "RBT",
+   "name": "Robotics (Embodied First Exam)",
+   "area": "rob",
+   "shared": false,
+   "status": "In development",
+   "example": "Pack mixed items into a box with a robot arm",
    "description": "",
    "paper": null,
    "examples": [],
@@ -1013,13 +966,13 @@ const DATA = {
    }
   },
   {
-   "slug": "arch",
-   "code": "ARCH",
-   "name": "Architecture",
-   "area": "eng",
+   "slug": "fpv",
+   "code": "FPV",
+   "name": "First-Person View Data",
+   "area": "rob",
    "shared": false,
    "status": "In development",
-   "example": "Check a floor plan against fire-exit rules",
+   "example": "Label the actions in a first-person cooking video",
    "description": "",
    "paper": null,
    "examples": [],
@@ -1049,6 +1002,24 @@ const DATA = {
    }
   },
   {
+   "slug": "cad",
+   "code": "CAD",
+   "name": "CAD",
+   "area": "eng",
+   "shared": true,
+   "status": "In development",
+   "example": "Model a bracket from an engineering drawing",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
    "slug": "acu",
    "code": "ACU",
    "name": "Acoustics",
@@ -1067,13 +1038,103 @@ const DATA = {
    }
   },
   {
-   "slug": "cad",
-   "code": "CAD",
-   "name": "CAD",
-   "area": "eng",
-   "shared": true,
+   "slug": "arch",
+   "code": "ARCH",
+   "name": "Architectural Design",
+   "area": "arch",
+   "shared": false,
    "status": "In development",
-   "example": "Model a bracket from an engineering drawing",
+   "example": "Check a floor plan against fire-exit rules",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "cost",
+   "code": "COST",
+   "name": "Construction Cost Estimation",
+   "area": "arch",
+   "shared": false,
+   "status": "In development",
+   "example": "Estimate a building's cost from its drawings",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "geo",
+   "code": "GEO",
+   "name": "Hydraulic & Geotechnical Engineering",
+   "area": "arch",
+   "shared": false,
+   "status": "In development",
+   "example": "Check a slope's stability from soil test results",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "sat",
+   "code": "SAT",
+   "name": "Satellite Systems",
+   "area": "earth",
+   "shared": false,
+   "status": "In development",
+   "example": "Plan a satellite's imaging passes for a week",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "gis",
+   "code": "GIS",
+   "name": "Geography, Remote Sensing & GIS",
+   "area": "earth",
+   "shared": false,
+   "status": "In development",
+   "example": "Map flood extent from satellite images",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "math",
+   "code": "MATH",
+   "name": "Mathematics",
+   "area": "math",
+   "shared": false,
+   "status": "In development",
+   "example": "Write a complete proof of a research-level lemma",
    "description": "",
    "paper": null,
    "examples": [],
@@ -1142,10 +1203,46 @@ const DATA = {
    "slug": "chm",
    "code": "CHM",
    "name": "Chemistry",
-   "area": "life",
+   "area": "chem",
    "shared": false,
    "status": "In development",
    "example": "Plan a synthesis route for a target molecule",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "mat",
+   "code": "MAT",
+   "name": "Materials & Electrochemistry",
+   "area": "chem",
+   "shared": false,
+   "status": "In development",
+   "example": "Estimate a battery's capacity fade from cycling data",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "wet",
+   "code": "WET",
+   "name": "Wet Lab",
+   "area": "chem",
+   "shared": false,
+   "status": "In development",
+   "example": "Turn a paper's methods into a lab protocol",
    "description": "",
    "paper": null,
    "examples": [],
@@ -1175,13 +1272,13 @@ const DATA = {
    }
   },
   {
-   "slug": "wet",
-   "code": "WET",
-   "name": "Wet Lab",
+   "slug": "eeg",
+   "code": "EEG",
+   "name": "EEG & Brain Signals",
    "area": "life",
    "shared": false,
    "status": "In development",
-   "example": "Turn a paper's methods into a lab protocol",
+   "example": "Clean an EEG recording and flag seizure events",
    "description": "",
    "paper": null,
    "examples": [],
@@ -1229,13 +1326,49 @@ const DATA = {
    }
   },
   {
-   "slug": "pha",
-   "code": "PHA",
-   "name": "Pharmaceuticals",
+   "slug": "prt",
+   "code": "PRT",
+   "name": "Proton Therapy",
    "area": "med",
    "shared": false,
    "status": "In development",
+   "example": "Check a proton plan's range margins against dose limits",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "pha",
+   "code": "PHA",
+   "name": "Pharmaceuticals",
+   "area": "pharma",
+   "shared": false,
+   "status": "In development",
    "example": "Review a batch record for compliance gaps",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "hba",
+   "code": "HBA",
+   "name": "Healthcare Business Analysis",
+   "area": "pharma",
+   "shared": false,
+   "status": "In development",
+   "example": "Size the market for a new medical device",
    "description": "",
    "paper": null,
    "examples": [],
@@ -1265,13 +1398,139 @@ const DATA = {
    }
   },
   {
-   "slug": "gen",
-   "code": "GEN",
-   "name": "General & Cross-domain",
-   "area": "edu",
+   "slug": "str",
+   "code": "STR",
+   "name": "Strategy",
+   "area": "biz",
    "shared": false,
    "status": "In development",
-   "example": "Solve a problem that spans several fields",
+   "example": "Size a new market and recommend an entry plan",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "econ",
+   "code": "ECON",
+   "name": "Economics",
+   "area": "biz",
+   "shared": true,
+   "status": "In development",
+   "example": "Estimate the effect of a policy change",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "or",
+   "code": "OR",
+   "name": "Operations Research",
+   "area": "biz",
+   "shared": false,
+   "status": "In development",
+   "example": "Schedule a factory's shifts under constraints",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "tender",
+   "code": "BID",
+   "name": "Tendering & Bidding",
+   "area": "biz",
+   "shared": false,
+   "status": "In development",
+   "example": "Score supplier bids against a tender's criteria",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "fcu",
+   "code": "FCU",
+   "name": "Financial Computer Use",
+   "area": "fin",
+   "shared": false,
+   "status": "In development",
+   "example": "Build a cash-flow report inside a trading terminal",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "ifx",
+   "code": "IFX",
+   "name": "Investment & Foreign Exchange",
+   "area": "fin",
+   "shared": false,
+   "status": "In development",
+   "example": "Hedge a currency exposure for an importer",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "cry",
+   "code": "CRY",
+   "name": "Crypto",
+   "area": "fin",
+   "shared": false,
+   "status": "In development",
+   "example": "Audit a smart contract for a reentrancy bug",
+   "description": "",
+   "paper": null,
+   "examples": [],
+   "taxonomy": [],
+   "team": {
+    "leads": [],
+    "members": [],
+    "contributors": []
+   }
+  },
+  {
+   "slug": "pm",
+   "code": "PM",
+   "name": "Prediction Markets",
+   "area": "fin",
+   "shared": true,
+   "status": "In development",
+   "example": "Price a market from news and base rates",
    "description": "",
    "paper": null,
    "examples": [],
@@ -1340,16 +1599,19 @@ const I={
 };
 const lc=code=>code.length>=5?'l5':code.length===4?'l4':'';
 // soft hyphens so long single words can break under a tile, in every browser
-const SHY={Telecommunications:'Tele\u00ADcommuni\u00ADcations',Pharmaceuticals:'Pharma\u00ADceuticals',Infrastructure:'Infra\u00ADstructure',Manufacturing:'Manu\u00ADfacturing',Improvement:'Improve\u00ADment',Development:'Develop\u00ADment'};
+const SHY={Telecommunications:'Tele\u00ADcommuni\u00ADcations',Pharmaceuticals:'Pharma\u00ADceuticals',Infrastructure:'Infra\u00ADstructure',Manufacturing:'Manu\u00ADfacturing',Improvement:'Improve\u00ADment',Development:'Develop\u00ADment',Electrochemistry:'Electro\u00ADchemistry'};
 const shy=t=>esc(t).replace(/[A-Za-z]{11,}/g,w=>SHY[w]||w);
 const mt=(b,s)=>`<span class="mt fc ${lc(b.code)}" style="${tcv(b)};--s:${s||34}px" aria-hidden="true">${esc(b.code)}</span>`;
 const star=b=>b.shared?'<span class="star" title="Joint domain, co-built with a partner team">*</span>':'';
-const kindTag=b=>b.shared?'<span class="kt joint">Joint *</span>':'';
-const legend=()=>`<div class="legend"><span class="li"><span class="kt joint">Joint *</span>co-built with a partner team</span><span class="li muted">All other domains are built by the EFE team</span></div>`;
+const STAR='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5v15M5.5 8.25l13 7.5M5.5 15.75l13-7.5" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" fill="none"/></svg>';
+const jb=(cls='')=>`<span class="jb ${cls}"><i>${STAR}</i>Joint</span>`;
+const kindTag=b=>b.shared?jb():'';
+const legend=()=>`<div class="legend"><span class="li">${jb()}co-built with a partner team</span><span class="li muted">All other domains are built by the EFE team</span></div>`;
 const PH='<span class="ph-tag">Placeholder</span>';
 const isDark=()=>{const r=document.documentElement;return r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches};
 const formUrl=()=>(CONFIG.googleFormUrl||'').trim();
-const mailto=(subj)=>`mailto:${esc(CONFIG.contactEmail)}?subject=${encodeURIComponent(subj)}`;
+const mailto=(subj,to)=>{const a=to||CONFIG.orgEmail||CONFIG.contactEmail;const cc=!to&&CONFIG.orgEmail&&CONFIG.contactEmail?`cc=${encodeURIComponent(CONFIG.contactEmail)}&`:'';return esc(`mailto:${a}?${cc}subject=${encodeURIComponent(subj)}`)};
+const emails=(subj)=>[CONFIG.orgEmail,CONFIG.contactEmail].filter(Boolean).map(e=>`<a href="${mailto(subj,e)}">${esc(e)}</a>`).join(' or ');
 
 /* ---------- field drawings (original line art, one per field) ---------- */
 const SV=(inner)=>`<svg viewBox="0 0 240 140" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
@@ -1365,8 +1627,15 @@ const ART={
  rob:()=>SV('<rect x="34" y="112" width="60" height="12" rx="3"/><path d="M64 112V96L104 56L160 62L184 86" stroke-width="5" opacity=".85"/><circle cx="64" cy="96" r="7" fill="var(--surface)"/><circle cx="104" cy="56" r="7" fill="var(--surface)"/><circle cx="160" cy="62" r="6" fill="var(--surface)"/><path d="M184 86L176 100M184 86L198 96"/><rect x="170" y="102" width="34" height="22" stroke-dasharray="4 4" opacity=".7"/>'),
  eng:()=>SV('<path d="M70 52L130 30L190 52L130 74Z"/><path d="M70 52V102L130 124V74M190 52V102L130 124" /><path d="M58 56V108M52 108H64M52 56H64" opacity=".55"/><path d="M76 116L124 132" opacity=".55"/><path d="M96 82h20M106 72v20" opacity=".5"/><circle cx="160" cy="88" r="8" opacity=".6"/>'),
  phys:()=>{const f=x=>112-70*Math.exp(-((x-80)**2)/180)-44*Math.exp(-((x-150)**2)/320)-26*Math.exp(-((x-200)**2)/90);let p='M14 112';for(let x=14;x<=228;x+=4)p+=` L${x} ${f(x).toFixed(1)}`;return SV(`<path d="M14 116H228" opacity=".4"/><path d="${p}"/>`+[40,62,80,98,122,150,176,200,214].map(x=>`<circle cx="${x}" cy="${(f(x)+((x*7)%9-4)).toFixed(1)}" r="2.6" fill="currentColor" opacity=".7"/>`).join(''))},
- life:()=>{const hex=(cx,cy,r)=>Array.from({length:6},(_,i)=>{const a=Math.PI/3*i+Math.PI/6;return[(cx+r*Math.cos(a)).toFixed(1),(cy+r*Math.sin(a)).toFixed(1)]});const h1=hex(92,72,26),h2=hex(137,72,26);let s=`<path d="M${h1.map(p=>p.join(' ')).join('L')}Z"/><path d="M${h2.map(p=>p.join(' ')).join('L')}Z"/>`;s+=`<path d="M${h1[3][0]} ${h1[3][1]}L50 72M${h2[0][0]} ${h2[0][1]}L178 50M${h2[1][0]} ${h2[1][1]}L178 100" opacity=".7"/>`;[[50,72],[178,50],[178,100]].forEach(([x,y],i)=>{s+=`<circle cx="${x}" cy="${y}" r="7" ${i===1?'fill="currentColor"':'fill="var(--surface)"'}/>`});return SV(s+'<path d="M86 60l12 24M131 60l12 24" opacity=".45"/>')},
+ chem:()=>{const hex=(cx,cy,r)=>Array.from({length:6},(_,i)=>{const a=Math.PI/3*i+Math.PI/6;return[(cx+r*Math.cos(a)).toFixed(1),(cy+r*Math.sin(a)).toFixed(1)]});const h1=hex(92,72,26),h2=hex(137,72,26);let s=`<path d="M${h1.map(p=>p.join(' ')).join('L')}Z"/><path d="M${h2.map(p=>p.join(' ')).join('L')}Z"/>`;s+=`<path d="M${h1[3][0]} ${h1[3][1]}L50 72M${h2[0][0]} ${h2[0][1]}L178 50M${h2[1][0]} ${h2[1][1]}L178 100" opacity=".7"/>`;[[50,72],[178,50],[178,100]].forEach(([x,y],i)=>{s+=`<circle cx="${x}" cy="${y}" r="7" ${i===1?'fill="currentColor"':'fill="var(--surface)"'}/>`});return SV(s+'<path d="M86 60l12 24M131 60l12 24" opacity=".45"/>')},
  med:()=>SV('<circle cx="104" cy="70" r="54" opacity=".35"/><circle cx="104" cy="70" r="42" opacity=".5"/><path d="M80 52 C90 40 120 40 130 56 S126 92 104 96 S70 84 80 52Z" opacity=".6"/><circle cx="118" cy="60" r="9" fill="currentColor" fill-opacity=".35"/><rect x="104" y="46" width="30" height="28" stroke-width="1.8"/><path d="M134 46H186" stroke-dasharray="3 3"/><rect x="186" y="38" width="38" height="16" fill="currentColor" stroke="none"/>'),
+ life:()=>{let a='M20 70',b='M20 70',r='';for(let x=20;x<=120;x+=4){const y1=70+28*Math.sin((x-20)/16),y2=70-28*Math.sin((x-20)/16);a+=` L${x} ${y1.toFixed(1)}`;b+=` L${x} ${y2.toFixed(1)}`;if((x-20)%12===0)r+=`<path d="M${x} ${y1.toFixed(1)}V${y2.toFixed(1)}" opacity=".45"/>`}
+   let e='M134 80';[[146,80],[150,70],[154,88],[158,80],[166,80],[170,40],[175,112],[180,74],[188,80],[196,80],[200,66],[205,92],[210,80],[228,80]].forEach(([x,y])=>e+=` L${x} ${y}`);return SV(`<path d="${a}"/><path d="${b}" opacity=".6"/>${r}<path d="${e}" stroke-width="2.2"/>`)},
+ sec:()=>SV('<path d="M120 14L168 32V70C168 100 147 120 120 128C93 120 72 100 72 70V32Z"/><circle cx="120" cy="64" r="11" fill="currentColor" fill-opacity=".25"/><path d="M120 75V96" stroke-width="3"/><path d="M28 40h28M28 54h18M184 88h28M194 102h18" opacity=".5"/><rect x="22" y="94" width="30" height="24" rx="4" opacity=".6"/><path d="M28 94V86a9 9 0 0 1 18 0v8" opacity=".6"/>'),
+ cloud:()=>SV('<path d="M74 70C62 70 54 62 54 52C54 42 62 34 73 35C77 22 89 14 103 14C119 14 131 25 133 39C144 38 154 47 154 58C154 65 148 70 140 70Z"/><rect x="66" y="86" width="96" height="14" rx="3"/><rect x="66" y="106" width="96" height="14" rx="3" opacity=".7"/><circle cx="77" cy="93" r="2.5" fill="currentColor"/><circle cx="77" cy="113" r="2.5" fill="currentColor"/><path d="M96 70V86M132 70V86" stroke-dasharray="3 3" opacity=".6"/><path d="M182 104C204 94 210 72 198 54" stroke-dasharray="3 4" opacity=".6"/><path d="M190 58l8-6 4 9"/>'),
+ arch:()=>SV('<path d="M40 120V58L90 30L140 58V120"/><path d="M58 120V94H78V120M100 74h22v18h-22zM56 68h20v14H56z" opacity=".7"/><path d="M160 120V44h52v76" opacity=".55"/><path d="M160 64h52M160 84h52M160 104h52M186 44v76" opacity=".4"/><path d="M18 120H228"/><path d="M26 132l8-8 8 8 8-8 8 8 8-8 8 8" opacity=".5"/>'),
+ math:()=>SV('<path d="M56 114C64 114 66 106 68 96L80 40C82 30 86 24 94 24" stroke-width="3"/><path d="M108 70H150M129 49V91" opacity=".55"/><circle cx="188" cy="50" r="24" opacity=".55"/><path d="M164 50h48M188 26v48" opacity=".35"/><path d="M118 120L148 92L178 120Z" fill="currentColor" fill-opacity=".2"/><path d="M22 30h22M22 42h14" opacity=".5"/>'),
+ pharma:()=>SV('<g transform="rotate(-30 92 72)"><rect x="50" y="56" width="84" height="32" rx="16"/><path d="M92 56V88"/><path d="M66 56H92V88H66a16 16 0 0 1 0-32z" fill="currentColor" fill-opacity=".25" stroke="none"/></g><rect x="152" y="46" width="52" height="76" rx="8"/><rect x="158" y="32" width="40" height="14" rx="3"/><path d="M166 76h24M178 64v24" stroke-width="2.4"/><path d="M22 122h40" opacity=".4"/>'),
  edu:()=>SV('<rect x="40" y="92" width="120" height="16" rx="3"/><rect x="52" y="74" width="104" height="16" rx="3" opacity=".75"/><rect x="46" y="56" width="96" height="16" rx="3" opacity=".55"/><path d="M178 40L208 28L238 40L208 52Z" fill="currentColor" fill-opacity=".25"/><path d="M192 46V60C200 66 216 66 224 60V46M234 42V64"/><path d="M14 120H226" opacity=".35"/>')
 };
 const art=id=>(ART[id]||ART.edu)();
@@ -1392,7 +1661,7 @@ function foot(){
     <p style="margin:12px 0 0;max-width:340px">We test whether AI agents can finish real work done by human experts.</p>
     ${CONFIG.organizer?`<p style="margin:8px 0 0">Organized by ${esc(CONFIG.organizer)}.</p>`:''}</div>
    <div><h5>Explore</h5><ul><li><a href="#/leaderboard">Leaderboard</a></li><li><a href="#/domains">Domains</a></li><li><a href="#/how">How it works</a></li></ul></div>
-   <div><h5>Get involved</h5><ul><li><a href="#/contribute">Contribute</a></li><li><a href="${mailto('EFE')}">${esc(CONFIG.contactEmail)}</a></li></ul></div>
+   <div><h5>Get involved</h5><ul><li><a href="#/contribute">Contribute</a></li>${[CONFIG.orgEmail,CONFIG.contactEmail].filter(Boolean).map(e=>`<li><a href="${mailto('EFE',e)}">${esc(e)}</a></li>`).join('')}</ul></div>
    <div><h5>Resources</h5><ul><li>${soon('Paper',CONFIG.paperUrl)}</li><li>${soon('GitHub',CONFIG.githubUrl)}</li></ul></div>
   </div>
   <div class="fbot"><span>© ${new Date().getFullYear()} Experts’ First Exam</span><span>First release planned for ${esc(CONFIG.releaseTarget)}</span></div>
@@ -1400,7 +1669,7 @@ function foot(){
 }
 
 /* ---------- hero: the wheel ---------- */
-const GAP=0.7;                       // empty slots between fields
+const GAP=0.6;                       // empty slots between fields
 const SLOTS=B.length+NA*GAP;
 const ANG={},CENTER={};
 (()=>{let s=0;DATA.areas.forEach(a=>{const st=s;inArea(a.id).forEach(b=>{ANG[b.slug]=(s+.5)*360/SLOTS;s+=1});CENTER[a.id]=((st+s)/2)*360/SLOTS;s+=GAP})})();
@@ -1418,7 +1687,7 @@ function hero(){
     <h1 class="h-hero">Experts’ First Exam</h1>
     <p class="sub">We test whether AI agents can finish real work done by human experts, from chip design to medicine. Every result is checked against a rubric written by experts.</p>
     <div class="cta"><button class="btn dark lg" data-act="jump" data-v="fields">Explore the domains ${I.arrow}</button><a class="btn lg" href="#/contribute">Propose a task</a></div>
-    <p class="key">${B.length} domains in ${NA} fields · <span class="star">*</span> marks the ${j} joint domains, co-built with partner teams</p>
+    <p class="key">${B.length} domains in ${NA} fields · ${jb('sm')} marks the ${j} joint domains, co-built with partner teams</p>
    </div>
   </section>`;
 }
@@ -1442,7 +1711,7 @@ function step(n){const ids=DATA.areas.map(a=>a.id);setField(ids[(ids.indexOf(cur
 /* small preview next to a tile (no clicks needed: clicking the tile opens its page) */
 function showTip(tile){
   const b=BY[tile.dataset.tile],a=AREA[b.area],p=document.getElementById('tip');
-  p.innerHTML=`<div class="t1">${mt(b,36)}<b>${esc(b.name)}</b></div>
+  p.innerHTML=`<div class="t1">${mt(b,36)}<b>${esc(b.name)}</b>${b.shared?`<span style="margin-left:auto">${jb('sm')}</span>`:''}</div>
    <div class="lab">Example task</div><h4>${esc(exTitle(b))}</h4>
    <div class="t3">${b.shared?'Joint':'Core'} · ${esc(a.name)} · illustrative</div>`;
   const r=tile.querySelector('.tface').getBoundingClientRect(),pw=p.offsetWidth,ph=p.offsetHeight;
@@ -1474,8 +1743,8 @@ function bindHero(){
 
 /* ---------- explorer: fields → benchmarks and example tasks ---------- */
 const isMob=()=>matchMedia('(max-width:900px)').matches;
-function dcard(b){return`<a class="dcard" href="#/d/${b.slug}">${mt(b,36)}<span class="nm">${esc(b.name)}</span>${kindTag(b)}</a>`}
-function bcard(b){return`<a class="bcard" href="#/d/${b.slug}">${mt(b,38)}<span class="nm">${esc(b.name)}</span>${kindTag(b)}<span class="exl">Example: ${esc(exTitle(b))}</span></a>`}
+function dcard(b){return`<a class="dcard${b.shared?' joint':''}" href="#/d/${b.slug}">${mt(b,36)}<span class="nm">${esc(b.name)}</span>${kindTag(b)}</a>`}
+function bcard(b){return`<a class="bcard${b.shared?' joint':''}" href="#/d/${b.slug}">${mt(b,38)}<span class="nm">${esc(b.name)}</span>${kindTag(b)}<span class="exl">Example: ${esc(exTitle(b))}</span></a>`}
 function fpanel(id){
   const a=AREA[id],list=inArea(id),j=list.filter(b=>b.shared).length;
   return`<div class="fpanel fc" style="${fcv(id)}" id="fpanel">
@@ -1606,7 +1875,7 @@ function benchPage(b){
   return header('b')+`<section class="page-top"><div class="container">
    <a class="crumb" href="#/domains">← All domains</a>
    <div class="bhead fc" style="${tcv(b)}">${mt(b,60)}<div class="eyebrow" style="margin-top:18px">${esc(a.name)} · <span class="code">EFE-${esc(b.code)}</span></div><h1>${esc(b.name)}</h1>
-     <div class="tags">${b.shared?'<span class="tag joint">Joint * · co-built with a partner team</span>':'<span class="tag core">Core · built by the EFE team</span>'}<span class="tag">${esc(b.status||'In development')}</span></div>
+     <div class="tags">${b.shared?`${jb('lg').replace('Joint<','Joint · co-built with a partner team<')}`:'<span class="tag core">Core · built by the EFE team</span>'}<span class="tag">${esc(b.status||'In development')}</span></div>
      <div class="exbox"><small>Example task · illustrative</small><b>${esc(exTitle(b))}</b></div></div>
    <nav class="subnav" aria-label="Sections">${secs.map(([id,l])=>`<button class="chip" data-act="jump" data-v="${id}" data-sec="${id}">${l}</button>`).join('')}</nav>
    <div class="bsec" id="overview"><h2>Overview</h2>${overview}</div>
@@ -1652,7 +1921,7 @@ function results(){
 }
 
 function contribute(){
-  const f=formUrl();const em=esc(CONFIG.contactEmail);
+  const f=formUrl();
   return header('c')+`<section class="page-top"><div class="container">
    <div class="eyebrow">Contribute</div><h1 class="h-sec" style="margin-top:10px">Help build EFE</h1>
    <p class="lead">EFE is built with the people who do the work. Contributors are credited in the EFE papers and on this site.</p>
@@ -1661,11 +1930,11 @@ function contribute(){
      <p>Describe one piece of real work from your job that today’s AI would struggle with. A short description is enough to start.</p>
      ${f?`<a class="btn dark" href="${esc(f)}" target="_blank" rel="noopener">Open the proposal form ${I.ext}</a>`:`<a class="btn dark" href="${mailto('EFE task proposal')}">Email your proposal</a>`}
      <p class="small">Please don’t include confidential information from your employer, clients or patients.</p>
-     <p class="small">The form opens in a new tab. Can’t open Google Forms? Email your proposal to <a href="${mailto('EFE task proposal')}">${em}</a>.</p></div>
+     <p class="small">The form opens in a new tab. Can’t open Google Forms? Email your proposal to ${emails('EFE task proposal')}.</p></div>
     <div class="card path" id="lead"><span class="pill">For experts and teams</span><h3>Lead or partner on a domain</h3>
      <p>Lead the domain for your field with the EFE team, as the lead expert or as a partner team.</p>
      <a class="btn" href="${mailto('EFE domain partnership')}">Email us</a>
-     <p class="small">Tell us your field and a few lines about your work.</p></div>
+     <p class="small">Write to ${emails('EFE domain partnership')} with your field and a few lines about your work.</p></div>
    </div>
    <h2 class="h2">What happens next</h2>
    <div class="card"><ol class="next"><li>You send a short proposal.</li><li>We read it and reply by email.</li><li>If it fits, we work with you to turn it into a full task: the inputs, the steps, and a scoring rubric.</li></ol></div>
